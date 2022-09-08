@@ -1,0 +1,4 @@
+lev.final,.y.,group1,group2,n1,n2,statistic,df,p,p.adj,p.adj.signif
+I,BONE_LENGTH,Bos_Bison_sp.,Cervus_elaphus,205,128,1.0838933850479757,254.6106850950641,0.279,0.488,ns
+I,BONE_LENGTH,Bos_Bison_sp.,Ursus_spelaeus,205,102,2.194645798465614,168.6882762090774,0.03,0.089,ns
+I,BONE_LENGTH,Cervus_elaphus,Ursus_spelaeus,128,102,1.1689634053524622,201.5545024159291,0.244,0.488,ns

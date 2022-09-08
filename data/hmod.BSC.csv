@@ -1,0 +1,433 @@
+lev.final,Taxon.mod,Element.mod,NSP,type,n,pc
+I,Bos Bison sp.,Axial,289,cut,4,1.384083044982699
+I,Bos Bison sp.,Axial,289,marrow,0,0
+I,Bos Bison sp.,Axial,289,scrape,1,0.34602076124567477
+I,Bos Bison sp.,Cranium,289,cut,2,0.6920415224913495
+I,Bos Bison sp.,Cranium,289,marrow,0,0
+I,Bos Bison sp.,Cranium,289,scrape,0,0
+I,Bos Bison sp.,Foot,289,cut,3,1.0380622837370241
+I,Bos Bison sp.,Foot,289,marrow,0,0
+I,Bos Bison sp.,Foot,289,scrape,0,0
+I,Bos Bison sp.,Forelimb,289,cut,18,6.228373702422145
+I,Bos Bison sp.,Forelimb,289,marrow,9,3.1141868512110724
+I,Bos Bison sp.,Forelimb,289,scrape,5,1.7301038062283738
+I,Bos Bison sp.,Hindlimb,289,cut,26,8.996539792387544
+I,Bos Bison sp.,Hindlimb,289,marrow,13,4.498269896193772
+I,Bos Bison sp.,Hindlimb,289,scrape,7,2.422145328719723
+I,Bos Bison sp.,Indeterminate,289,cut,2,0.6920415224913495
+I,Bos Bison sp.,Indeterminate,289,marrow,0,0
+I,Bos Bison sp.,Indeterminate,289,scrape,0,0
+I,Bos Bison sp.,Long bone,289,cut,2,0.6920415224913495
+I,Bos Bison sp.,Long bone,289,marrow,0,0
+I,Bos Bison sp.,Long bone,289,scrape,0,0
+I,Canis lupus,Forelimb,12,cut,1,8.333333333333332
+I,Canis lupus,Forelimb,12,marrow,0,0
+I,Canis lupus,Forelimb,12,scrape,0,0
+I,Canis lupus,Hindlimb,12,cut,1,8.333333333333332
+I,Canis lupus,Hindlimb,12,marrow,0,0
+I,Canis lupus,Hindlimb,12,scrape,1,8.333333333333332
+I,Capra sp.,Foot,91,cut,4,4.395604395604396
+I,Capra sp.,Foot,91,marrow,0,0
+I,Capra sp.,Foot,91,scrape,0,0
+I,Capra sp.,Forelimb,91,cut,5,5.4945054945054945
+I,Capra sp.,Forelimb,91,marrow,1,1.098901098901099
+I,Capra sp.,Forelimb,91,scrape,1,1.098901098901099
+I,Capra sp.,Hindlimb,91,cut,5,5.4945054945054945
+I,Capra sp.,Hindlimb,91,marrow,0,0
+I,Capra sp.,Hindlimb,91,scrape,0,0
+I,Capreolus capreolus,Forelimb,3,cut,1,33.33333333333333
+I,Capreolus capreolus,Forelimb,3,marrow,0,0
+I,Capreolus capreolus,Forelimb,3,scrape,0,0
+I,Cervid,Axial,285,cut,3,1.0526315789473684
+I,Cervid,Axial,285,marrow,0,0
+I,Cervid,Axial,285,scrape,0,0
+I,Cervid,Cranium,285,cut,2,0.7017543859649122
+I,Cervid,Cranium,285,marrow,0,0
+I,Cervid,Cranium,285,scrape,0,0
+I,Cervid,Forelimb,285,cut,23,8.070175438596491
+I,Cervid,Forelimb,285,marrow,4,1.4035087719298245
+I,Cervid,Forelimb,285,scrape,10,3.508771929824561
+I,Cervid,Hindlimb,285,cut,29,10.175438596491228
+I,Cervid,Hindlimb,285,marrow,6,2.1052631578947367
+I,Cervid,Hindlimb,285,scrape,5,1.7543859649122806
+I,Crocuta spelaea,Foot,21,cut,1,4.761904761904762
+I,Crocuta spelaea,Foot,21,marrow,0,0
+I,Crocuta spelaea,Foot,21,scrape,0,0
+I,Equid sp.,Axial,69,cut,2,2.898550724637681
+I,Equid sp.,Axial,69,marrow,0,0
+I,Equid sp.,Axial,69,scrape,1,1.4492753623188406
+I,Equid sp.,Forelimb,69,cut,1,1.4492753623188406
+I,Equid sp.,Forelimb,69,marrow,0,0
+I,Equid sp.,Forelimb,69,scrape,2,2.898550724637681
+I,Equid sp.,Hindlimb,69,cut,3,4.3478260869565215
+I,Equid sp.,Hindlimb,69,marrow,2,2.898550724637681
+I,Equid sp.,Hindlimb,69,scrape,0,0
+I,Equid sp.,Metapodial,69,cut,1,1.4492753623188406
+I,Equid sp.,Metapodial,69,marrow,0,0
+I,Equid sp.,Metapodial,69,scrape,0,0
+I,Megaloceros giganteus,Hindlimb,23,cut,2,8.695652173913043
+I,Megaloceros giganteus,Hindlimb,23,marrow,1,4.3478260869565215
+I,Megaloceros giganteus,Hindlimb,23,scrape,2,8.695652173913043
+I,Panthera leo spelaeus,Forelimb,5,cut,1,20
+I,Panthera leo spelaeus,Forelimb,5,marrow,0,0
+I,Panthera leo spelaeus,Forelimb,5,scrape,0,0
+I,Rupicapra rupicapra,Forelimb,1,cut,1,100
+I,Rupicapra rupicapra,Forelimb,1,marrow,0,0
+I,Rupicapra rupicapra,Forelimb,1,scrape,1,100
+I,ungulate large,Axial,374,cut,10,2.6737967914438503
+I,ungulate large,Axial,374,marrow,2,0.53475935828877
+I,ungulate large,Axial,374,scrape,6,1.6042780748663104
+I,ungulate large,Cranium,374,cut,3,0.8021390374331552
+I,ungulate large,Cranium,374,marrow,0,0
+I,ungulate large,Cranium,374,scrape,0,0
+I,ungulate large,Forelimb,374,cut,2,0.53475935828877
+I,ungulate large,Forelimb,374,marrow,1,0.267379679144385
+I,ungulate large,Forelimb,374,scrape,2,0.53475935828877
+I,ungulate large,Hindlimb,374,cut,2,0.53475935828877
+I,ungulate large,Hindlimb,374,marrow,0,0
+I,ungulate large,Hindlimb,374,scrape,0,0
+I,ungulate large,Indeterminate,374,cut,2,0.53475935828877
+I,ungulate large,Indeterminate,374,marrow,0,0
+I,ungulate large,Indeterminate,374,scrape,0,0
+I,ungulate large,Long bone,374,cut,18,4.81283422459893
+I,ungulate large,Long bone,374,marrow,18,4.81283422459893
+I,ungulate large,Long bone,374,scrape,3,0.8021390374331552
+I,ungulate large,Metapodial,374,cut,1,0.267379679144385
+I,ungulate large,Metapodial,374,marrow,0,0
+I,ungulate large,Metapodial,374,scrape,0,0
+I,ungulate medium large,Axial,397,cut,21,5.289672544080604
+I,ungulate medium large,Axial,397,marrow,0,0
+I,ungulate medium large,Axial,397,scrape,8,2.0151133501259446
+I,ungulate medium large,Cranium,397,cut,2,0.5037783375314862
+I,ungulate medium large,Cranium,397,marrow,0,0
+I,ungulate medium large,Cranium,397,scrape,0,0
+I,ungulate medium large,Forelimb,397,cut,4,1.0075566750629723
+I,ungulate medium large,Forelimb,397,marrow,0,0
+I,ungulate medium large,Forelimb,397,scrape,0,0
+I,ungulate medium large,Hindlimb,397,cut,5,1.2594458438287155
+I,ungulate medium large,Hindlimb,397,marrow,1,0.2518891687657431
+I,ungulate medium large,Hindlimb,397,scrape,1,0.2518891687657431
+I,ungulate medium large,Indeterminate,397,cut,1,0.2518891687657431
+I,ungulate medium large,Indeterminate,397,marrow,0,0
+I,ungulate medium large,Indeterminate,397,scrape,0,0
+I,ungulate medium large,Long bone,397,cut,19,4.785894206549118
+I,ungulate medium large,Long bone,397,marrow,12,3.022670025188917
+I,ungulate medium large,Long bone,397,scrape,2,0.5037783375314862
+I,ungulate medium large,Metapodial,397,cut,1,0.2518891687657431
+I,ungulate medium large,Metapodial,397,marrow,1,0.2518891687657431
+I,ungulate medium large,Metapodial,397,scrape,0,0
+I,ungulate small,Axial,11,cut,1,9.090909090909092
+I,ungulate small,Axial,11,marrow,0,0
+I,ungulate small,Axial,11,scrape,0,0
+I,ungulate small medium,Axial,63,cut,4,6.349206349206349
+I,ungulate small medium,Axial,63,marrow,0,0
+I,ungulate small medium,Axial,63,scrape,0,0
+I,ungulate small medium,Cranium,63,cut,1,1.5873015873015872
+I,ungulate small medium,Cranium,63,marrow,0,0
+I,ungulate small medium,Cranium,63,scrape,0,0
+I,ungulate small medium,Hindlimb,63,cut,1,1.5873015873015872
+I,ungulate small medium,Hindlimb,63,marrow,0,0
+I,ungulate small medium,Hindlimb,63,scrape,0,0
+I,ungulate small medium,Long bone,63,cut,3,4.761904761904762
+I,ungulate small medium,Long bone,63,marrow,0,0
+I,ungulate small medium,Long bone,63,scrape,0,0
+I,Ursid,Axial,268,cut,2,0.7462686567164178
+I,Ursid,Axial,268,marrow,0,0
+I,Ursid,Axial,268,scrape,0,0
+I,Ursid,Cranium,268,cut,3,1.1194029850746268
+I,Ursid,Cranium,268,marrow,0,0
+I,Ursid,Cranium,268,scrape,5,1.8656716417910446
+I,Ursid,Foot,268,cut,6,2.2388059701492535
+I,Ursid,Foot,268,marrow,0,0
+I,Ursid,Foot,268,scrape,1,0.3731343283582089
+I,Ursid,Forelimb,268,cut,13,4.850746268656716
+I,Ursid,Forelimb,268,marrow,3,1.1194029850746268
+I,Ursid,Forelimb,268,scrape,4,1.4925373134328357
+I,Ursid,Hindlimb,268,cut,7,2.6119402985074625
+I,Ursid,Hindlimb,268,marrow,2,0.7462686567164178
+I,Ursid,Hindlimb,268,scrape,1,0.3731343283582089
+I,Ursid,Indeterminate,268,cut,1,0.3731343283582089
+I,Ursid,Indeterminate,268,marrow,0,0
+I,Ursid,Indeterminate,268,scrape,0,0
+I,Ursid,Long bone,268,cut,2,0.7462686567164178
+I,Ursid,Long bone,268,marrow,0,0
+I,Ursid,Long bone,268,scrape,0,0
+I,Vulpes vulpes,Forelimb,4,cut,1,25
+I,Vulpes vulpes,Forelimb,4,marrow,0,0
+I,Vulpes vulpes,Forelimb,4,scrape,1,25
+I/J,Bos Bison sp.,Axial,15,cut,1,6.666666666666667
+I/J,Bos Bison sp.,Axial,15,marrow,0,0
+I/J,Bos Bison sp.,Axial,15,scrape,0,0
+I/J,Bos Bison sp.,Cranium,15,cut,1,6.666666666666667
+I/J,Bos Bison sp.,Cranium,15,marrow,0,0
+I/J,Bos Bison sp.,Cranium,15,scrape,0,0
+I/J,Bos Bison sp.,Forelimb,15,cut,4,26.666666666666668
+I/J,Bos Bison sp.,Forelimb,15,marrow,0,0
+I/J,Bos Bison sp.,Forelimb,15,scrape,0,0
+I/J,Bos Bison sp.,Hindlimb,15,cut,1,6.666666666666667
+I/J,Bos Bison sp.,Hindlimb,15,marrow,0,0
+I/J,Bos Bison sp.,Hindlimb,15,scrape,0,0
+I/J,Canis sp.,Hindlimb,1,cut,1,100
+I/J,Canis sp.,Hindlimb,1,marrow,0,0
+I/J,Canis sp.,Hindlimb,1,scrape,0,0
+I/J,Cervid,Axial,17,cut,2,11.76470588235294
+I/J,Cervid,Axial,17,marrow,0,0
+I/J,Cervid,Axial,17,scrape,0,0
+I/J,Cervid,Forelimb,17,cut,2,11.76470588235294
+I/J,Cervid,Forelimb,17,marrow,0,0
+I/J,Cervid,Forelimb,17,scrape,2,11.76470588235294
+I/J,Cervid,Hindlimb,17,cut,2,11.76470588235294
+I/J,Cervid,Hindlimb,17,marrow,1,5.88235294117647
+I/J,Cervid,Hindlimb,17,scrape,1,5.88235294117647
+I/J,Gulo Gulo,Cranium,1,cut,1,100
+I/J,Gulo Gulo,Cranium,1,marrow,0,0
+I/J,Gulo Gulo,Cranium,1,scrape,0,0
+I/J,ungulate large,Axial,32,cut,1,3.125
+I/J,ungulate large,Axial,32,marrow,0,0
+I/J,ungulate large,Axial,32,scrape,1,3.125
+I/J,ungulate large,Long bone,32,cut,1,3.125
+I/J,ungulate large,Long bone,32,marrow,2,6.25
+I/J,ungulate large,Long bone,32,scrape,1,3.125
+I/J,ungulate medium large,Axial,17,cut,2,11.76470588235294
+I/J,ungulate medium large,Axial,17,marrow,0,0
+I/J,ungulate medium large,Axial,17,scrape,0,0
+I/J,ungulate medium large,Cranium,17,cut,1,5.88235294117647
+I/J,ungulate medium large,Cranium,17,marrow,0,0
+I/J,ungulate medium large,Cranium,17,scrape,0,0
+I/J,ungulate medium large,Long bone,17,cut,3,17.647058823529413
+I/J,ungulate medium large,Long bone,17,marrow,0,0
+I/J,ungulate medium large,Long bone,17,scrape,1,5.88235294117647
+I/J,ungulate small medium,Hindlimb,4,cut,1,25
+I/J,ungulate small medium,Hindlimb,4,marrow,0,0
+I/J,ungulate small medium,Hindlimb,4,scrape,0,0
+J,Bos Bison sp.,Forelimb,23,cut,1,4.3478260869565215
+J,Bos Bison sp.,Forelimb,23,marrow,1,4.3478260869565215
+J,Bos Bison sp.,Forelimb,23,scrape,0,0
+J,Cervid,Hindlimb,18,cut,1,5.555555555555555
+J,Cervid,Hindlimb,18,marrow,0,0
+J,Cervid,Hindlimb,18,scrape,0,0
+J,Crocuta spelaea,Cranium,7,cut,1,14.285714285714285
+J,Crocuta spelaea,Cranium,7,marrow,0,0
+J,Crocuta spelaea,Cranium,7,scrape,0,0
+J,ungulate large,Axial,41,cut,1,2.4390243902439024
+J,ungulate large,Axial,41,marrow,0,0
+J,ungulate large,Axial,41,scrape,1,2.4390243902439024
+J,ungulate large,Long bone,41,cut,1,2.4390243902439024
+J,ungulate large,Long bone,41,marrow,2,4.878048780487805
+J,ungulate large,Long bone,41,scrape,0,0
+J,ungulate medium large,Axial,15,cut,1,6.666666666666667
+J,ungulate medium large,Axial,15,marrow,0,0
+J,ungulate medium large,Axial,15,scrape,1,6.666666666666667
+J,ungulate small medium,Long bone,2,cut,1,50
+J,ungulate small medium,Long bone,2,marrow,0,0
+J,ungulate small medium,Long bone,2,scrape,0,0
+K,Bos Bison sp.,Forelimb,40,cut,1,2.5
+K,Bos Bison sp.,Forelimb,40,marrow,1,2.5
+K,Bos Bison sp.,Forelimb,40,scrape,1,2.5
+K,Capra sp.,Cranium,24,cut,2,8.333333333333332
+K,Capra sp.,Cranium,24,marrow,1,4.166666666666666
+K,Capra sp.,Cranium,24,scrape,0,0
+K,Cervid,Hindlimb,22,cut,1,4.545454545454546
+K,Cervid,Hindlimb,22,marrow,2,9.090909090909092
+K,Cervid,Hindlimb,22,scrape,0,0
+K,Panthera pardus,Hindlimb,5,cut,1,20
+K,Panthera pardus,Hindlimb,5,marrow,1,20
+K,Panthera pardus,Hindlimb,5,scrape,2,40
+K,ungulate large,Hindlimb,56,cut,2,3.571428571428571
+K,ungulate large,Hindlimb,56,marrow,0,0
+K,ungulate large,Hindlimb,56,scrape,1,1.7857142857142856
+K,ungulate medium large,Axial,17,cut,1,5.88235294117647
+K,ungulate medium large,Axial,17,marrow,0,0
+K,ungulate medium large,Axial,17,scrape,0,0
+I,Cervid,Metapodial,285,cut,0,0
+I,Cervid,Metapodial,285,marrow,1,0.3508771929824561
+I,Cervid,Metapodial,285,scrape,0,0
+I,Crocuta spelaea,Forelimb,21,cut,0,0
+I,Crocuta spelaea,Forelimb,21,marrow,1,4.761904761904762
+I,Crocuta spelaea,Forelimb,21,scrape,0,0
+J,Bos Bison sp.,Hindlimb,23,cut,0,0
+J,Bos Bison sp.,Hindlimb,23,marrow,1,4.3478260869565215
+J,Bos Bison sp.,Hindlimb,23,scrape,1,4.3478260869565215
+J,ungulate large,Metapodial,41,cut,0,0
+J,ungulate large,Metapodial,41,marrow,1,2.4390243902439024
+J,ungulate large,Metapodial,41,scrape,0,0
+J/K,ungulate large,Long bone,11,cut,0,0
+J/K,ungulate large,Long bone,11,marrow,1,9.090909090909092
+J/K,ungulate large,Long bone,11,scrape,0,0
+K,Bos Bison sp.,Hindlimb,40,cut,0,0
+K,Bos Bison sp.,Hindlimb,40,marrow,3,7.5
+K,Bos Bison sp.,Hindlimb,40,scrape,0,0
+K,Equid sp.,Hindlimb,8,cut,0,0
+K,Equid sp.,Hindlimb,8,marrow,1,12.5
+K,Equid sp.,Hindlimb,8,scrape,0,0
+K,Megaloceros giganteus,Forelimb,3,cut,0,0
+K,Megaloceros giganteus,Forelimb,3,marrow,1,33.33333333333333
+K,Megaloceros giganteus,Forelimb,3,scrape,0,0
+K,ungulate large,Metapodial,56,cut,0,0
+K,ungulate large,Metapodial,56,marrow,2,3.571428571428571
+K,ungulate large,Metapodial,56,scrape,1,1.7857142857142856
+K,ungulate medium large,Long bone,17,cut,0,0
+K,ungulate medium large,Long bone,17,marrow,1,5.88235294117647
+K,ungulate medium large,Long bone,17,scrape,0,0
+I,Canis lupus,Cranium,12,cut,0,0
+I,Canis lupus,Cranium,12,marrow,0,0
+I,Canis lupus,Cranium,12,scrape,1,8.333333333333332
+I,Capra sp.,Cranium,91,cut,0,0
+I,Capra sp.,Cranium,91,marrow,0,0
+I,Capra sp.,Cranium,91,scrape,1,1.098901098901099
+I,Crocuta spelaea,Cranium,21,cut,0,0
+I,Crocuta spelaea,Cranium,21,marrow,0,0
+I,Crocuta spelaea,Cranium,21,scrape,1,4.761904761904762
+I,Megaloceros giganteus,Forelimb,23,cut,0,0
+I,Megaloceros giganteus,Forelimb,23,marrow,0,0
+I,Megaloceros giganteus,Forelimb,23,scrape,3,13.043478260869565
+I/J,Cervid,Foot,17,cut,0,0
+I/J,Cervid,Foot,17,marrow,0,0
+I/J,Cervid,Foot,17,scrape,1,5.88235294117647
+I/J,Ursid,Cranium,39,cut,0,0
+I/J,Ursid,Cranium,39,marrow,0,0
+I/J,Ursid,Cranium,39,scrape,2,5.128205128205128
+J,Bos Bison sp.,Axial,23,cut,0,0
+J,Bos Bison sp.,Axial,23,marrow,0,0
+J,Bos Bison sp.,Axial,23,scrape,2,8.695652173913043
+J/K,Equid sp.,Hindlimb,2,cut,0,0
+J/K,Equid sp.,Hindlimb,2,marrow,0,0
+J/K,Equid sp.,Hindlimb,2,scrape,1,50
+K,Cervid,Forelimb,22,cut,0,0
+K,Cervid,Forelimb,22,marrow,0,0
+K,Cervid,Forelimb,22,scrape,1,4.545454545454546
+I,Canis sp.,NA,5,cut,0,0
+I,Canis sp.,NA,5,marrow,0,0
+I,Canis sp.,NA,5,scrape,0,0
+I,Dama dama,NA,2,cut,0,0
+I,Dama dama,NA,2,marrow,0,0
+I,Dama dama,NA,2,scrape,0,0
+I,Equus hydruntinus,NA,6,cut,0,0
+I,Equus hydruntinus,NA,6,marrow,0,0
+I,Equus hydruntinus,NA,6,scrape,0,0
+I,Hyaena sp.,NA,2,cut,0,0
+I,Hyaena sp.,NA,2,marrow,0,0
+I,Hyaena sp.,NA,2,scrape,0,0
+I,Panthera pardus,NA,1,cut,0,0
+I,Panthera pardus,NA,1,marrow,0,0
+I,Panthera pardus,NA,1,scrape,0,0
+I,Rhino sp.,NA,2,cut,0,0
+I,Rhino sp.,NA,2,marrow,0,0
+I,Rhino sp.,NA,2,scrape,0,0
+I,Sus scrofa,NA,2,cut,0,0
+I,Sus scrofa,NA,2,marrow,0,0
+I,Sus scrofa,NA,2,scrape,0,0
+I/J,Canis lupus,NA,2,cut,0,0
+I/J,Canis lupus,NA,2,marrow,0,0
+I/J,Canis lupus,NA,2,scrape,0,0
+I/J,Capra sp.,NA,3,cut,0,0
+I/J,Capra sp.,NA,3,marrow,0,0
+I/J,Capra sp.,NA,3,scrape,0,0
+I/J,Capreolus capreolus,NA,1,cut,0,0
+I/J,Capreolus capreolus,NA,1,marrow,0,0
+I/J,Capreolus capreolus,NA,1,scrape,0,0
+I/J,Crocuta spelaea,NA,2,cut,0,0
+I/J,Crocuta spelaea,NA,2,marrow,0,0
+I/J,Crocuta spelaea,NA,2,scrape,0,0
+I/J,Equid sp.,NA,1,cut,0,0
+I/J,Equid sp.,NA,1,marrow,0,0
+I/J,Equid sp.,NA,1,scrape,0,0
+I/J,Equus hydruntinus,NA,1,cut,0,0
+I/J,Equus hydruntinus,NA,1,marrow,0,0
+I/J,Equus hydruntinus,NA,1,scrape,0,0
+I/J,Megaloceros giganteus,NA,1,cut,0,0
+I/J,Megaloceros giganteus,NA,1,marrow,0,0
+I/J,Megaloceros giganteus,NA,1,scrape,0,0
+I/J,Rupicapra rupicapra,NA,2,cut,0,0
+I/J,Rupicapra rupicapra,NA,2,marrow,0,0
+I/J,Rupicapra rupicapra,NA,2,scrape,0,0
+J,Canis lupus,NA,4,cut,0,0
+J,Canis lupus,NA,4,marrow,0,0
+J,Canis lupus,NA,4,scrape,0,0
+J,Capra sp.,NA,10,cut,0,0
+J,Capra sp.,NA,10,marrow,0,0
+J,Capra sp.,NA,10,scrape,0,0
+J,Capreolus capreolus,NA,1,cut,0,0
+J,Capreolus capreolus,NA,1,marrow,0,0
+J,Capreolus capreolus,NA,1,scrape,0,0
+J,Cuon alpinus,NA,1,cut,0,0
+J,Cuon alpinus,NA,1,marrow,0,0
+J,Cuon alpinus,NA,1,scrape,0,0
+J,Equid sp.,NA,7,cut,0,0
+J,Equid sp.,NA,7,marrow,0,0
+J,Equid sp.,NA,7,scrape,0,0
+J,Equus hydruntinus,NA,1,cut,0,0
+J,Equus hydruntinus,NA,1,marrow,0,0
+J,Equus hydruntinus,NA,1,scrape,0,0
+J,Gulo Gulo,NA,1,cut,0,0
+J,Gulo Gulo,NA,1,marrow,0,0
+J,Gulo Gulo,NA,1,scrape,0,0
+J,Hyaena sp.,NA,4,cut,0,0
+J,Hyaena sp.,NA,4,marrow,0,0
+J,Hyaena sp.,NA,4,scrape,0,0
+J,Panthera pardus,NA,1,cut,0,0
+J,Panthera pardus,NA,1,marrow,0,0
+J,Panthera pardus,NA,1,scrape,0,0
+J,Rangifer tarandus,NA,1,cut,0,0
+J,Rangifer tarandus,NA,1,marrow,0,0
+J,Rangifer tarandus,NA,1,scrape,0,0
+J,Rupicapra rupicapra,NA,1,cut,0,0
+J,Rupicapra rupicapra,NA,1,marrow,0,0
+J,Rupicapra rupicapra,NA,1,scrape,0,0
+J,Stephanorhinus hemiotechus,NA,2,cut,0,0
+J,Stephanorhinus hemiotechus,NA,2,marrow,0,0
+J,Stephanorhinus hemiotechus,NA,2,scrape,0,0
+J,Ursid,NA,154,cut,0,0
+J,Ursid,NA,154,marrow,0,0
+J,Ursid,NA,154,scrape,0,0
+J,Vulpes vulpes,NA,2,cut,0,0
+J,Vulpes vulpes,NA,2,marrow,0,0
+J,Vulpes vulpes,NA,2,scrape,0,0
+J/K,Bos Bison sp.,NA,4,cut,0,0
+J/K,Bos Bison sp.,NA,4,marrow,0,0
+J/K,Bos Bison sp.,NA,4,scrape,0,0
+J/K,Canis lupus,NA,4,cut,0,0
+J/K,Canis lupus,NA,4,marrow,0,0
+J/K,Canis lupus,NA,4,scrape,0,0
+J/K,Capra sp.,NA,4,cut,0,0
+J/K,Capra sp.,NA,4,marrow,0,0
+J/K,Capra sp.,NA,4,scrape,0,0
+J/K,Cervid,NA,5,cut,0,0
+J/K,Cervid,NA,5,marrow,0,0
+J/K,Cervid,NA,5,scrape,0,0
+J/K,Crocuta spelaea,NA,1,cut,0,0
+J/K,Crocuta spelaea,NA,1,marrow,0,0
+J/K,Crocuta spelaea,NA,1,scrape,0,0
+J/K,Hyaena sp.,NA,2,cut,0,0
+J/K,Hyaena sp.,NA,2,marrow,0,0
+J/K,Hyaena sp.,NA,2,scrape,0,0
+J/K,Panthera pardus,NA,1,cut,0,0
+J/K,Panthera pardus,NA,1,marrow,0,0
+J/K,Panthera pardus,NA,1,scrape,0,0
+J/K,ungulate medium large,NA,2,cut,0,0
+J/K,ungulate medium large,NA,2,marrow,0,0
+J/K,ungulate medium large,NA,2,scrape,0,0
+J/K,Ursid,NA,20,cut,0,0
+J/K,Ursid,NA,20,marrow,0,0
+J/K,Ursid,NA,20,scrape,0,0
+K,Canis lupus,NA,4,cut,0,0
+K,Canis lupus,NA,4,marrow,0,0
+K,Canis lupus,NA,4,scrape,0,0
+K,Crocuta spelaea,NA,1,cut,0,0
+K,Crocuta spelaea,NA,1,marrow,0,0
+K,Crocuta spelaea,NA,1,scrape,0,0
+K,Equus hydruntinus,NA,4,cut,0,0
+K,Equus hydruntinus,NA,4,marrow,0,0
+K,Equus hydruntinus,NA,4,scrape,0,0
+K,Mammuthus Primigenius,NA,1,cut,0,0
+K,Mammuthus Primigenius,NA,1,marrow,0,0
+K,Mammuthus Primigenius,NA,1,scrape,0,0
+K,Sus scrofa,NA,2,cut,0,0
+K,Sus scrofa,NA,2,marrow,0,0
+K,Sus scrofa,NA,2,scrape,0,0
+K,Ursid,NA,39,cut,0,0
+K,Ursid,NA,39,marrow,0,0
+K,Ursid,NA,39,scrape,0,0
+K,Vulpes vulpes,NA,1,cut,0,0
+K,Vulpes vulpes,NA,1,marrow,0,0
+K,Vulpes vulpes,NA,1,scrape,0,0

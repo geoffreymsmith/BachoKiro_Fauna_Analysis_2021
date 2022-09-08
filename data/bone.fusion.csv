@@ -1,0 +1,47 @@
+lev.final,TAXON,ELEMENT_MAMMAL,portion,n,FUSION
+I,Bos_Bison_sp.,Rib,Proximal,1,Unfused
+I,Bos_primigenius,Metatarsal,Distal,1,Unfused
+I,Bos_primigenius,Phalanx_2,Distal,1,Unfused
+I,Bos_primigenius,Phalanx_2,Proximal,1,Unfused
+I,Bos_primigenius,Rib,Proximal,1,Unfused
+I,Capra_caucasica,Vert_Thoracic,Centrum,1,Unfused
+I,carnivore_large,Rib,Distal,1,Unfused
+I,carnivore_large,Vert_Indeterminate,Spine,1,Unfused
+I,carnivore_medium,Vert_Indeterminate,Centrum,1,Unfused
+I,carnivore_medium,Vert_Indeterminate,Neural arch,1,Unfused
+I,carnivore_medium,Vert_Indeterminate,Transverse,2,Unfused
+I,Cervid_sp.,Metatarsal,Proximal,1,Unfused
+I,Cervid_sp.,Phalanx_2,Proximal,1,Unfused
+I,Cervid_sp.,Radius,Proximal,1,Unfused
+I,Cervus_elaphus,Axis,Centrum,1,Unfused
+I,Cervus_elaphus,Humerus,Distal,1,Unfused
+I,Equid_sp.,Rib,Proximal,1,Unfused
+I,Equus_ferus,Phalanx_2,Proximal,1,Unfused
+I,mammal_unknown,Rib,Proximal,1,Unfused
+I,mammal_unknown,Vert_Cervical,Centrum,1,Unfused
+I,mammal_unknown,Vert_Indeterminate,Centrum,10,Unfused
+I,mammal_unknown,Vert_Indeterminate,Neural arch,1,Unfused
+I,mammal_unknown,Vert_Indeterminate,Transverse,1,Unfused
+I,ungulate_large,Vert_Caudal,Centrum,1,Unfused
+I,ungulate_large,Vert_Indeterminate,Centrum,4,Unfused
+I,ungulate_large,Vert_Indeterminate,Transverse,1,Unfused
+I,ungulate_medium_large,Metapodial,Distal,1,Unfused
+I,ungulate_medium_large,Metapodial,Proximal,1,Unfused
+I,ungulate_medium_large,Metatarsal,Proximal,1,Unfused
+I,ungulate_medium_large,Ulna,Proximal,1,Unfused
+I,ungulate_medium_large,Vert_Indeterminate,Centrum,5,Unfused
+I,ungulate_medium_large,Vert_Lumbar,Centrum,1,Unfused
+I,ungulate_medium_large,Vert_Thoracic,Centrum,1,Unfused
+I,ungulate_small_medium,Tibia,Proximal,1,Unfused
+I,ungulate_small_medium,Vert_Cervical,Centrum,1,Unfused
+I,Ursus_spelaeus,Vert_Thoracic,Centrum,1,Unfused
+I/J,Cervid_sp.,Humerus,Proximal,1,Unfused
+I/J,mammal_unknown,Vert_Indeterminate,Centrum,1,Unfused
+I/J,Ursus_spelaeus,Phalanx_2,Distal,1,Unfused
+J,carnivore_large,Vert_Indeterminate,Neural arch,1,Unfused
+J,mammal_unknown,Vert_Indeterminate,Centrum,2,Unfused
+J,ungulate_medium_large,Rib,Distal,1,Unfused
+K,carnivore_large,Vert_Indeterminate,Centrum,1,Unfused
+K,mammal_unknown,Vert_Indeterminate,Centrum,2,Unfused
+K,ungulate_large,Rib,Distal,1,Unfused
+K,ungulate_medium_large,Rib,Proximal,1,Unfused

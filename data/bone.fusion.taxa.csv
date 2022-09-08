@@ -1,0 +1,13 @@
+Layer,Species,Element,n,FFD,LFD,SFFD,SLFD
+I,Bos_primigenius,Metatarsal-Distal,1,24,36,NA,NA
+I,Bos_primigenius,Phalanx_2-Distal,1,18,18,Autumn,Autumn
+I,Bos_primigenius,Phalanx_2-Proximal,1,18,24,Autumn,Spring
+I,Capra_caucasica,Vert_Thoracic-Centrum,1,48,60,NA,NA
+I,Cervid_sp.,Metatarsal-Proximal,1,0,0,Spring,Spring
+I,Cervid_sp.,Phalanx_2-Proximal,1,11,17,Spring,Autumn
+I,Cervid_sp.,Radius-Proximal,1,5,8,Autumn,Winter
+I,Cervus_elaphus,Axis-Centrum,1,35,42,Spring,Autumn
+I,Cervus_elaphus,Humerus-Distal,1,12,20,Spring,Autumn
+I,Equus_ferus,Phalanx_2-Proximal,1,9,12,Winter,Spring
+I/J,Cervid_sp.,Humerus-Proximal,1,42,42,NA,NA
+I/J,Ursus_spelaeus,Phalanx_2-Distal,1,24,36,NA,NA
