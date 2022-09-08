@@ -1,0 +1,534 @@
+---
+title: |
+ Subsistence behavior during the Initial Upper Paleolithic in Europe: Site use, dietary practice and carnivore exploitation at Bacho Kiro Cave (Bulgaria).
+subtitle: "Supplementary Online Material"
+output:
+  word_document:
+    reference_docx: "../common/reference.docx"
+bibliography: "../common/BK.bibliography.bib"
+csl: "../common/JHE.csl" 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(tidy = FALSE, echo = FALSE, warning = FALSE, message = FALSE, comment = NA, cache = FALSE, fig.pos = 'h', fig.path = "../figures_export/SI/", dev= "tiff", dpi = 300, fig.align = "left")
+
+options(digits = 1, knitr.kable.NA = "", kableExtra.auto_format = FALSE)
+```
+
+```{r load data, include=FALSE}
+
+library("readxl")
+library("tidyverse")
+library("kableExtra")
+library("flextable")
+library("captioner")
+
+# functions to generate table captions and cross-refs using captioner packages
+tables <- captioner(prefix = "SOM Table S", auto_space = FALSE)
+
+#set table caption text
+tables("fauna-mpup", "Number of piece plotted faunal remains recovered from the Main Sector and Niche 1 between 2015-2019 from Layers I-K (including the contact zones I/J and J/K).")
+tables("NISP-SOM", "Number of specimens (NSP) from Layers I–K (including the contact zones I/J and J/K).")
+tables("taxa-quant", "Quantification for main species  in Layers I, J and K from Bacho Kiro Cave.")
+tables("frag-summary-stats", "Summary statistics for bone length (in mm) from Layers I–K (including contact zones I/J and J/K).")
+tables("frag-taxa-summary", "Summary statistics for bone length (mm) of major taxa from Layers I–K.")
+tables("taxa-quant-mau", "Quantification for main species and element in Layers I, J and K from Bacho Kiro Cave.")
+tables("weathering-SOM", "Sub-aerial weathering of material from Layers I–K (including contact zones I/J and J/K).")
+tables("abrasion-SOM", "Bone surface abrasion in Layers I–K (including contact zones I/J and J/K).")
+tables("readability-SOM", "Preservation of bone surfaces within Layers I–K (including contact zones I/J and J/K). ")
+tables("BSM-general-SOM", "Carnivore and human bone surface modifications within Layers I-K (including contact zones I/J and J/K); NSP = number of specimens.")
+tables("BSM-carn-SOM", "Bones with carnivore modifications  within Layers I-K (including contact zones I/J and J/K).")
+tables("BSM-hum-SOM", "Bones with human modifications recorded within Layers I-K (including contact zones I/J and J/K).")
+tables("burn-SOM-1", "Number of burnt specimens (nburnt) and percentage of total remains from that layer (%burn) from Bacho Kiro Cave")
+tables("burn-SOM-2", "Number of burnt specimens by layer and burning stage based on @Stiner1995-ar; 0 = unburned and 6 = fully calcined.")
+tables("BSC-mod-SOM", "Distribution of human bone surface modifications across different carnivore and herbivore body size classes from Bacho Kiro Cave.")
+```
+
+\newpage
+
+```{r fauna-mpup, tab.cap=tables('fauna-mpup')}
+#reads in data on fauna recovered from BK IJK from main excavation database
+bk.mpup.SOM <- read_csv("../data/SI/bk.mpup.csv")
+#tidy data
+bk.mpup.SOM <- 
+  bk.mpup.SOM %>% 
+    mutate(`%` = NSP/sum(NSP)*100) %>% 
+  add_row(.,Layer = "Total", NSP = sum(.$NSP), `%` = sum(.$`%`))
+#make flextable
+bk.mpup.SOM.1 <- flextable(bk.mpup.SOM)
+bk.mpup.SOM.1 <- theme_booktabs(bk.mpup.SOM.1)
+
+
+bk.mpup.SOM.1 <- add_footer(bk.mpup.SOM.1, Layer = "Abbreviations: MS = Main Sector; N1 = Niche 1; NSP = number of specimens.")
+bk.mpup.SOM.1 <- merge_at(bk.mpup.SOM.1, j = 1:3, part = "footer")
+
+bk.mpup.SOM.1 <- font(bk.mpup.SOM.1, part = "all", fontname = "Open Sans")
+bk.mpup.SOM.1 <- fontsize(bk.mpup.SOM.1, part = "all", size = 11)
+bk.mpup.SOM.1 <- set_caption(bk.mpup.SOM.1, tables("fauna-mpup"),html_escape = FALSE, style = "Caption1")
+bk.mpup.SOM.1 <- autofit(bk.mpup.SOM.1)
+
+
+bk.mpup.SOM.1
+
+```
+\newpage
+
+```{r NISP-SOM, tab.cap=tables('NISP.SOM')}
+#read in data on NISP from BK Layers IJK
+NISP.SOM <- read_csv("../data/SI/NISP.SOM.csv")
+#tidy data
+NISP.SOM <- NISP.SOM %>% 
+    mutate(TAXON = replace(TAXON, which(TAXON == "Aves unknown"), "Aves sp.")) %>% #replaces bird unknown
+  #Bony fish; fish from BK Cave cannot be id to taxa
+  mutate(TAXON = replace(TAXON, which(TAXON == "fish unknown"), "Osteichthyes  sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Leporid sp."), "Leporidae sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Canis sp."), "Canidae sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Hyaena sp."), "Hyaenidae sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Ursus sp."), "Ursidae sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Rhino sp."), "Rhinocerotidae sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Equid sp."), "Equidae sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Cervid sp."), "Cervidae sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Bos Bison sp."), "Bos/Bison sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Capra sp."), "Caprinae sp.")) %>% 
+  rename(Taxon = TAXON) %>% 
+  mutate(Taxon = factor(Taxon , 
+                        levels = c("Aquila chrysaetos",
+                                   "Aves sp.",
+                                   "Osteichthyes  sp.",
+                                   "Leporidae sp.",
+                                   "Panthera leo spelaea",
+                                   "Panthera pardus", 
+                                   "Canis lupus", 
+                                   "Canidae sp.", 
+                                   "Vulpes vulpes",
+                                   "Cuon alpinus",
+                                   "Gulo gulo", 
+                                   "Crocuta spelaea", 
+                                   "Hyaenidae sp.", 
+                                   "Felidae sp.",
+                                   "Ursus spelaeus", 
+                                   "Ursus arctos",
+                                   "Ursidae sp.",
+                                   "Mammuthus primigenius",
+                                   "Stephanorhinus hemiotechus",
+                                   "Rhinocerotidae sp.",
+                                   "Equus ferus",
+                                   "Equus hydruntinus",
+                                   "Equidae sp.",
+                                   "Megaloceros giganteus", 
+                                   "Cervus elaphus",
+                                   "Dama dama",
+                                   "Capreolus capreolus",
+                                   "Rangifer tarandus",
+                                   "Cervidae sp.",
+                                   "Bos primigenius",
+                                   "Bison priscus",
+                                   "Bos/Bison sp.",
+                                   "Capra ibex",
+                                   "Capra caucasica",
+                                   "Rupicapra rupicapra",
+                                   "Caprinae sp.",
+                                   "Sus scrofa",
+                                   "carnivore large",
+                                   "carnivore medium",
+                                   "carnivore small",
+                                   "carnivore unknown",
+                                   "ungulate large",
+                                   "ungulate medium large",
+                                   "ungulate small medium",
+                                   "ungulate small",
+                                   "mammal unknown",
+                                   "unidentified"))) %>%  replace_na(list(I=0,`I/J`=0,J=0,`J/K`=0,K=0)) %>% 
+  rowwise() %>% 
+  mutate(Total = sum(I+`I/J`+J+`J/K`+K, na.rm = T)) %>% 
+              add_row(.,
+                      Taxon = "Total",
+                      I = sum(.$I, na.rm = T),
+                      `I/J` = sum (.$`I/J`, na.rm = T),
+                      J= sum(.$J, na.rm = T),
+                      `J/K` = sum(.$`J/K`, na.rm = T),
+                      K = sum(.$K, na.rm = T),
+                      Total = sum(.$Total)) 
+  
+#flextable
+NISP.SOM.1 <- flextable(NISP.SOM)
+NISP.SOM.1 <- theme_booktabs(NISP.SOM.1)
+NISP.SOM.1 <- italic(NISP.SOM.1, i=c(1,5,6,7,9,10,11,12,15,16,18,19,
+                     21,22,24,25,26,27,28,30,31,32,
+                     33,34,35,37), j=1)
+
+NISP.SOM.1 <- font(NISP.SOM.1, part = "all", fontname = "Open Sans")
+NISP.SOM.1 <- fontsize(NISP.SOM.1, part = "all", size = 11)
+NISP.SOM.1 <- set_caption(NISP.SOM.1, tables("NISP-SOM"),html_escape = FALSE, style = "Caption1")
+NISP.SOM.1 <- autofit(NISP.SOM.1)
+
+
+NISP.SOM.1
+
+
+```
+
+\newpage
+```{r taxa-quant, tab.caps=tables('taxa-quant')}
+#read in quantification data
+taxa.quant <- read_csv("../data/SI/taxa_quant.csv")
+#tidy and format data
+taxa.quant <- 
+  taxa.quant %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "fish unknown"), "Osteichthyes  sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Cervid sp."), "Cervidae")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Equid sp."), "Equidae")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Rhino sp."), "Rhinocerotidae")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Gulo Gulo"), "Gulo gulo")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Stephanorhinus hemiotechus"), "Stephanorhinus hemiotoechus")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "bird unknown"), "Aves unknown")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Leporid sp."), "Leporidae")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Canis sp."), "Canidae sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Hyaena sp."), "Hyaenidae sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Ursus sp."), "Ursidae sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Rhino sp."), "Rhinocerotidae sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Equid sp."), "Equidae sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Cervid sp."), "Cervidae sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Bos Bison sp."), "Bos/Bison sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Capra sp."), "Caprinae sp.")) 
+
+#flextable
+taxa.quant.1 <- flextable(taxa.quant)
+taxa.quant.1 <- theme_booktabs(taxa.quant.1)
+
+taxa.quant.1 <- italic(taxa.quant.1, i=c(1,2,3,4,5,6,7,9,11,12,13,15,16,19,20,21,23,24,25,27,28,29,30,31,32,35,37,38,40,41,42,44,45,46,47,48,49,50,52,53,54,55,56,59,60,61,63,64,65,66,67,69,70,72,75,76,77,78,79,80,83.84,86,87,88,89,91,92,93,99,101,102,103,104,105), j=2)
+
+taxa.quant.1 <- add_footer(taxa.quant.1, Layer = "Abbreviations: NISP = number of identified specimens; MNE = minimum number of elements; MNI = minimum number of individuals.")
+taxa.quant.1 <- merge_at(taxa.quant.1, j = 1:5, part = "footer")
+taxa.quant.1 <- font(taxa.quant.1, part = "all", fontname = "Open Sans")
+taxa.quant.1 <- fontsize(taxa.quant.1, part = "all", size = 9)
+taxa.quant.1 <- set_caption(taxa.quant.1, tables("taxa-quant"),html_escape = FALSE, style = "Caption1")
+taxa.quant.1 <- autofit(taxa.quant.1)
+
+taxa.quant.1
+
+```
+
+\newpage
+
+```{r frag-summary-stats, tab.caps=tables('frag-summary-stats') }
+#read in data on faunal assemblage fragmentation
+frag.summ.stats.SOM <- read_csv("../data/SI/frag.summ.stats.SOM.csv")
+#tidy data
+frag.summ.stats.SOM <- frag.summ.stats.SOM %>% select(-variable)
+#flextable
+frag.summ.stats.SOM.1 <- flextable(frag.summ.stats.SOM)
+frag.summ.stats.SOM.1 <- theme_booktabs(frag.summ.stats.SOM.1)
+frag.summ.stats.SOM.1 <- add_footer(frag.summ.stats.SOM.1, Layer = "Abbreviations: NSP = number of specimens; iqr = interquartile range.")
+frag.summ.stats.SOM.1 <- merge_at(frag.summ.stats.SOM.1, j = 1:6, part = "footer")
+
+
+frag.summ.stats.SOM.1 <- font(frag.summ.stats.SOM.1, part = "all", fontname = "Open Sans")
+frag.summ.stats.SOM.1 <- fontsize(frag.summ.stats.SOM.1, part = "all", size = 9)
+frag.summ.stats.SOM.1 <- set_caption(frag.summ.stats.SOM.1, tables("frag-summary-stats"),html_escape = FALSE, style = "Caption1")
+frag.summ.stats.SOM.1 <- autofit(frag.summ.stats.SOM.1)
+
+
+frag.summ.stats.SOM.1
+
+```
+
+\
+``` {r frag-taxa-summary, tab.caps=tables('frag-taxa-summary')}
+#read in data on fragmentation of main taxa
+frag.main.taxa <- read_csv("../data/SI/main.taxa.summ.stats.SOM.csv")
+#tidy data
+frag.main.taxa <- frag.main.taxa %>% rename(Taxon = Taxon.mod)
+#flextable
+frag.main.taxa.1 <- flextable(frag.main.taxa)
+frag.main.taxa.1 <- theme_booktabs(frag.main.taxa.1)
+frag.main.taxa.1 <- italic(frag.main.taxa.1, j=3, part = "header")
+
+frag.main.taxa.1 <- compose(frag.main.taxa.1, i=c(1,4,7),
+                            j=1,
+                            as_paragraph(as_chunk(c("Bos/Bison","Bos/Bison","Bos/Bison"))))
+
+frag.main.taxa.1 <- italic(frag.main.taxa.1, i=c(1,4,7), j=1,
+                           part = "body")
+
+frag.main.taxa.1 <- compose(frag.main.taxa.1, i=c(2,5,8),j=1,
+                            as_paragraph(as_chunk(c("Cervidae","Cervidae","Cervidae"))))
+
+frag.main.taxa.1 <- compose(frag.main.taxa.1, i=c(3,6,9),j=1,
+                            as_paragraph(as_chunk(c("Ursidae","Ursidae","Ursidae"))))
+
+frag.main.taxa.1 <- font(frag.main.taxa.1, part = "all", fontname = "Open Sans")
+frag.main.taxa.1 <- fontsize(frag.main.taxa.1, part = "all", size = 11)
+frag.main.taxa.1 <- set_caption(frag.main.taxa.1, tables("frag-taxa-summary"),html_escape = FALSE, style = "Caption1")
+frag.main.taxa.1 <- autofit(frag.main.taxa.1)
+
+frag.main.taxa.1
+
+```
+
+\newpage
+```{r taxa-quant-mau,tab.caps=tables('taxa-quant-mau')}
+#read in data on taxa quantification
+taxa.quant.mau <- read_csv("../data/SI/quant_mau.csv")
+#tidy data
+taxa.quant.mau <- taxa.quant.mau %>% 
+  rename(Layer = lev.final,
+         Taxon = TAXON,
+         Element = ELEMENT_MAMMAL,
+         `%MAU` = MAU_percent) %>%
+  group_by(Layer, Taxon) %>% 
+  mutate(Taxon = str_replace_all(Taxon, "_", " ")) %>% 
+  mutate(Element = str_replace_all(Element, "_", " ")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "fish unknown"), "Osteichthyes  sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Canis sp."), "Canidae sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Hyaena sp."), "Hyaenidae sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Ursus sp."), "Ursidae sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Rhino sp."), "Rhinocerotidae sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Equid sp."), "Equidae sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Cervid sp."), "Cervidae sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Bos Bison sp."), "Bos/Bison sp.")) %>% 
+  mutate(Taxon = replace(Taxon, which(Taxon == "Capra sp."), "Caprinae sp.")) 
+#flextable
+taxa.quant.mau.1 <- flextable(taxa.quant.mau)
+
+taxa.quant.mau.1 <- theme_booktabs(taxa.quant.mau.1)
+taxa.quant.mau.1 <- add_footer(taxa.quant.mau.1, Layer = "Abbreviations: NISP = number of identified specimens; MNE = minimum number of elements; MNI = minimum number of individuals; MAU = Minimum Anatomical Units; %MAU = percentage minimum anatomical units; Vert = vertebra.")
+taxa.quant.mau.1 <- merge_at(taxa.quant.mau.1, j = 1:8, part = "footer")
+taxa.quant.mau.1 <- font(taxa.quant.mau.1, part = "all", fontname = "Open Sans")
+taxa.quant.mau.1 <- fontsize(taxa.quant.mau.1, part = "all", size = 9)
+taxa.quant.mau.1 <- set_caption(taxa.quant.mau.1, tables("taxa-quant-mau"),html_escape = FALSE, style = "Caption1")
+taxa.quant.mau.1 <- autofit(taxa.quant.mau.1)
+
+
+taxa.quant.mau.1
+
+```
+
+\newpage
+
+```{r weathering-SOM, tab.caps=tables('weathering-SOM')}
+#read in raw data on weathering at BK Cave IJK
+weathering.SOM <- read_csv("../data/SI/weathering.SOM.csv")
+#flextable
+weathering.SOM.1 <- flextable(weathering.SOM)
+weathering.SOM.1 <- theme_booktabs(weathering.SOM.1)
+weathering.SOM.1 <- set_header_labels(weathering.SOM.1,
+                                      values = list(pc_0 = "%",
+                                                    pc_1 = "%",
+                                                    pc_2 = "%",
+                                                    pc_3 = "%",
+                                                    pc_4 = "%"))
+
+weathering.SOM.1 <- add_footer(weathering.SOM.1, Layer = "Abbreviations: NSP = number of specimens.Stages of weathering based on Behrensmeyer [-@Behrensmeyer1978-lw] from 0 (unweathered) to 4 (heavily weathered).")
+weathering.SOM.1 <- merge_at(weathering.SOM.1, j = 1:12, part = "footer")
+
+weathering.SOM.1 <- font(weathering.SOM.1, part = "all", fontname = "Open Sans")
+weathering.SOM.1 <- fontsize(weathering.SOM.1, part = "all", size = 11)
+weathering.SOM.1 <- set_caption(weathering.SOM.1, tables("weathering-SOM"),html_escape = FALSE, style = "Caption1")
+weathering.SOM.1 <- autofit(weathering.SOM.1)
+
+weathering.SOM.1
+
+```
+
+
+```{r abrasion-SOM, tab.caps=tables('abrasion-SOM')}
+#read in data on abrasion of fauna from BK Cave Layers IJK
+abrasion.SOM <- read_csv("../data/SI/abrasion.SOM.csv")
+#tidy data 
+abrasion.SOM <- 
+   abrasion.SOM %>% 
+   rename(`%0`= pc_0,
+          `%<50` = `pc_<50`,
+          `%>50` = `pc_>50`,
+          `%100` = `pc_100`)
+#flextable
+abrasion.SOM.1 <- flextable(abrasion.SOM)
+abrasion.SOM.1 <- theme_booktabs(abrasion.SOM.1)
+
+abrasion.SOM.1 <- set_header_labels(abrasion.SOM.1,
+                                      values = list(`%0` = "%",
+                                                   `%<50` = "%",
+                                                   `%>50` = "%",
+                                                   `%100` = "%"))
+
+abrasion.SOM.1 <- add_footer(abrasion.SOM.1, Layer = "Abbreviations: NSP = number of specimens. Range of surface abrasion between 0% (no abrasion visible on bone surface) to 100% (bone surface completely abraded).
+")
+abrasion.SOM.1 <- merge_at(abrasion.SOM.1, j = 1:10, part = "footer")
+
+abrasion.SOM.1 <- font(abrasion.SOM.1, part = "all", fontname = "Open Sans")
+abrasion.SOM.1 <- fontsize(abrasion.SOM.1, part = "all", size = 11)
+abrasion.SOM.1 <- set_caption(abrasion.SOM.1, tables("abrasion-SOM"),html_escape = FALSE, style = "Caption1")
+abrasion.SOM.1 <- autofit(abrasion.SOM.1)
+
+abrasion.SOM.1
+
+```
+
+
+```{r readability-SOM, tab.caps=tables('readaility-SOM')}
+#read in data on faunal bone surface visability
+readability.SOM <- read_csv("../data/SI/readability.SOM.csv")
+#flextable..
+readability.SOM.1 <- flextable(readability.SOM)
+readability.SOM.1 <- theme_booktabs(readability.SOM.1)
+readability.SOM.1 <- set_header_labels(readability.SOM.1,
+                                      values = list(`pc_0` = "%",
+                                                   `pc_<50` = "%",
+                                                   `pc_>50` = "%",
+                                                   `pc_100` = "%"))
+
+readability.SOM.1 <- add_footer(readability.SOM.1, 
+                                Layer = "Abbreviations: NSP = number of specimens. Range of surface preservation from 0% (no original bone surface visible) to 100% (complete bone surface preserved and visible).")
+readability.SOM.1 <- merge_at(readability.SOM.1, j = 1:10, part = "footer")
+readability.SOM.1 <- font(readability.SOM.1, part = "all", fontname = "Open Sans")
+readability.SOM.1 <- fontsize(readability.SOM.1, part = "all", size = 11)
+readability.SOM.1 <- set_caption(readability.SOM.1, tables("readability-SOM"),html_escape = FALSE, style = "Caption1")
+readability.SOM.1 <- autofit(readability.SOM.1)
+
+readability.SOM.1
+
+```
+
+\
+
+```{r BSM-general-SOM, tab.caps=tables('BSM-general-SOM')}
+#read in data on bone surface moficiations BK Cave IJK
+BSM.gen.SOM <- read_csv("../data/SI/BSM.SOM.csv")
+#tidy data
+BSM.gen.SOM <- BSM.gen.SOM %>% 
+  rename(`%carn`=pc_carn,
+         `%hum`=pc_hum)
+#flextable
+BSM.gen.SOM.1 <- flextable(BSM.gen.SOM)
+BSM.gen.SOM.1 <- theme_booktabs(BSM.gen.SOM.1)
+BSM.gen.SOM.1 <- add_footer(BSM.gen.SOM.1, 
+                                Layer = "Abbreviations: NSP = number of specimens; nCarnivore = number of bones with carnivore modifications; %carn =  percentage of bones with carnivore modifications; nHuman = number of bones with human modifications; %hum = percentage of bones with human modifications.")
+BSM.gen.SOM.1 <- merge_at(BSM.gen.SOM.1, j = 1:6, part = "footer")
+
+BSM.gen.SOM.1 <- font(BSM.gen.SOM.1, part = "all", fontname = "Open Sans")
+BSM.gen.SOM.1 <- fontsize(BSM.gen.SOM.1, part = "all", size = 11)
+BSM.gen.SOM.1 <- set_caption(BSM.gen.SOM.1, tables("BSM-general-SOM"),html_escape = FALSE, style = "Caption1")
+BSM.gen.SOM.1 <- autofit(BSM.gen.SOM.1)
+
+BSM.gen.SOM.1
+
+```
+
+\
+
+```{r BSM-carn-SOM,tab.caps=tables('BSM-carn-SOM')}
+#read in data on specific carnivore modifications BK Cave Layers IJK
+BSM.carn.SOM <- read_csv("../data/SI/BSM.carn.csv")
+#flextable
+BSM.carn.SOM.1 <- flextable(BSM.carn.SOM)
+BSM.carn.SOM.1 <- theme_booktabs(BSM.carn.SOM.1)
+BSM.carn.SOM.1 <- add_footer(BSM.carn.SOM.1, 
+                                Layer = "Abbreviations: NSP = number of specimens; gast = number of specimens with gastric etching; tp =  number of specimens with tooth pits; scratch = number of specimens with tooth scratches; scallop = number of specimens with tooth scalloping.")
+BSM.carn.SOM.1 <- merge_at(BSM.carn.SOM.1, j = 1:10, part = "footer")
+
+
+BSM.carn.SOM.1 <- font(BSM.carn.SOM.1, part = "all", fontname = "Open Sans")
+BSM.carn.SOM.1 <- fontsize(BSM.carn.SOM.1, part = "all", size = 11)
+BSM.carn.SOM.1 <- set_caption(BSM.carn.SOM.1, tables("BSM-carn-SOM"),html_escape = FALSE, style = "Caption1")
+BSM.carn.SOM.1 <- autofit(BSM.carn.SOM.1)
+
+BSM.carn.SOM.1
+
+```
+
+\newpage
+
+```{r BSM-hum-SOM, tab.caps=tables('BSM-hum-SOM')}
+#read in data on specific human bone surface modificaions BK Cave Layers IJK
+BSM.hum.SOM <- read_csv("../data/SI/BSM.hum.csv")
+#flextable
+BSM.hum.SOM.1 <- flextable(BSM.hum.SOM)
+BSM.hum.SOM.1 <- theme_booktabs(BSM.hum.SOM.1)
+BSM.hum.SOM.1 <- add_footer(BSM.hum.SOM.1, 
+                                Layer = "Abbreviations: NSP = number of specimens; scrape = number of specimens with scrape marks; cut = number of specimens with cut marks; marrow = number of specimens with marrow fractures (includes percussion marks and fracture notches).")
+BSM.hum.SOM.1 <- merge_at(BSM.hum.SOM.1, j = 1:8, part = "footer")
+
+
+BSM.hum.SOM.1 <- font(BSM.hum.SOM.1, part = "all", fontname = "Open Sans")
+BSM.hum.SOM.1 <- fontsize(BSM.hum.SOM.1, part = "all", size = 11)
+BSM.hum.SOM.1 <- set_caption(BSM.hum.SOM.1, tables("BSM-hum-SOM"),html_escape = FALSE, style = "Caption1")
+BSM.hum.SOM.1 <- autofit(BSM.hum.SOM.1)
+
+BSM.hum.SOM.1
+
+```
+\
+\newpage
+```{r BSC-mod-SOM, tab.cap=tables('BSC-mod-SOM')}
+#read in data on Human BSM across different taxa BSC
+BSC.mod.SOM <- read_csv("../data/SI/BSC.mod.SOM.csv")
+#flextable
+BSC.mod.SOM.1 <- flextable(BSC.mod.SOM)
+BSC.mod.SOM.1 <- theme_booktabs(BSC.mod.SOM.1)
+BSC.mod.SOM.1 <- italic(BSC.mod.SOM.1, j=5, part = "header")
+BSC.mod.SOM.1 <- add_footer(BSC.mod.SOM.1, 
+                                Taxon = "Abbreviations: BSC = body size class; carn = carnivore; herb = herbivore.
+a See caption Figure 11 for detailed breakdown of taxa within each BSC grouping.")
+BSC.mod.SOM.1 <- merge_at(BSC.mod.SOM.1, j = 1:7, part = "footer")
+
+
+BSC.mod.SOM.1 <- font(BSC.mod.SOM.1, part = "all", fontname = "Open Sans")
+BSC.mod.SOM.1 <- fontsize(BSC.mod.SOM.1, part = "all", size = 11)
+BSC.mod.SOM.1 <- set_caption(BSC.mod.SOM.1, tables("BSC-mod-SOM"),html_escape = FALSE, style = "Caption1")
+BSC.mod.SOM.1 <- autofit(BSC.mod.SOM.1)
+
+BSC.mod.SOM.1
+
+
+```
+\newpage
+
+```{r burn-SOM-1, tab.cap=tables('burn-SOM-1')}
+#read in data on burning
+burn.SOM.1 <- read_csv(file = "../data/SI/burn.JHE.SOM.1.csv")
+burn.SOM.2 <- read.csv(file = "../data/SI/burn.JHE.SOM.2.csv")
+#flextbale
+burn.layer <- flextable(burn.SOM.1)
+burn.layer <- theme_booktabs(burn.layer)
+burn.layer <- add_footer(burn.layer, 
+                                Layer = "Abbreviations: NSP = number of specimens; nburnt = number of bone remains exhibiting burning.")
+burn.layer <- merge_at(burn.layer, j = 1:4, part = "footer")
+
+burn.layer <- font(burn.layer, part = "all", fontname = "Open Sans")
+burn.layer <- fontsize(burn.layer, part = "all", size = 11)
+burn.layer <- set_caption(burn.layer, tables("burn-SOM-1"),html_escape = FALSE, style = "Caption1")
+burn.layer <- autofit(burn.layer)
+
+burn.layer
+
+
+```
+
+```{r burn-SOM-2, tab.cap=tables('burn-SOM-2')}
+#read in detailed data on burning BK Cave Layers IJK
+burn.SOM.2 <- burn.SOM.2 %>% rename(`I/J` = I.J,
+                                    `J/K` = J.K)
+#flextable
+burn.detail <- flextable(burn.SOM.2)
+burn.detail <- theme_booktabs(burn.detail)
+burn.detail <- add_footer(burn.detail, 
+                                Burning = "Stages of burning from 0 (unburned) to  6 (fully calcined).")
+burn.detail <- merge_at(burn.detail, j = 1:6, part = "footer")
+
+
+burn.detail <- font(burn.detail, part = "all", fontname = "Open Sans")
+burn.detail <- fontsize(burn.detail, part = "all", size = 11)
+burn.detail <- set_caption(burn.detail, tables("burn-SOM-2"),html_escape = FALSE, style = "Caption1")
+burn.detail <- autofit(burn.detail)
+
+burn.detail
+
+```
+
+
+
+\newpage
+
+
+# SOM References {.unnumbered}

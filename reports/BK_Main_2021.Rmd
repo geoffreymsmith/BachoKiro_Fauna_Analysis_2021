@@ -1,0 +1,1393 @@
+---
+title: |
+ Subsistence behaviour during the Initial Upper Palaeolithic in Europe: Site use, dietary practice and carnivore exploitation at Bacho Kiro Cave (Bulgaria).
+output:
+  word_document:
+    reference_docx: "../common/reference.docx"
+bibliography: "../common/BK.bibliography.bib"
+csl: "../common/JHE.csl" 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(tidy = FALSE, echo = FALSE, warning = FALSE, message = FALSE, comment = NA, cache = FALSE, fig.pos = 'h', fig.path = "../figures_export/", dev = c('png','tiff'), dpi = 300, fig.align = "center")
+
+options(digits = 1, knitr.kable.NA = "", kableExtra.auto_format = FALSE)
+
+```
+
+```{r load data, include=FALSE}
+library("readxl")
+library("tidyverse")
+library("gplots")
+library("ggthemes")
+library("ggpubr")
+library("kableExtra")
+library("patchwork")
+library("flextable")
+library("rstatix")
+library("captioner")
+library("magick")
+
+
+# functions to generate figure captions and cross-refs using captioner package
+figures <- captioner(prefix = "Figure", auto_space = TRUE)
+
+#set figure caption text
+figures("site-grid", " a) Interior of Bacho Kiro Cave highlighting the location and proximity of the Main Sector and Niche 1 (modified from Fewlass et al., 2020: Supplementary Fig. 1); note the dark color of Layer I within Niche 1. The 1970s excavation is located beneath the concrete floor; b) Site plan and excavation grid at Bacho Kiro Cave (modified from Hublin et al., 2020: Extended Data Fig. 1). Fauna from the squares colored dark red have been analyzed fully while the light red squares indicate that excavation and faunal analysis is ongoing; c) Stratigraphic section from CC8-BB8 (orange line on site plan) illustrating position of Layers I, J and K in Niche 1 (numbers represent old layer assignments by Kozłowski and Ginter, 1982; letters represent layer assignments from new excavations as detailed in Hublin et al., 2020); d) Frontal view of stratigraphic section from Niche 1 sector showing layer subdivisions; note the distinctive dark color and composition of Layer I (modified from Hublin et al., 2020: Extended Data Fig. 1).")
+figures("spatial","a) Spatial distribution of piece plotted faunal specimens from Niche 1 and Main Sector subdivided by excavation layer (NSP = number of specimens); b) Number of bone specimens/liter of excavated sediment subdivided by layer. Squares are 1 x 1 meter , and the corresponding excavation numbers for each square can be obtained by joining the y-axis letter and the x-axis number.")
+figures("NISP","Percentage of identifiable specimens (%NISP) per taxon by layer; the total percentage of identifiable remains by layer is indicated in the panel title. ")
+figures("frag-size","Figure 4. a) Violin plot of the length of piece plotted bone fragments in main layers from Bacho Kiro Cave; b) Boxplot of the length of piece plotted bone fragments for major taxa from main layers (BB = Bos/Bison, Ce = Cervus elaphus, Us = Ursus spelaeus). Black line indicates median  and diamonds indicates mean; box represents the interquartile range; box base is 25th percentile while box top represents the 75th percentile with potential outliers plotted. Y-axis on both figures is at the same scale.")
+figures("taxa-element","Percentage of identifiable specimens (%NISP) for combined body part portions across three major taxon from Layer I; cranial: antler, horncore, cranium, mandible, teeth; axial: vertebrae, pelvis; forelimb: humerus, radius, ulna; hindlimb: femur, tibia; foot: carpals, metacarpal, tarsals, metatarsal, phalanges. Modified from Stiner (1991a, 1991b). BB = *Bos/Bison*; C = Cervidae; U = Ursidae.")
+figures("bone-density", "Plots of the number of identifiable specimens (NISP) against relative bone density for three major herbivore species from Bacho Kiro Cave Layers I–K (a = Bos/Bison; b = Cervidae, c = Equidae) Note that Layer J is absent because no elements were present to correlate with bone density. Bone density values for Bos/Bison are based on volume density (VD) measures from Kreutzer (1992), and Equidae and Cervidae from BMD1 mean from Lam et al. (1999). Abbreviations on plots relate to specific scan zones on elements: AT = atlas; CA = calcaneus; CE = cervical vertebra; FE = femur; HU = humerus; IS = Ischium; LU = lumbar vertebra; MC = metacarpal; MR = metatarsal; RA = radius; TH = thoracic vertebra; TI = Tibia; UL = ulna.")
+figures("taph-panel", "Bone surface preservation and readability. a) Percentage of specimens displaying low weathering (stage 0–2) or high weathering (3–5) based on Behrensmeyer (1978); b) Percentage of specimens exhibiting low (0–50%) and high surface abrasion (50–100%); c) Percentage of specimens with low (0–50%) and high (50–100%) surface readability.")
+figures("BSM-gen", "Percentage of specimens (%NSP) with carnivore or human modifications within Layers I-K from Bacho Kiro Cave; this excludes burnt specimens (see SOM Tables S10-S15 for detailed breakdown of bone surface modifications including burnt remains).")
+figures("carn-mod-fig", "Examples of carnivore bone surface modifications; a) *Ursus spelaeus* scapula (BB7-1384, I/J) with extensive gnawing and crenellation around glenoid and scapula spine; b) Unknown mammal bone fragment (BB8-1934, I/J) with extensive surface smoothing through carnivore digestion; c) Unknown mammal bone (BB7-1977, Layer K) with extensive surface damage caused by carnivore digestion; d) *Ursus spelaeus* femur (AA7-1214, Layer I) with carnivore gnawing and crenelation")
+figures("hum-mod-fig","Examples of human bone surface modifications; a) *Rupicapra rupicapra* radius (A7-773, Layer I) with disarticulation marks (white arrows) overlain by carnivore tooth pit (black arrow); b) *Bos primigenius* proximal epiphysis of second phalanx (CC7-2120, Layer I) with disarticulation marks; c) *Ursus spelaeus* ulna fragment (BB7-1190, Layer I) with filleting and cut marks overlain by retouching damage; d) *Ursus spelaeus* phalanx (BB7-458, Layer I) with skinning and disarticulation marks; e) Mammal long bone fragment (BB8-283, Layer I) with two separate episodes of use as a retoucher; f) *Ursus spelaues* phalanx (AA7-2043, Layer I) with skinning and disarticulation marks; g) Carnivore rib fragment (CC8-1564, Layer I) with cut and disarticulation marks; h) *Crocuta crocuta spelaea* phalanx (BB7-1062, Layer I) with disarticulation marks; i) *Aquila chrysaetos* talon (BB7-721, Layer I) with cut mark suggesting disarticulation/removal of talon (compare with figures in @Romandini2014-vx and @Radovcic2015-oi); j) *Ursus spelaeus* phalanx (BB7-588, Layer I) with cut marks suggesting claw removal.")
+figures("BSM-taxa", "Bone surface modifications across carnivore (carn) and herbivore (herb) grouped by body size class; carnivores: small: wolf (*Canis lupus*), fox (*Vulpes vulpes*), dhole (*Cuon alpinus*); medium: hyaena (*Crocuta crocuta spelaea*); large: cave lion (*Panthera leo spelaea*), leopard (*Panthera pardus*), bear (*Ursus spelaeus*, *Ursus arctos*); herbivores: small: roe deer (*Capreolus capreolus*), goat (*Caprinae* sp.), fallow deer (*Dama dama*), ibex (*Capra ibex*), pig (*Sus scrofa*), ungulate small, ungulate small/med; medium: reindeer (*Rangifer tarandus*), wild ass (*Equus hydruntinus*), horse (*Equus ferus*), red deer (*Cervus elaphus*), *Cervidae* sp., ungulate med/large; large: mammoth (*Mammuthus primigenius*), rhino (*Stephanorhinus hemeiotechus*), giant deer (*Megaloceros giganteus*), *Bos/Bison* (*Bison priscus*, *Bos primigenius*), ungulate large. Size classes are modified from Morin (2012). Burning data are not included.")
+figures("BSM-taxa-portion", "Percentage of specimens with human bone surface modifications across major taxa from Layer I at Bacho Kiro Cave separated by body portion; cranial: antler, horncore, cranium, mandible, teeth; axial: vertebrae, pelvis; forelimb: humerus, radius, ulna; hindlimb: femur, tibia; foot: carpals, metacarpal, tarsals, metatarsal, phalanges. Modified from Stiner, 1991a; 1991b. BB = *Bos/Bison*; C = Cervidae; U = Ursidae.")
+figures("PIMS", "Potential projectile impact marks (PIMs) on ungulate rib fragments; a) BB8-1061 (N1-I) exhibits a notch on the rib margin and bevelling (see expanded photo); b) BB7-1870 (N1-K) exhibits a bending fracture and impact point illustrated by white arrow.")
+figures("bear-age", "Ternary plot with percentage of Ursidae teeth in the juvenile, prime and old categories within Layers I-K from Bacho Kiro Cave. Wear stages defined by Stiner [-@Stiner1998-pq; -@Stiner1994-mn] and Kindler [-@Kindler2012-si;]. Tooth position si represented by different symbols and layers represented by different colors. J = juvenile dominant mortality, NNVA = normal non-violent attrition, LS = living structure, P = prime dominant mortality, O = old dominant mortality.") 
+#note that this figure was processed after running rmarkdown file to conform to journal standards; legend information: lowercase = mandibular; uppercase = maxillary
+figures("IUP-map", "Map showing location of Bacho Kiro Cave and other key Initial Upper Paleolithic (IUP) sites; white dots: sites with good bone preservation; black triangles: sites with poor bone preservation; black dots: sites with no bone preservation.")
+
+
+# functions to generate table captions and cross-refs using captioner packages
+tables <- captioner(prefix = "Table", auto_space = TRUE)
+
+#set table caption text
+tables("bone-remains", "Fauna from Layers I, J and K in Niche 1 and Main Sector.")
+tables("fauna-studied", "Detailed breakdown of total piece plotted faunal material (NSP) excavated between 2015-2018 by sector and layer.")
+tables("Taxa-level-chi-square", "Number of identified specimens (NISP) by layer and major taxon.")
+tables("BSM-chi-sq", "Number of specimens (NSP) by layer with carnivore or human modifications.")
+tables("carn-modifications", "Percentage total number of specimens (%NSP) with different carnivore modifications in Layers I-K.")
+tables("human-mod", "Number of specimens (NSP) and percentage of specimens with different human modifications in Layers I-K.")
+tables("bone-fusion-2", "Bone elements from different species at Bacho Kiro Cave with first fusion date (FFD) and last fusion date (LFD) in months and season of FFD and LFD (SFFD, SLFD)")
+tables("IUP-comp-table", "Initial Upper Palaeolithic sites with published faunal data")
+
+#total number piece plotted
+#join together with total remains studied
+bone.remains <- read_csv("../data/bone.remains.csv") #This is separated by MS and N1
+ 
+#table of material studied
+total.studied <- read_csv("../data/total.studied.csv")
+
+#NSP >20mm (including teeth)
+NSP.ident <- read_csv("../data/NSP.ident.csv")
+
+#Number of Identifiable Specimens 
+#NISP by level
+#TAXON as factor this includes unidentifiable species so need to filter!
+NISP.raw <- read_csv("../data/NISP.raw.csv")
+#Grouped data frame with species into categories like carnivore and herbivore
+NISP.mod <- read_csv("../data/NISP.mod.csv")
+
+#Identification rate by Layer
+ID.rate <- read_csv("../data/ID.rate.csv")
+
+#loads in NISP data formatted by Layer and plotted in NISP.fig
+NISP.fig <- read_csv("../data/NISP.fig.csv")
+
+#Quantification data for Layers I-K includes NISP, MNE, MNI, MAU and %MAU
+#this data is subdivided by taxa and element
+quant.standard <- read_csv("../data/quant.standard.csv")
+#writes the data to a csv file to be placed in the SOM Table 5
+write_csv(quant.standard, path = "../data/SI/quant_mau.csv")
+
+#Bone density and scan zones
+#reads in combined table including bones by zone and density data from Lam, Lyman and Kreutzer
+#includes information from BK cave arranged by density zone
+zones.density <- read_csv("../data/zones.density.csv")
+
+#Spatial data 
+#piece plotted fauna mpup layers from excavation database
+bk.total <- read_csv("../data/bk.total.csv") #total piece plotted remains
+bk.mpup <- read_csv("../data/bk.mpup.csv") #piece plotted remains from mpup
+
+#write csv for supplementary material SOM Table S1
+write_csv(bk.mpup, file = "../data/SI/bk.mpup.csv")
+
+#vector for main levels to stop having to run filter
+main.levels <- c("I", "J", "K")
+
+#Default themes for all plots throughout paper
+my.theme <- theme_bw() + 
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 12))
+#Default theme with smaller font
+my.theme.smaller.font <- 
+  my.theme + 
+  theme(axis.text = element_text(size = 10),
+        axis.title = element_text(size = 10))
+
+```
+
+Geoff M. Smith^a\*^, Rosen Spasov^b^, Naomi L. Martisius^c,a^, Virginie Sinet-Mathiot^a^, Vera Aldeias^d^, Zeljko Rezek^a,e^, Karen Ruebens^a^, Sarah Pederzani^a,f^, Shannon P. McPherron^a^, Svoboda Sirakova^g^, Nikolay Sirakov^g^, Tsenka Tsanova^a^, Jean-Jacques Hublin^a,h^
+
+::: {custom-style="affiliations"}
+^a^ Department of Human Evolution, Max Planck Institute for Evolutionary Anthropology, 
+Deutscher Platz 6, 04103, Leipzig, Germany.\
+^b^ Archaeology Department, New Bulgarian University, 21 Montevideo Str., 1618 Sofia.\
+^c^ Department of Anthropology, University of Tulsa, 800 South Tucker Drive, 74104, Tulsa, USA.\
+^d^ Interdisciplinary Centre for Archaeology and the Evolution of Human Behaviour, Universidade do Algarve, FCHS, Universidade do Algarve, Campus de Gambelas 8005-139 Faro, Portugal.\
+^e^ University of Pennsylvania Museum of Archaeology and Anthropology, University of Pennsylvania, 3260 South Street, Philadelphia, PA 19104, USA.\
+^f^ Department of Archaeology, University of Aberdeen, Aberdeen, AB24 3FX, UK.\
+^g^ National Institute of Archaeology with Museum, Bulgarian Academy of Sciences, 2 Saborna Str., 1000 Sofia, Bulgaria.\
+^h^ Collège de France, 11, place Marcelin Berthelot, 75231, Paris Cedex 05, France.\
+
+^\*^ Corresponding author; email address: [geoffrey_smith\@eva.mpg.de](geoffrey_smith@eva.mpg.de)
+:::
+
+# Abstract
+
+The behavioural dynamics underlying the expansion of *Homo sapiens* into Europe remains a crucial topic in human evolution. Due to poor bone preservation, past studies have strongly focused on the Initial Upper Palaeolithic (IUP) stone tool record. Recent excavations and extensive radiocarbon dating at Bacho Kiro Cave (Bulgaria) pushed back the arrival of IUP *Homo sapiens* into Europe to ca. 45,000 years ago. This site has exceptional bone preservation and we present the study of `r sum(total.studied$Analysed)` faunal remains from across two IUP layers (I and J) and one Middle Palaeolithic layer (K). We identified a shift in site use and occupation intensity through time, marked by increased find density and human modifications in Layer I. Alongside a decrease in carnivore presence and seasonality data demonstrating human presence in all seasons, this indicates a more frequent or prolonged occupation of the site by IUP groups. Contrary, the dietary focus across the IUP and MP layers is similar, centred on the exploitation of species from a range of habitats including wild cattle, bison, deer, horse and caprines. While body parts of large herbivores were selectively transported into the site, the bears remains suggest that these animals died in the cave itself. A distinct aspect of the IUP occupation is an increase in carnivore remains with human modifications, including these cave bears but also smaller taxa (e.g.,wolf, fox). This can be correlated with their exploitation for pendants, and potentially for skins and furs. At a broader scale we identified similarities in subsistence behaviour across IUP sites in Europe and western Asia. It appears that the first IUP occupations were less intense with find densities and human modifications increasing in succeeding IUP layers. Moreover, the exploitation of small game appears to be limited across IUP sites while carnivore exploitation seems a recurrent strategy.
+
+**Keywords**: Bacho Kiro Cave; Initial Upper Palaeolithic; Zooarchaeology; Middle-Upper Palaeolithic transition; *Homo sapiens*; subsistence behaviour \newpage
+
+# Introduction
+
+## The Initial Upper Palaeolithic
+A key question in human evolution relates to which mechanisms drove the global dispersal of groups of early *Homo sapiens* out of Africa and the subsequent replacement of local populations of other hominins [@Hublin2013-vf; @Higham2014-xy; @Hublin2015-nc; @Ruebens2015-dw; @Hajdinjak2021-ah; @Lalueza-Fox2021-fb; @fu2015early; @boaretto2021absolute]. In Europe and western Asia, this dispersal intensified after 50ka. with the emergence of the Initial Upper Palaeolithic (IUP) record . The IUP is defined based on a specific type of blade production that retains elements of Levallois technology but with a volumetric core exploitation and Upper Palaeolithic tool types [@Kuhn2014-wt; @Zwyns2019-ed; @Kuhn2009-rm]. A small number of faunal assemblages associated with IUP contexts have been recovered, mainly from caves, with open-air contexts exhibiting poor or no bone preservation [e.g., Bohunician in central Europe; @svoboda2003stranska; @Skrdla2014-gg; @Ruebens2015-dw]. At IUP sites with good organic preservation, ornaments and bone tools are also abundant (e.g., Üçağızlı cave in Turkey, Bacho Kiro Cave in Bulgaria, Ksar 'Akil in Lebanon; [@Marks1990-yk; @Kuhn1999-pf; @Hublin2020-ed; @Kuhn2001-nf; @Bosch2015-xl; ;@Zwyns2014-rr; @bosch2018molluscs]. Overall, our understanding of IUP subsistence practices, carcass exploitation and resource use is still limited, especially for Europe, and requires further investigation and comparison with local Neanderthal subsistence [@Bosch2015-xl; @bosch2018molluscs; @Kuhn2009-rm].
+
+New excavations at Bacho Kiro Cave (Bulgaria) have provided early and substantial evidence of the dispersal of Upper Palaeolithic *Homo sapiens* into Europe dated around 45 ka BP [@Fewlass2020-lu; @Hublin2020-ed]. This paper will present in-depth taphonomic and zooarchaeological analyses of the rich faunal assemblages recovered from the Middle and Initial Upper Palaeolithic layers of this cave, providing new and much needed insights into the subsistence strategies and dietary practices of these early groups of IUP *Homo sapiens*.
+
+## The site of Bacho Kiro Cave
+
+Bacho Kiro Cave is a critical site for discussions relating to the transition from Neanderthal to modern human populations in Europe due to its stratigraphic sequence rich in well-preserved archaeological material [@Kozlowski1982-cp; @Tsanova2008-mo; @Ruebens2015-dw; @Hublin2015-nc]. The cave is at the mouth of a large karstic system located 5km west of the town of Dryanovo, on the northern slope of the Balkan Mountains range (Stara Planina) and about 70km south of the Danube River.
+
+Dorothy Garrod (American School of Prehistoric Research) and Rafail Popov (Bulgarian Academy of Science) conducted one of the first excavations in 1938, though the scope of these excavations was relatively narrow and there is limited information regarding the stratigraphy and context [@Garrod1939-ck; @Ginter1982-yr]. Subsequent excavations (1971-1975) led by Boleslaw Ginter and Janusz K. Kozlowski provided the most comprehensive record of the site, stratigraphy and archaeology [@Kozlowski1982-cp]. These excavations produced large assemblages of lithics and fauna [@Kozlowski1982-cp], alongside fragmentary human remains that were subsequently lost. The cave is notable for the distinctive lithic assemblages from Layers 11 and 11a consisting of elongated Levallois-like blades, retouched points, end scrapers and splintered pieces [@Kozlowski1982-cp; @Tsanova2008-mo; @Tsanova2012-qc] as well as pendants made of animal teeth [@Guadelli2011-pb]. The lithic assemblage from Layers 11 and 11a was originally labelled 'Bachokirian', and interpreted as being transitional between the Middle Palaeolithic (MP) and Upper Palaeolithic (UP; [@Tsanova2003-wp; @Tsanova2008-mo]. The assemblage is now recognized as part of the IUP, representing the earliest occurrence of Late Pleistocene *Homo sapiens* in Europe [@Kuhn2014-wt; @Fewlass2020-lu; @Hublin2020-ed]. @Kozlowski1982-cp described the faunal remains from these excavations in a series of detailed chapters within the final site report. While these provided detailed information about the palaeoenvironmental context and change throughout sequence, taphonomic data is limited and it has hindered our understanding of site formation and the role and importance of carnivores and humans in site formation.
+
+```{r site-grid, echo=FALSE, message=FALSE, warning=FALSE, fig.cap=figures('site-grid')}
+#read in image of cave interior, site grid with studied material, stratigraphic sequence
+image_read("../data/Site_grid.tif")
+
+
+```
+
+New excavations were initiated in 2015 led by the National Archaeological Institute with Museum-Bulgarian Academy of Science in Sofia and the Max Planck Institute for Evolutionary Anthropology. Fieldwork focused on two sectors that contained well-preserved sequences: the Main Sector (ca. 3m^2^ excavated) and the previously unexcavated Niche 1 (ca. 8m^2^ excavated; `r figures("site-grid", display="cite")`). The recovered archaeological material illustrates that Layer I from the Main Sector (and its equivalent in Niche 1, N1-I) is consistent with Layer 11 and Layer J (and its equivalent in Niche 1, N1-J) is consistent with Layer 11a from Ginter and Kozlowski's excavations [@Kozlowski1982-cp]. This is supported by an extensive set of new radiocarbon samples that were dated with exceptional precision [@Fewlass2020-lu]. The IUP at Bacho Kiro Cave starts within Layer J (ca. 46,000 years ago), and intensifies within Layer I which is dated between 45,040 and 43,280 cal BP (95.4% probability; ^14^C dates recalibrated using IntCal20; @Reimer2020-xh). The presence of several directly dated *Homo sapiens* bone fragments in Layer N1-I confirms the modern human association with the IUP record [@Hublin2020-ed]. In Niche 1 these IUP layers are underlain by one layer of Middle Palaeolithic (Layer K). The vast majority of archaeological material from these new excavations come from the Niche 1 area where the find density is also higher (see `r figures("site-grid", display = "cite")`-`r figures("spatial", display = "num")`). Densities are much lower in Layer K (`r tables("bone-remains", display = "cite")`), but the lithic assemblage, consisting mostly of Levallois flakes, is distinct from the overlying Initial Upper Palaeolithic in terms of technology, typology and raw material usage  [@Hublin2020-ed]. Lithic material from Layer K is produced, mainly, on coarser grained igneous rocks, while the IUP from Layers I and J is manufactured on fine grained imported flint and is often fragmented, reduced and reused. 
+
+::: {custom-style="Compact"}
+```{r bone-remains, echo=FALSE, message=FALSE, warning=FALSE, tab.cap=tables('bone-remains')}
+##Volume of sediment excavated and density of archaeological remains
+arch.density <- 
+  read_csv(file = "../data/arch.density.csv")
+
+#convert to flextable
+bone.remains.1 <- 
+arch.density %>% 
+  filter(Layer %in% main.levels) %>% 
+  mutate(`Archaeological Unit` = case_when(str_detect(Layer, "I") ~ "IUP", 
+                                   str_detect(Layer, "J") ~ "IUP",  
+                                   str_detect(Layer, "K") ~ "MP")) %>% 
+  select(Layer, `Archaeological Unit`, Lithic, Bone, nbuckets, volume, litres,  bone.density,lithic.density) %>% 
+  rename(Volume = volume, Litres = litres, `bone/l` = bone.density, `lithic/l` = lithic.density)
+
+#make bone remains into a flextable
+bone.remains.2 <- flextable(bone.remains.1)  
+
+bone.remains.2 <- theme_booktabs(bone.remains.2)
+
+bone.remains.2 <- compose(bone.remains.2, part = "header", j = 6, value = as_paragraph("Volume (m", as_sup("3"),")"))
+
+bone.remains.2 <- align(bone.remains.2, part = "header", align = "center")
+bone.remains.2 <- align(bone.remains.2, part = "body", align = "center")
+bone.remains.2 <- align(bone.remains.2, i=1:3, j=3:8, align = "right")
+
+bone.remains.2 <- add_footer(bone.remains.2,Layer = "Abbreviations: Lithic = number of lithics >20 mm, Bone = number of bones >20 mm, nbuckets = number of buckets of excavated sediment (a bucket is 9 liters),  bone/l = number of bones per liter of excavated sediment, lithic/l = number of lithics per excavated liter of sediment.")
+bone.remains.2 <- merge_at(bone.remains.2, j = 1:9, part = "footer")
+
+bone.remains.2 <- font(bone.remains.2, part = "all", fontname = "Open Sans")
+bone.remains.2 <- fontsize(bone.remains.2, part = "all", size = 9)
+
+bone.remains.2 <- set_caption(bone.remains.2, tables("bone-remains"),html_escape = FALSE, style = "Caption1")
+
+bone.remains.2 <- autofit(bone.remains.2)
+bone.remains.2
+
+
+```
+:::
+
+Importantly, these new excavations have produced a large, well-contextualized faunal assemblage of individually piece-plotted faunal remains from throughout the stratigraphic sequence (total number of specimens = `r format(sum(bk.total$NSP), scientific =FALSE)`). Most of these remains (number of specimens = `r format(sum(bk.mpup$NSP), scientific =FALSE)`) were recovered from layers associated with the IUP (Layers I and J) and MP (Layer K; see `r tables("bone-remains", display = "cite")`-`r tables("fauna-studied", display = "num")`) and several contact zones. During excavation, due to relatively high water content in the clay portions of the sediment it was often difficult to assign bone material to a specific layer at the interface between Layers I and J or J and K, so these bones are assigned into layer contacts I/J or J/K (for a detailed breakdown see Supplementary Online Material [SOM] Table S1). . All sediment was collected by 9 litre buckets and wet-screened on site through 6 and 1.2mm meshes to form two fractions [@Hublin2020-ed]. From both fractions all lithic and faunal remains were collected and will form part of a later study.
+
+`r figures("spatial",display = "cite")` visualises the distribution of all piece plotted faunal specimens \>20mm (Figure 2a) and the number of bones per litre of excavated sediment (Figure 2b) from Layers I-K within both Niche 1 (squares A to DD) and the Main Sector (squares G-E). This figure illustrates both the large quantity of faunal remains from Niche 1, compared to the Main Sector, and also the high density of remains within Layer I (see `r tables("bone-remains", display = "cite")`). Indeed, bone per litre of excavated sediment is `r filter(bone.remains.1, Layer == "I")$'bone/l'/filter(bone.remains.1, Layer == "J")$'bone/l'` times greater in Layer I compared to Layer J and `r filter(bone.remains.1, Layer == "I")$'bone/l'/filter(bone.remains.1, Layer == "K")$'bone/l'` times greater than in Layer K. Micromorphological analyses of Layers I and J show, at times, crude bedding of sands and silts, suggesting temporal hiatuses with exposed surfaces being affected by low energy sheet wash [@Hublin2020-ed]. While these gaps have been identified in, at least, the top of Layer J and in Layer I, further micromorphological research is needed for the lower deposits of Layer K. Independently, however, sedimentation rates do not seem to be significantly high and the accumulation of these layers most probably relates to several visits to the site, hence to the normal time-average nature of archaeological deposits. Thus, previous analyses have illustrated the link between the IUP deposits (Layers I and J) in the Main Sector and Niche 1 both in terms of sedimentology and chronology [@Fewlass2020-lu; @Hublin2020-ed], so the fauna from these layers in both sectors are combined and analysed together along with Layer K from Niche 1.
+
+::: {custom-style="Compact"}
+```{r spatial,echo=FALSE, message=FALSE, warning=FALSE, fig.height = 6, fig.width = 10, fig.cap= figures('spatial')}
+#Total plotted faunal remains from BK MPUP layers
+fauna.plotted <-
+  bk.mpup %>% 
+  add_row(Layer = "Total", NSP = sum(bk.mpup$NSP))
+
+#reads in plotted data
+BK.plotted.fauna <- read_csv("../data/BK.plotted.fauna.csv")
+BK.plotted.fauna$Sq <- factor(BK.plotted.fauna$Sq, 
+                             levels = c("DD", "CC", "BB", "AA", "A","B","C","D","E","F","G"))
+BK.plotted.fauna <- BK.plotted.fauna %>% filter(Layer %in% main.levels)
+
+#Plots fauna for Layers IJK
+BK.plotted.fauna.IJK <- 
+  ggplot(drop_na(BK.plotted.fauna), aes(Row,Sq))+
+  geom_raster(aes(fill=NSP), hjust = 0, vjust = 0)+
+  coord_equal(xlim = c(10,1), ratio = 0.9) +
+  geom_text(data = filter(BK.plotted.fauna, 
+                          Sq == "A"|
+                          Sq == "DD" &
+                          str_detect(Row, "7|8")), 
+            aes(label= paste(Sq,Row, sep = "")), 
+            nudge_x = -0.5, nudge_y = -0.5, size = 2.5) +
+  scale_x_reverse(breaks = c(10,9,8,7,6,5,4,3,2,1), expand = c(0,0))+
+  scale_y_discrete(limits = c("DD", "CC", "BB", "AA", "A","B","C","D","E","F","G"),
+                   expand = c(0,0))+
+  scale_fill_gradient(low = "gray", high = "red", na.value = "white")+
+  facet_grid(.~Layer) +
+  labs(x=NULL, y= NULL)+
+  labs(fill="NSP") +
+  my.theme +
+  theme(legend.title = element_text(size = 9),
+        legend.text = element_text(size = 9),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.spacing = unit(5, "mm"),
+        legend.position = "right")
+
+#load data for fauna/litre
+Bone.density.fauna <- read_csv(file = "../data/fauna.per.litre.csv")
+Bone.density.fauna$Sq <- factor(Bone.density.fauna$Sq, 
+                             levels = c("DD", "CC", "BB", "AA", "A","B","C","D","E","F","G"))
+
+# order the data by SQUARE based on factors (this is the layout of the excavation grid)
+Bone.density.fauna <- Bone.density.fauna[order(Bone.density.fauna$Sq),]
+Bone.density.fauna <- Bone.density.fauna %>% filter(Layer %in% main.levels)
+
+#plots figure for fauna density for Layers IJK
+Bone.density.1 <- 
+ggplot(Bone.density.fauna, aes(x=Row,y=Sq))+
+geom_raster(aes(fill=bone.density), hjust = 0, vjust = 0)+
+coord_equal(xlim = c(10,1), ratio = 0.9)+
+geom_text(data = filter(BK.plotted.fauna, 
+                          Sq == "A"|
+                          Sq == "DD" &
+                          str_detect(Row, "7|8")), 
+            aes(label= paste(Sq,Row, sep = "")), 
+            nudge_x = -0.5, nudge_y = -0.5, size = 2.5) +
+  scale_x_reverse(breaks = c(10,9,8,7,6,5,4,3,2,1), expand = c(0,0))+
+  scale_y_discrete(limits = c("DD", "CC", "BB", "AA", "A","B","C","D","E","F","G"),
+                   expand = c(0,0))+
+  scale_fill_gradient(low = "gray", high = "steelblue", na.value = "white")+
+  facet_grid(.~Layer) +
+  labs(x=NULL, y= NULL)+
+  labs(x="Row", y= "Square")+
+  labs(fill="bone/liter") +
+  my.theme +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        legend.title = element_text(size = 9),
+        legend.text = element_text(size = 9),
+        panel.spacing = unit(5, "mm"),
+        legend.position = "right")
+  
+#patchwork figure of spatial distribution and density of fauna in Layers IJK
+BK.plotted.fauna.IJK/Bone.density.1+plot_annotation(tag_levels = "a")
+
+```
+:::
+
+# Materials and methods
+
+For this study, `r sum(total.studied$Analysed)` faunal remains from the 2015-2018 excavations at Bacho Kiro Cave were investigated (curated at History Museum in Dryanovo). This includes all of the fauna from the excavation squares indicated in dark red on `r figures("site-grid", display = "cite")` alongside a sample of material from row 8 (light red excavation squares on `r figures("site-grid", display = "cite")`, for which excavation and analyses are ongoing), covering both the Niche 1 and Main sector and the IUP and MP layers. This includes all piece plotted material (bone fragments \>20 mm [*n* = 6,808; `r sum(6808/7431*100)`] and morphologically identifiable remains \<20 mm [*n* = 79; `r sum(79/7431*100)`]) and a small portion of the piece plotted fauna that fell below  the recording cut-off of 20mm (\<20mm; *n* = 544; `r sum(544/7431*100)`).
+
+```{r fauna-studied, tab.cap=tables('fauna-studied')}
+#import data on fauna analysed for this study
+fauna.studied <- read_csv("../data/fauna.studied.csv")
+
+#convert to flextable
+fauna.studied.1 <- flextable(fauna.studied)
+fauna.studied.1 <- merge_v(fauna.studied.1, j=1)
+
+fauna.studied.1 <- theme_booktabs(fauna.studied.1)
+fauna.studied.1 <- align(fauna.studied.1, part = "header", align = "center")
+fauna.studied.1 <- align(fauna.studied.1, part = "body", align = "center")
+fauna.studied.1 <- align(fauna.studied.1, i=1:9, j=4:5, align = "right",
+                         part = "body")
+
+fauna.studied.1 <- add_footer(fauna.studied.1, Sector = "Abbreviations: : NSP = number of specimens.")
+fauna.studied.1 <- merge_at(fauna.studied.1, j = 1:5, part = "footer")
+
+
+fauna.studied.1 <- font(fauna.studied.1, part = "all", fontname = "Open Sans")
+fauna.studied.1 <- fontsize(fauna.studied.1, part = "all", size = 9)
+fauna.studied.1 <- set_caption(fauna.studied.1, tables("fauna-studied"),html_escape = FALSE, style = "Caption1")
+
+fauna.studied.1 <- autofit(fauna.studied.1)
+
+fauna.studied.1
+
+```
+
+The first section of this paper presents a new zooarchaeological and taphonomic analysis of faunal material recovered from Layers I, J and K (n = `r sum(filter(total.studied, str_detect(Layer, "/", negate =TRUE))$Analysed)`; for data on the contact zones I/J and J/K see SOM Table S1). A specially designed database was constructed using the freely available E4 software (https://www.oldstoneage.com/). Faunal material was recorded using a text based zonal system based on previous methodologies [@Smith2010-lp; @Smith2013-cf; @Smith2015-tv] ), where a zone was only recorded if >50% was present. This allowed for the comprehensive quantification and calculation of the number of identifiable specimens (NISP), minimum number of elements (MNE), minimum number of individuals (MNI) and associated indices such as minimum anatomical units (MAU). NISP was calculated as the number of specimens identified to species and element [@grayson1984quantitative; @Lee_Lyman1994-is], though if species determination was unclear fragments were recorded to the family level (e.g. Ursidae sp.). MNE was calculated assessing which zone had the most representation of >50% present and this was further combined with side and fusion data for each specific element [@Lee_Lyman1994-is; @lyman2008quantitative; @Smith2010-lp]. The MNI was calculated for each specific element (including left and right) and the final MNI value for each taxon chosen by selecting the highest value. MAU values were normalized by dividing MNE values by the frequency of this element within the skeleton. These values were then normed into %MAU by dividing each MAU by the greatest MAU value in the assemblage [@binford19811978nunamiut;@Binford1981-kd; ;@Lee_Lyman1994-is; @lyman2008quantitative; @Rendu2019-dt].In order to further understand specific site formation processes at Bacho Kiro Cave, zooarchaeological data, such as species and body part identification, were combined with a wide variety of recorded taphonomic attributes.
+
+Behrensmeyer's [-@Behrensmeyer1978-lw] scheme was used to record the weathering stage of all bones and provides a qualitative scale for understanding the exposure (short/long duration) of faunal material prior to burial.  Other biotic and abiotic modification agents recorded included root etching and abrasion (expressed as a percentage of bone surface affected). The schemes range from 0% (no visible modification observed), thorough to 100% (the whole bone surface covered; @Smith2010-lp; @Smith2015-tv]. Burnt remains were recorded using the specific colour and surface changes as identified by Stiner [-@Stiner1995-ar]. Recording the presence, intensity and distribution of these taphonomic agents across the site and throughout the layers at Bacho Kiro Cave provides a detailed framework to contextualize carnivore and human behaviour and site use.
+
+All faunal material was studied under magnification (20x) using an oblique light source, which allowed for a detailed analysis and recording of bone surface conditions and modifications. The identification and distinction of human modifications (skinning, cut marks, deliberate marrow fractures) from other non-anthropogenic processes (trampling, carnivores) has generated considerable debate [@Bunn1981-fz; @Gifford-Gonzalez1989-wj; @Gifford-Gonzalez1989-ch; @Gifford-Gonzalez1991-zg; @Dominguez-Rodrigo1999-iq; @Galan2009-wq; @Fisher1995-ha]. More recent approaches have attempted to provide quantitative data through the application of high resolution microscopy and the application of machine learning protocols [@Cifuentes-Alcobendas2019-oi; @Moclan2019-js; @Pizarro-Monzo2020-oj]. Despite much discussion about the criteria and methods for identifying and distinguishing cut marks on fauna [@Dominguez-Rodrigo2017-mi; @Dominguez-Rodrigo2019-aq] the use of low-powered approaches has proven effective for differentiating human from natural bone surface modifications, especially within Middle and Upper Palaeolithic contexts [@Blumenschine1996-lb; @Smith2015-tv].
+
+Specific carnivore modifications recorded included tooth pits, scratches, crenellation and damage from digestion. Human modifications included those related to butchery and carcass processing such as cut marks, skinning marks, deliberate marrow fractures(identification of impact point and/or percussion notch; see [@Lee_Lyman1994-is;@Fisher1995-ha], alongside other secondary uses of organic material for informal bone tools ('retoucher'), formal bone tools (*lissoirs*, awls etc.) and ornaments. To understand fully the behaviour of *Homo sapiens* at Bacho Kiro Cave, these new faunal analyses are further contextualized with data from sedimentology, micromorphology and lithic data.
+
+To understand whether human groups occupied the site during specific seasons and focused on specific age classes, and if this varied across species, required the recording of different age and seasonality indicators from various species using both cranial (mainly teeth eruption and wear) and post-cranial bone fusion data [@Reitz1999-nb; @Weinstock2009-to]. Herbivore age was calculated using various methods depending on tooth type. For species with low-crowned teeth such as *Bos/Bison* and cervids the quadratic crown height measure (QCHM) was applied [@Steele2002-ih; @Steele2012-pk; @Steele2004-bh; @Steele2012-pk; @Steele2004-bh] along with established wear stages [@Grant1982-bt]. For equids, crown height was measured on juveniles and adults and calculated using established equations [@Bignon2006-uo; @Fernandez2003-hl] and tooth wear stages documented [@Levine1982-mi]. Bear dentition was scored according to the three stage scheme devised by Stiner [-@Stiner1990-hs, -@Stiner1994-mn, -@Stiner1998-pq; @Kindler2012-si] and used extensively at numerous Pleistocene sites [@Kindler2012-si; @Abrams2014-oz; @Romandini2018-oi]. All analyses were undertaken in R v. 4.0.2 [@R_Core_Team2020-ky] using RStudio v. 1.4.1103 [@RStudio_Team2021-al], mainly by using the 'tidyverse' packages v. 1.3.1 [@Wickham2019-io] and with statistics performed using the 'rstatix' package v. 0.7.0 [@Kassambara2020-eg]. Figures were produced with the 'ggplot2' package v. 3.3.3 [@Wickham2016-gf] and the 'ggtern' package for ternary graphs [@Hamilton2018-od] with the exception of the maps that were produced using QGIS v. 3.18.3  [@QGIS_Development_Team2009-mk] and the manuscript was written in rmarkdown (v. 2.6) [@Allaire2021-sl; @Xie2020-zj; @Xie2018-sk]. The raw data and RMarkdown scripts to reproduce the article and its analyses along with the SOM are available at https://osf.io/62pbr/.
+
+# Results
+
+## Species representation and variation
+
+### Species representation
+
+The species representation of the new collection is similar to that originally identified by @Kozlowski1982-cp, though the proportions vary (see `r figures("NISP", display = "cite")`). Importantly, the identified macro faunal species are consistent between both the Niche 1 and Main Sector, which support the stratigraphic correspondence of layers between these two excavation areas (also see discussion and analysis in @Hublin2020-ed).
+
+::: {custom-style="Compact"}
+```{r NISP, echo=FALSE, message=FALSE, warning=FALSE,fig.height = 10, fig.width = 10, fig.cap=figures('NISP')}
+#read in data for NISP figure
+NISP.fig <- read_csv("../data/NISP.fig.csv")
+NISP.fig <- 
+  NISP.fig %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "bird unknown"), "Aves sp.")) %>% #replaces bird unknown
+  #Bony fish; fish from BK Cave cannot be id to taxa
+  mutate(TAXON = replace(TAXON, which(TAXON == "fish unknown"), "Osteichthyes sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Leporid sp."), "Leporidae sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Canis sp."), "Canidae sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Hyaena sp."), "Hyaenidae sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Ursus sp."), "Ursidae sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Rhino sp."), "Rhinocerotidae sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Equid sp."), "Equidae sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Cervid sp."), "Cervidae sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Bos Bison sp."), "Bos/Bison sp.")) %>% 
+  mutate(TAXON = replace(TAXON, which(TAXON == "Capra sp."), "Caprinae sp.")) %>% 
+  mutate(TAXON = factor(TAXON , 
+                        levels = c("Aquila chrysaetos",
+                                   "Aves sp.",
+                                   "Osteichthyes sp.",
+                                   "Leporidae sp.",
+                                   "Panthera leo spelaea",
+                                   "Panthera pardus", 
+                                   "Canis lupus", 
+                                   "Canidae sp.", 
+                                   "Vulpes vulpes",
+                                   "Cuon alpinus",
+                                   "Gulo gulo", 
+                                   "Crocuta spelaea", 
+                                   "Hyaenidae sp.", 
+                                   "Felidae sp.",
+                                   "Ursus spelaeus", 
+                                   "Ursus arctos",
+                                   "Ursidae sp.",
+                                   "Mammuthus primigenius",
+                                   "Stephanorhinus hemiotechus",
+                                   "Rhinocerotidae sp.",
+                                   "Equus ferus",
+                                   "Equus hydruntinus",
+                                   "Equidae sp.",
+                                   "Megaloceros giganteus", 
+                                   "Cervus elaphus",
+                                   "Dama dama",
+                                   "Capreolus capreolus",
+                                   "Rangifer tarandus",
+                                   "Cervidae sp.",
+                                   "Bos primigenius",
+                                   "Bison priscus",
+                                   "Bos/Bison sp.",
+                                   "Capra ibex",
+                                   "Capra caucasica",
+                                   "Rupicapra rupicapra",
+                                   "Caprinae sp.",
+                                   "Sus scrofa")))
+  
+  
+#modify labs to make italic for taxonomic names
+lbs = brk = levels(NISP.fig$TAXON)        
+lbs[match("Aquila chrysaetos", brk)] = expression(italic("Aquila chrysaetos"))
+lbs[match("Panthera leo spelaea",brk)] = expression(italic("Panthera leo spelaea"))
+    lbs[match("Panthera pardus", brk)] = expression(italic("Panthera pardus"))
+    lbs[match("Canis lupus", brk)] = expression(italic("Canis lupus"))
+    lbs[match("Vulpes vulpes", brk)] = expression(italic("Vulpes vulpes"))
+    lbs[match("Cuon alpinus", brk)] = expression(italic("Cuon alpinus"))
+    lbs[match("Gulo gulo", brk)] = expression(italic("Gulo gulo"))
+    lbs[match("Crocuta spelaea", brk)] = expression(italic("Crocuta spelaea"))
+    lbs[match("Ursus spelaeus", brk)] = expression(italic("Ursus spelaeus"))
+    lbs[match("Ursus arctos", brk)] = expression(italic("Ursus arctos"))
+    lbs[match("Mammuthus primigenius", brk)] = expression(italic("Mammuthus primigenius"))
+    lbs[match("Stephanorhinus hemiotechus", brk)] = expression(italic("Stephanorhinus hemiotechus"))
+    lbs[match("Equus ferus", brk)] = expression(italic("Equus ferus"))
+    lbs[match("Equus hydruntinus", brk)] = expression(italic("Equus hydruntinus"))
+    lbs[match("Megaloceros giganteus", brk)] = expression(italic("Megaloceros giganteus"))
+    lbs[match("Cervus elaphus", brk)] = expression(italic("Cervus elaphus"))
+    lbs[match("Dama dama", brk)] = expression(italic("Dama dama"))
+    lbs[match("Capreolus capreolus", brk)] = expression(italic("Capreolus capreolus"))
+    lbs[match("Rangifer tarandus", brk)] = expression(italic("Rangifer tarandus"))
+    lbs[match("Bos primigenius", brk)] = expression(italic("Bos primigenius"))
+    lbs[match("Bison priscus", brk)] = expression(italic("Bison priscus"))
+    lbs[match("Bos/Bison sp.", brk)] = expression(italic("Bos/Bison")~sp.)
+    lbs[match("Capra ibex", brk)] = expression(italic("Capra ibex"))
+    lbs[match("Capra caucasica", brk)] = expression(italic("Capra caucasica"))
+    lbs[match("Rupicapra rupicapra", brk)] = expression(italic("Rupicapra rupicapra"))
+    lbs[match("Sus scrofa", brk)] = expression(italic("Sus scrofa"))
+
+#modify facet labels to incorporate ID.rate
+Layer.labs <- c("Layer I: 19.9%", "Layer J: 31.6%", "Layer K: 26.1%")
+names(Layer.labs) <- c("I", "J", "K")
+
+#produces a NISP figure
+NISP.fig.1 <- 
+  NISP.fig %>% 
+  filter(lev.final %in% main.levels) %>% 
+  ggplot(mapping = aes(x= reorder(TAXON, desc(TAXON)), y = `%NISP`)) +
+  geom_col(aes(fill=lev.final), alpha = 0.5) +
+  coord_flip() +
+  facet_grid(.~lev.final,
+             labeller = labeller(lev.final=Layer.labs))+
+  scale_x_discrete(breaks=brk, labels=lbs)+
+  scale_fill_colorblind()+
+  xlab(label = "Taxon")+
+  my.theme+
+  theme(legend.position = "none",
+        strip.text = element_text(face = "bold"))
+#plots NISP.fig.1
+NISP.fig.1
+
+```
+:::
+
+Within all layers species identification rates for bone fragments is, relatively, high (I = `r filter(ID.rate, Taxon.mod == "identifiable" & lev.final == "I")$ID.rate`% ;J = `r filter(ID.rate, Taxon.mod == "identifiable" & lev.final == "J")$ID.rate`%; K = `r filter(ID.rate, Taxon.mod == "identifiable" & lev.final == "K")$ID.rate`%) especially for sites of this age range in Europe [@Rendu2019-dt; @Morin2012-bg; @Morin2008-es; @Morin2019-px].
+
+The most frequently identified species include *Bos/Bison* (I = `r filter(NISP.fig, TAXON == "Bos Bison sp." & lev.final == "I")$'%NISP'`%; J = `r filter(NISP.fig, TAXON == "Bos Bison sp."& lev.final == "J")$'%NISP'`%; K = `r filter(NISP.fig, TAXON == "Bos Bison sp."& lev.final == "K")$'%NISP'`%), cave bear (*Ursus spelaeus*; I = `r filter(NISP.fig, TAXON == "Ursus spelaeus" & lev.final == "I")$'%NISP'`%; J = `r filter(NISP.fig, TAXON == "Ursus spelaeus"& lev.final == "J")$'%NISP'`%; K = `r filter(NISP.fig, TAXON == "Ursus spelaeus"& lev.final == "K")$'%NISP'`% ) and red deer (*Cervus elaphus*; I = `r filter(NISP.fig, TAXON == "Cervus elaphus" & lev.final == "I")$'%NISP'`%; J = `r filter(NISP.fig, TAXON == "Cervus elaphus"& lev.final == "J")$'%NISP'`%; K = `r filter(NISP.fig, TAXON == "Cervus elaphus"& lev.final == "K")$'%NISP'`%; see `r figures("NISP", display = "cite")`), though other carnivore (I = `r filter(NISP.mod, Taxon.mod == "carnivore" & lev.final == "I")$pcNSP`%; J = `r filter(NISP.mod, Taxon.mod == "carnivore" & lev.final == "J")$pcNSP`%; K = `r filter(NISP.mod, Taxon.mod == "carnivore" & lev.final == "K")$pcNSP`%) and herbivore (I = `r filter(NISP.mod, Taxon.mod == "herbivore" & lev.final == "I")$pcNSP`%; J = `r filter(NISP.mod, Taxon.mod == "herbivore" & lev.final == "J")$pcNSP`%; K = `r filter(NISP.mod, Taxon.mod == "herbivore" & lev.final == "K")$pcNSP`%) species are represented. Carnivores include cave lion (*Panthera leo spelaea*), leopard (*Panthera pardus*), cave hyaena (*Crocuta crocuta spelaea*), wolf (*Canis lupus*), red fox (*Vulpes vulpes*), brown bear (*Ursus arctos*) along with large to medium sized herbivore taxa (horse [*Equus ferus*], European ass [*Equus hydruntinus* ], giant deer [*Megaloceros giganteus*], ibex [*Capra ibex*], chamois [*Rupicapra rupicapra*]). Megafaunal species including mammoth (*Mammuthus primigenius*; K = `r filter(NISP.raw, str_detect(TAXON, "Mammu"))$NISP`) and rhino (*Stephanorhinus hemiotechus*; I = `r filter(NISP.fig, str_detect(TAXON, "Steph|Rhi") & lev.final == "I")$'%NISP'`%; J = `r filter(NISP.fig, str_detect(TAXON, "Steph|Rhi") & lev.final == "J")$'%NISP'`%), are represented by very few specimens throughout all layers (see SOM Table S2). Overall, the fauna recovered throughout Layers K-I is characteristic of Marine Isotope Stage 3 (MIS 3) throughout south-east Europe, with a mix of cold and more temperate adapted species that have a broad range of climatic/ecological tolerances [@Guerin1982-nj; @Hublin2020-ed; @Van_der_Made2018-nd; `r figures("NISP", display = "cite")`).
+
+```{r Taxa-quantification, include=FALSE, message=FALSE, warning=FALSE}
+#reads in BK.MNE.MNI data by species
+BK.MNE.MNI <- read_csv ("../data/BK.MNE.MNI.csv")
+
+```
+
+This variation in species representation is also evident when examining the examining the examining the MNE and MNI values (see SOM Table S3). While these layers include a range of species (see `r figures("NISP", display = "cite")`) most of these are represented by a low number of elements and individuals (), especially for carnivores (excluding Ursidae; MNI: Layer I = 8; Layer J = 8; Layer K = 6), *Leporidae* sp. (MNI: Layer I = 1; Layer J = 1), birds (*Aquila chrysaetos*; MNI: Layer I =1, *Aves* sp. MNI: Layer I =1) and fish (*Osteichthyes*  sp. MNI: Layer I = 1; see SOM Table S3). The exception for carnivores are the Ursidae specimens, which includes *Ursus arctos* and Ursus sp., but is dominated by cave bear (*Ursus spelaeus*), and represented by a relatively high number of elements and individuals (I: MNE =`r sum(filter(BK.MNE.MNI, str_detect(TAXON,"Ursus|Ursid") & lev.final == "I")$MNE)`; MNI = `r sum(filter(BK.MNE.MNI, str_detect(TAXON,"Ursus|Ursid") & lev.final == "I")$MNI)`; J: MNE = `r sum(filter(BK.MNE.MNI, str_detect(TAXON,"Ursus|Ursid") & lev.final == "J")$MNE)`; MNI = `r sum(filter(BK.MNE.MNI, str_detect(TAXON,"Ursus|Ursid") & lev.final == "J")$MNI)`; K: MNE = `r sum(filter(BK.MNE.MNI, str_detect(TAXON,"Ursus|Ursid") & lev.final == "K")$MNE)`; MNI = `r sum(filter(BK.MNE.MNI, str_detect(TAXON,"Ursus|Ursid") & lev.final == "K")$MNI)`)
+
+Within Layer I, herbivore species are most frequent and are, generally, represented by higher numbers of elements and individuals; for example, Bos/Bison, which includes *Bos primigenius*, *Bison priscus* and *Bos/Bison* sp.(MNE = `r sum(filter(BK.MNE.MNI, str_detect(TAXON,"Bos|Bison") & lev.final == "I")$MNE)`; MNI = `r sum(filter(BK.MNE.MNI, str_detect(TAXON,"Bos|Bison") & lev.final == "I")$MNI)`),   *Cervus elaphus* which includes both *Cervus elaphus* and *Cervidae* sp. (MNE =`r sum(filter(BK.MNE.MNI, str_detect(TAXON,"Cervus|Cervid") & lev.final == "I")$MNE)`; MNI = `r sum(filter(BK.MNE.MNI, str_detect(TAXON,"Cervus|Cervid") & lev.final == "I")$MNI)`) and Equidae sp. (MNE =`r sum(filter(BK.MNE.MNI, str_detect(TAXON,"Equ") & lev.final == "I")$MNE)`; MNI = `r sum(filter(BK.MNE.MNI, str_detect(TAXON,"Equ") & lev.final == "I")$MNI)`), which includes *Equus ferus*, *Equus hydruntinus*  and *Equidae* sp..
+.
+
+### Species variation
+
+To investigate further whether there is a significant change in species representation between layers, we assessed the NISP values for identifiable species from Layers K-I with a chi-square test. In order to observe changes in the representation, the most common species were grouped into broader categories of: *Bos/Bison* (*Bos primigenius*, *Bison priscus* and *Bos/Bison* sp.), Ursidae (*Ursus spelaeus*, *Ursus arctos* and Ursidae sp.) and *Cervus elaphus* (*Cervus elaphus* and Cervidae sp.) . The remaining identifiable species were grouped into broader categories of either herbivore or carnivore, irrespective of body size. The null hypothesis states that the variables of layer and taxon are independent of each other.
+
+::: {custom-style="Compact"}
+```{r Taxa-level-chi-square, echo=FALSE,message=FALSE, warning=FALSE, tab.cap=tables('Taxa-level-chi-square')}
+#creates a dataframe to rub chi-square test using NISP.mod
+NISP.chi <- NISP.mod %>% select(-NSP, -pcNSP)
+
+#prepares the contingency table
+NISP.2.chi <- NISP.chi %>% pivot_wider(names_from = lev.final, values_from = n)
+NISP.2.chi <- data.frame(NISP.2.chi, row.names = (NISP.2.chi$Taxon.mod))
+NISP.2.chi <- NISP.2.chi %>% select(-Taxon.mod) %>% select (I,J,K)
+
+#chi-square for NISP and change in J and K
+NISP.chi.J.K <- 
+NISP.2.chi %>% 
+  select(J,K) %>% 
+  chisq_test() 
+
+#chi-square stats for NISP by layer and AR
+NISP.chi.J.K.stats <- 
+chisq_descriptives(NISP.chi.J.K) %>% 
+  rename(Taxon = Var1, Layer= Var2) %>% 
+  select(Taxon, Layer, observed, std.resid) %>% 
+  pivot_wider(names_from = Layer, values_from = c(observed, std.resid)) %>% 
+  rename(NISP_J=observed_J, AR_J=std.resid_J,NISP_K=observed_K) %>% 
+  select(Taxon, NISP_J, AR_J, NISP_K) 
+
+#chi-square for NISP and change in I and J
+NISP.chi.I.J <- 
+  NISP.2.chi %>% 
+  select(I,J) %>% 
+  chisq_test() 
+
+#chi-square stats for NISP by layer and AR
+NISP.chi.I.J.stats <- 
+chisq_descriptives(NISP.chi.I.J) %>% 
+  rename(Taxon = Var1, Layer= Var2) %>% 
+  select(Taxon, Layer, observed, std.resid) %>% 
+  pivot_wider(names_from = Layer, values_from = c(observed, std.resid)) %>%
+  rename(NISP_I=observed_I, AR_I=std.resid_I,NISP_J=observed_J) %>% 
+  select(Taxon, NISP_I, AR_I, NISP_J)
+
+#combined table
+NISP.chi.table <- 
+NISP.chi.I.J.stats %>% 
+  full_join(NISP.chi.J.K.stats) %>% 
+add_row(Taxon = "chi-square",
+        AR_I=NISP.chi.I.J$statistic,
+        AR_J= NISP.chi.J.K$statistic)
+
+#flextable
+NISP.chi.table.1 <- flextable(NISP.chi.table)
+
+NISP.chi.table.1 <- 
+  set_header_labels(NISP.chi.table.1,
+                    values = list(NISP_I = "NISP I", 
+                                  AR_I = "AR I",                                                    
+                                  NISP_J = "NISP J",                                                  
+                                  AR_J = "AR J",
+                                  NISP_K = "NISP K"))
+
+NISP.chi.table.1 <- compose(NISP.chi.table.1, i = c(1,3,5), 
+                            j = 1,
+                            as_paragraph(
+                            as_chunk(
+                            c("Bos/Bison","Cervidae","Ursidae"))))
+NISP.chi.table.1 <- italic(NISP.chi.table.1, i=1, j=1)
+
+NISP.chi.table.1 <- bold(NISP.chi.table.1, j=3)
+NISP.chi.table.1 <- bold(NISP.chi.table.1, i = c(1,3,4,5,6), j=5)
+
+
+NISP.chi.table.1 <- add_footer(NISP.chi.table.1, Taxon = "Abbreviations: AR = adjusted residuals and composite chi-square values. Significant values in bold.")
+NISP.chi.table.1 <- merge_at(NISP.chi.table.1, j = 1:6, part = "footer")
+
+
+
+
+NISP.chi.table.1 <- font(NISP.chi.table.1, part = "all", fontname = "Open Sans")
+NISP.chi.table.1 <- fontsize(NISP.chi.table.1, part = "all", size = 9)
+
+NISP.chi.table.1 <- set_caption(NISP.chi.table.1, tables("Taxa-level-chi-square"),html_escape = FALSE,style = "Caption1")
+NISP.chi.table.1 <- autofit(NISP.chi.table.1)
+
+NISP.chi.table.1
+
+```
+:::
+
+The change in the proportion of these NISP values was tested through the calculation of composite chi-square values and adjusted residuals (`r tables("Taxa-level-chi-square", display = "cite")`). These residuals refer to the layer to the left of the residuals column, respectively, and should be read as standard normal deviates [@Grayson2003-ty; @VanPool2011-lf]. Absolute values over 1.96 indicate a significant change between layers (these are highlighted in bold in `r tables("Taxa-level-chi-square", display = "cite")`). `r tables("Taxa-level-chi-square", display = "cite")` illustrates changes in the relative abundance of species within Layers K-I. This is driven by a significant decrease in herbivore species between K and J ($\chi$^2^ = `r NISP.chi.J.K$statistic`, p = \<.001). Likewise the abundance of all species within Layer I differs significantly from those within Layer J ($\chi$^2^ = `r NISP.chi.I.J$statistic`, p = \<.001). Within Layer I this results from a significant increase in all herbivore species relative to carnivore (and especially Ursidae remains) compared to the underlying Layer J. Thus, taxon is dependent on layer: there is an increase in proportion of herbivore and decrease in carnivore taxa within Layer I compared to the underlying layers (see `r figures("NISP", display = "cite")`).
+
+```{r frag-size-summ-stats, echo=FALSE, message=FALSE, warning=FALSE}
+#reads in data on summary statistics (Bone length)
+frag.size.summ.stats <- read_csv("../data/frag.size.summ.stats.csv")
+
+
+
+```
+
+## Bone fragmentation
+
+Bone fragmentation, as expressed by the mean bone length, which was measured across the longest axis of each bone specimen,  is similar within Layers I (`r filter(frag.size.summ.stats, Layer == "I")$mean` ± `r filter(frag.size.summ.stats, Layer == "I")$sd`mm), J (`r filter(frag.size.summ.stats, Layer == "J")$mean` ± `r filter(frag.size.summ.stats, Layer == "J")$sd`mm) and K (`r filter(frag.size.summ.stats, Layer == "K")$mean` ± `r filter(frag.size.summ.stats, Layer == "K")$sd`mm). Overall, the distribution of bone fragment lengths appears similar across layers, with a large proportion of specimens \<100mm, and few outliers with larger dimensions. This can be seen in `r figures("frag-size", display = "cite")` where the mean for each layer is consistently higher than the median (SOM Table S4-S5).
+
+::: {custom-style="Compact"}
+```{r frag-size, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10,fig.id = "fig-4", fig.cap= figures('frag-size')}
+#t-test of mean bone length between layers
+layer.t.test <- read_csv("../data/layer.t.test.csv")
+
+#Bone length fig
+layer.frag.size <- read_csv("../data/layer.frag.size.csv")
+
+layer.frag.size.fig <- 
+ggplot(layer.frag.size, mapping = aes(x= lev.final, 
+                       y=BONE_LENGTH)) +
+  geom_violin(aes(fill = lev.final),trim = TRUE, alpha = 0.5)+
+  geom_boxplot(width = 0.1, outlier.alpha = 0.3)+ 
+  stat_boxplot(mapping = aes(lev.final, BONE_LENGTH), width = 0.2)+ 
+  geom_point(data = filter(frag.size.summ.stats, Layer %in% main.levels), 
+                    mapping = aes(x=Layer,y=mean, fill = Layer), shape=23) +
+  scale_y_continuous(limits = c(0,300), breaks = seq(0,300, by = 50)) +
+  scale_fill_colorblind()+
+  labs(x = "Layer", y = "Length (mm)") +
+  my.theme+
+  theme(legend.position = "none")
+
+#reads in main taxa with merged Bos/Bison, Ursids and Cervids
+main.taxa.frag <- read_csv("../data/main.taxa.frag.csv")
+
+#produces summary statistics of identifiable specimens to species
+main.taxa.summ.stats <- read_csv("../data/main.taxa.summ.stats.csv")
+#writes data to supplementary information
+write_csv(main.taxa.summ.stats, "../data/SI/main.taxa.summ.stats.SOM.csv")
+
+#taxa t-test of clearly identifiable species
+taxa.t.test <- read_csv("../data/taxa.t.test.csv")
+
+#taxa bone length 
+taxa.length.ttest <- 
+  ggplot(main.taxa.frag, mapping = aes(x=Taxon.mod, y=BONE_LENGTH))+
+  geom_boxplot(aes(fill=Taxon.mod),alpha = 0.5, outlier.alpha = 0.3) +
+  geom_point(data = main.taxa.summ.stats, mapping = aes(x=Taxon.mod, y=mean), color = "black",
+             fill="white",shape=23, size =2)+
+  facet_wrap(~Layer)+
+  scale_x_discrete(labels = c("BB", "C", "Us"))+
+  scale_y_continuous(limits = c(0,300), breaks = seq(0,300, by = 50))+
+  labs(x ="Taxon", y=NULL)+
+  guides(y="none")+
+  my.theme+
+  theme(legend.position = "none")
+
+#patchwork panel showing the t-test significance between layers and main taxa
+layer.frag.size.fig+taxa.length.ttest+ plot_layout(tag_level = "new", widths = c(3,3))+plot_annotation(tag_levels = "a")
+
+```
+:::
+
+A t-test illustrates no significant difference between the mean bone lengths between layers (Layer I versus Layer J: t = `r filter(layer.t.test,group1=="I" & group2=="J")$statistic`, df =`r filter(layer.t.test,group1=="I" & group2=="J")$df`, p = `r filter(layer.t.test,group1=="I" & group2=="J")$p.adj`;Layer I versus K: t = `r filter(layer.t.test,group1=="I" & group2=="K")$statistic`, df =`r filter(layer.t.test,group1=="I" & group2=="K")$df`, p = `r filter(layer.t.test,group1=="I" & group2=="K")$p.adj` ; Layer J versus Layer K: t = `r filter(layer.t.test,group1=="J" & group2=="K")$statistic`, df =`r filter(layer.t.test,group1=="J" & group2=="K")$df`, p = `r filter(layer.t.test,group1=="J" & group2=="K")$p.adj`; `r figures("frag-size", display = "cite")`a.).
+
+Similarly, a t-test of mean bone length for the three major species (*Ursus spelaeus*, *Bos/Bison sp.* and *Cervus elaphus*) from Layer I (sample sizes in Layers J and K were too small) illustrates no significant difference in the overall fragment length distributions (*Bos/Bison* versus *Cervus elaphus*: t = `r filter(taxa.t.test,lev.final == "I" & group1=="Bos_Bison_sp." & group2=="Cervus_elaphus")$statistic`, df =`r filter(taxa.t.test,lev.final == "I" & group1=="Bos_Bison_sp." & group2=="Cervus_elaphus")$df`, p = `r filter(taxa.t.test,lev.final == "I" & group1=="Bos_Bison_sp." & group2=="Cervus_elaphus")$p.adj`; *Bos/Bison* versus *Ursus spelaeus*: t = `r filter(taxa.t.test,lev.final == "I" & group1=="Bos_Bison_sp." & group2=="Ursus_spelaeus")$statistic`, df =`r filter(taxa.t.test,lev.final == "I" & group1=="Bos_Bison_sp." & group2=="Ursus_spelaeus")$df`, p = `r filter(taxa.t.test,lev.final == "I" & group1=="Bos_Bison_sp." & group2=="Ursus_spelaeus")$p.adj`; *Cervus elaphus* versus *Ursus spelaeus*: t = `r filter(taxa.t.test,lev.final == "I" & group1=="Cervus_elaphus" & group2=="Ursus_spelaeus")$statistic`, df =`r filter(taxa.t.test,lev.final == "I" & group1=="Cervus_elaphus" & group2=="Ursus_spelaeus")$df`, p = `r filter(taxa.t.test,lev.final == "I" & group1=="Cervus_elaphus" & group2=="Ursus_spelaeus")$p.adj`). Therefore, bone fragmentation does not appear to explain the observed pattern in species representation within Layers K-I (see SOM Tables S2-S3).
+
+Taken together, these statistics illustrate variation between the Middle Palaeolithic Layer K at the base of the sequence and the overlying IUP Layers I and J in terms of changes in the relative proportions of carnivore and herbivore taxa. Therefore, it is important to test whether such changes in species representation are related to differences in depositional history within Layers K-I as a result of either natural, carnivore or human action or a combination of all of these.
+
+## Species and bone element survival
+
+To understand specific deposit formation processes and the taphonomic history of the Bacho Kiro Cave fauna, especially for Layers I, J and K, requires a detailed assessment of skeletal element representation for the three major species. We merged again the identifiable remains from these species into general categories of Ursidae, Cervidae and *Bos/Bison*. Similarly, identifiable element were merged into more general body portions  (cranial: antler, horncore, cranium, mandible, teeth; axial: vertebrae, pelvis; forelimb: humerus, radius, ulna; hindlimb: femur, tibia; foot: carpals, metacarpal, tarsals, metatarsal, phalanges) to provide a broader overview of patterns of representation [modified from @stiner1991faunal; -@stiner1991food].
+
+::: {custom-style="Compact"}
+```{r taxa-element, fig.height=7,fig.width=10,echo=FALSE, message=FALSE, warning=FALSE, fig.cap=figures('taxa-element')}
+
+#element representation main taxa
+taxa.element.portion <- read_csv(file = "../data/taxa.element.portion.csv")
+
+taxa.element.I <- 
+taxa.element.portion %>% 
+    mutate(Taxon.mod = str_replace_all(Taxon.mod, "_", " ")) %>%   
+    filter(Taxon.mod == "Ursid"|
+           Taxon.mod == "Bos Bison sp."|
+           Taxon.mod == "Cervid") %>% 
+  filter(lev.final == "I") %>% 
+  mutate(Element.mod = factor(Element.mod, levels = c("Cranium",
+                                                      "Axial",
+                                                      "Forelimb",
+                                                      "Hindlimb",
+                                                      "Foot"))) %>% 
+  mutate(Taxon.mod = replace(Taxon.mod, which(Taxon.mod == "Bos Bison sp."), "Bos/Bison"),
+         Taxon.mod = replace(Taxon.mod, which(Taxon.mod == "Ursid"), "Ursidae"),
+         Taxon.mod = replace(Taxon.mod, which(Taxon.mod == "Cervid"), "Cervidae")) %>% 
+  group_by(lev.final, Taxon.mod)
+
+
+#plots element representation of main taxa as a figure
+taxa.element.fig <- 
+taxa.element.I %>% 
+filter(Taxon.mod == "Ursidae"|
+           Taxon.mod == "Bos/Bison"|
+           Taxon.mod == "Cervidae") %>% 
+  mutate(Taxon.mod = recode(Taxon.mod,"Bos/Bison" = "BB",
+                            "Cervidae" = "C", "Ursidae" = "Us")) %>% 
+  ggplot(aes(x=reorder(Element.mod, desc(Element.mod)), y=pcNISP, group=Taxon.mod,
+             fill = Taxon.mod, color = Taxon.mod), size=1)+
+  geom_line(size=1, alpha = 0.5)+
+  geom_point()+
+  labs(x="Element portion", y="%NISP")+
+  coord_flip()+
+  ylim(0,40)+
+  facet_grid(~Taxon.mod, 
+             scales = "free_x")+
+  my.theme+
+  theme(legend.position = "none")
+
+taxa.element.fig
+
+#chi-square test
+taxa.ele.chi <- 
+  taxa.element.portion %>% 
+  filter(lev.final == "I") %>% 
+  filter(Taxon.mod == "Ursid"|
+           Taxon.mod == "Bos_Bison_sp."|  
+           Taxon.mod == "Cervid") %>%
+  ungroup() %>% 
+  select(Taxon.mod,Element.mod,NISP) %>% 
+  pivot_wider(names_from = Element.mod, values_from = NISP)
+
+#prepare contingency table cervid vs. bovid
+cer.bov.chi <- taxa.ele.chi %>% filter(str_detect(Taxon.mod, "Cerv|Bos"))
+cer.bov.chi <- data.frame(cer.bov.chi, row.names = c(cer.bov.chi$Taxon.mod)) 
+cer.bov.chi <- cer.bov.chi %>% select(-Taxon.mod)
+
+
+#chi square test
+cer.bov.chi.2 <- chisq_test(cer.bov.chi) 
+
+#cerv vs. bov chi-square statistics
+cerv.bov.chi.stats <- 
+  chisq_descriptives(cer.bov.chi.2) %>% 
+  rename(Taxon=Var1, Element=Var2) %>% 
+  select(Taxon,Element, observed, std.resid) %>% 
+  pivot_wider(names_from = Element,
+              values_from = c(observed, std.resid)) %>% 
+  rename(Cranium = observed_Cranium,
+         Axial = observed_Axial,
+         Fore = observed_Forelimb,
+         Hind = observed_Hindlimb,
+         Foot = observed_Foot) %>% 
+  select(Taxon, 
+         Cranium, std.resid_Cranium,
+         Axial, std.resid_Axial,
+         Fore, std.resid_Forelimb,
+         Hind, std.resid_Hindlimb,
+         Foot, std.resid_Foot)
+
+#prepare contingency table bovid vs. ursid
+urs.bov.chi <- taxa.ele.chi %>% filter(str_detect(Taxon.mod, "Urs|Bos"))
+urs.bov.chi <- data.frame(urs.bov.chi, row.names = c(urs.bov.chi$Taxon.mod)) 
+urs.bov.chi <- urs.bov.chi %>% select(-Taxon.mod)
+
+
+#chi square test
+urs.bov.chi.2 <- chisq_test(urs.bov.chi)
+  
+#cerv vs. bov chi-square statistics
+urs.bov.chi.stats <- 
+  chisq_descriptives(urs.bov.chi.2) %>% 
+  rename(Taxon=Var1, Element=Var2) %>% 
+  select(Taxon,Element, observed, std.resid) %>% 
+  pivot_wider(names_from = Element,
+              values_from = c(observed, std.resid)) %>% 
+  rename(Cranium = observed_Cranium,
+         Axial = observed_Axial,
+         Fore = observed_Forelimb,
+         Hind = observed_Hindlimb,
+         Foot = observed_Foot) %>% 
+  select(Taxon, 
+         Cranium, std.resid_Cranium,
+         Axial, std.resid_Axial,
+         Fore, std.resid_Forelimb,
+         Hind, std.resid_Hindlimb,
+         Foot, std.resid_Foot)
+
+#prepare contingency table cervid vs. ursid
+urs.cerv <- taxa.ele.chi %>% filter(str_detect(Taxon.mod, "Urs|Cerv"))
+urs.cerv <- data.frame(urs.cerv, row.names = c(urs.cerv$Taxon.mod)) 
+urs.cerv <- urs.cerv %>% select(-Taxon.mod)
+
+
+#chi square test
+urs.cerv.2 <- chisq_test(urs.cerv) 
+#cerv vs. bov chi-square statistics
+urs.cerv.chi.stats <- 
+  chisq_descriptives(urs.cerv.2) %>% 
+  rename(Taxon=Var1, Element=Var2) %>% 
+  select(Taxon,Element, observed, std.resid) %>% 
+  pivot_wider(names_from = Element,
+              values_from = c(observed, std.resid)) %>% 
+  rename(Cranium = observed_Cranium,
+         Axial = observed_Axial,
+         Fore = observed_Forelimb,
+         Hind = observed_Hindlimb,
+         Foot = observed_Foot) %>% 
+  select(Taxon, 
+         Cranium, std.resid_Cranium,
+         Axial, std.resid_Axial,
+         Fore, std.resid_Forelimb,
+         Hind, std.resid_Hindlimb,
+         Foot, std.resid_Foot)
+
+```
+:::
+
+Only Layer I contain sufficient numbers of specimens identifiable to taxon and element portion to discuss patterns of body part representation (`r figures("taxa-element", display = "cite")`) . For Layer I, data illustrate differences in the representation of different body parts with both *Bos/Bison* and cervids showing higher proportions of limbs (*Bos/Bison* forelimb = `r filter(taxa.element.I, Taxon.mod == "Bos Bison sp." & Element.mod == "Forelimb")$pcNISP`% and hindlimb = `r filter(taxa.element.I, Taxon.mod == "Bos Bison sp." & Element.mod == "Hindlimb")$pcNISP`%; Cervidae forelimb = `r filter(taxa.element.I, Taxon.mod == "Cervid" & Element.mod == "Forelimb")$pcNISP`% and hindlimb = `r filter(taxa.element.I, Taxon.mod == "Cervid" & Element.mod == "Hindlimb")$pcNISP`%), while the ursid remains have a higher percentage of cranial elements (`r filter(taxa.element.I, Taxon.mod == "Ursid" & Element.mod == "Cranium")$pcNISP`%) compared to limb bones (forelimb = `r filter(taxa.element.I, Taxon.mod == "Ursid" & Element.mod == "Forelimb")$pcNISP`%, hindlimb = `r filter(taxa.element.I, Taxon.mod == "Ursid" & Element.mod == "Hindlimb")$pcNISP`%). We ran separate chi-square tests to see whether such differences between taxa and body portion were statistically significant. There is no significant difference between the element representation of *Bos/Bison* and cervids within Layer I ($\chi$^2^ [df = `r cer.bov.chi.2$df`, *n* = `r cer.bov.chi.2$n`] = `r cer.bov.chi.2$statistic`, p = `r cer.bov.chi.2$p`). In contrast, comparing *Bos/Bison* and cervids with ursids illustrates significant difference between the element representation within Layer I (*Bos/Bison* vs. Ursidae: $\chi$^2^ [df = `r urs.bov.chi.2$df`, *n* = `r urs.bov.chi.2$n`] = `r urs.bov.chi.2$statistic`, p = \<.001; Cervidae vs. Ursidae: $\chi$^2^ [df = `r urs.cerv.2$df`, *n* = `r urs.cerv.2$n`] = `r urs.cerv.2$statistic`, p = \<.001). Such variation in element representation could represent different site formation histories, perhaps with the *Bos/Bison* and cervid remains being transported into the cave while the ursid remains indicate that the bears died in the cave itself.
+
+This pattern is confirmed when looking at the minimum anatomical units (MAU) for these taxa from Layer I (see SOM Table S6). The skeletal profiles for *Bos/Bison* show an under-representation of cranial and axial parts (NISP = `r sum(filter(quant.standard, str_detect(TAXON, "Bos|Bison") & lev.final == "I"& str_detect(ELEMENT_MAMMAL, "Atlas|Axis|Rib|Vert"))$NISP)`; MAU rib =`r sum(filter(quant.standard, str_detect(TAXON, "Bos|Bison") & lev.final == "I" & str_detect(ELEMENT_MAMMAL, "Atlas|Axis|Rib|VertRib"))$MAU)`), with a similar pattern also identified for cervids (NISP = `r sum(filter(quant.standard, str_detect(TAXON, "Cervus|Cervid") & lev.final == "I"& str_detect(ELEMENT_MAMMAL, "Atlas|Axis|Rib|Vert"))$NISP)`; MAU rib =`r sum(filter(quant.standard, str_detect(TAXON, "Cervus|Cervid") & lev.final == "I" & str_detect(ELEMENT_MAMMAL, "Atlas|Axis|Rib|Vert"))$MAU)`). Skeletal profiles from these species highlight a higher proportion of bone elements from forelimb (*Bos/Bison* NISP = `r sum(filter(quant.standard, str_detect(TAXON, "Bos|Bison") & lev.final == "I"& str_detect(ELEMENT_MAMMAL, "Hume|Radi|Ulna"))$NISP)`; MAU = `r sum(filter(quant.standard, str_detect(TAXON, "Bos|Bison") & lev.final == "I"& str_detect(ELEMENT_MAMMAL, "Hume|Radi|Ulna"))$MAU)`) and hindlimb (NISP = `r sum(filter(quant.standard, str_detect(TAXON, "Bos|Bison") & lev.final == "I"& str_detect(ELEMENT_MAMMAL, "Fem|Tibia"))$NISP)`; MAU = `r sum(filter(quant.standard, str_detect(TAXON, "Bos|Bison") & lev.final == "I"& str_detect(ELEMENT_MAMMAL, "Fem|Tib"))$MAU)`). While ursids have high values for some long bone elements such as femur and radius, it is notable that their skeletal profile is dominated by cranial (especially teeth) and also foot elements (cranial NISP = `r sum(filter(quant.standard, str_detect(TAXON, "Ursus|Ursid") & lev.final == "I"& str_detect(ELEMENT_MAMMAL, "Cran|Mandible|Maxilla"))$NISP)`; MAU cranial =`r sum(filter(quant.standard, str_detect(TAXON, "Ursus|Ursid") & lev.final == "I" & str_detect(ELEMENT_MAMMAL, "Cran|Mandible|Maxilla"))$MAU)`; foot NISP = `r sum(filter(quant.standard, str_detect(TAXON, "Ursus|Ursid") & lev.final == "I"& str_detect(ELEMENT_MAMMAL, "Meta|Phal"))$NISP)`; MAU foot =`r sum(filter(quant.standard, str_detect(TAXON, "Ursus|Ursid") & lev.final == "I" & str_detect(ELEMENT_MAMMAL, "Meta|Phal"))$MAU)`).
+
+Further, plotting relative bone density values [@kreutzer1992bison;@Lee_Lyman1994-is; @Lam1998-aw; @Lam1999-ul; @Lam2003-th; @Lam2005-jq] for the most abundant herbivore species within Layers K-I (*Bos/Bison*, cervids and equids) does not illustrate a specific predominance of skeletal remains, though long bone remains appear common (see `r figures("bone-density", display = "cite")`).
+
+::: {custom-style="Compact"}
+```{r bone-density, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height= 8,fig.cap=figures('bone-density')}
+#Bos Bison density plot 
+BB.density <- 
+zones.density %>% 
+  mutate(Taxon.mod = TAXON) %>% 
+  mutate(Taxon.mod = replace(Taxon.mod, which(Taxon.mod == "Bos_primigenius"|
+                                                Taxon.mod == "Bison_priscus"|
+                                                Taxon.mod == "Bos_Bison_sp."), "Bos.Bison"))%>% 
+  filter(lev.final %in% main.levels) %>% 
+  filter(Taxon.mod == "Bos.Bison") %>% 
+  ggplot(aes(x=Bison, y=n,  add = "reg.line", color = lev.final)) +
+  geom_point() +
+  geom_smooth(method="lm")+
+  stat_cor(label.x = 0.4, label.y = 15, size=3) +
+  ggrepel::geom_text_repel(aes(label = scan_site), color = "black", size=2.5) +
+  scale_x_continuous(limits = c(0.2,1), breaks = seq(0.2,1,0.25))+
+  facet_grid(~lev.final)+
+  scale_color_colorblind()+
+  my.theme.smaller.font+
+  xlab(NULL)+
+  ylab("NSP")+
+  theme(legend.position = "none")
+
+#Cervid density plot
+Cerv.density <- 
+  zones.density %>% 
+  mutate(Taxon.mod = TAXON) %>% 
+  mutate(Taxon.mod = replace(Taxon.mod, which(Taxon.mod == "Cervus_elaphus"|
+                                              Taxon.mod == "Cervid_ sp."), "Cervid")) %>% 
+  filter(Taxon.mod == "Cervid") %>% 
+  filter(lev.final %in% main.levels) %>% 
+  ggplot(aes(x=reindeer, y=n,  add = "reg.line", color = lev.final)) +
+  geom_point() +
+  geom_smooth(method="lm")+
+  stat_cor(label.x = 0.4, label.y = 15, size=3) +
+  ggrepel::geom_text_repel(aes(label = scan_site), color = "black", size=2.5) +
+  scale_x_continuous(limits = c(0.2,1), breaks = seq(0.2,1,0.25))+
+  facet_grid(~lev.final)+
+  scale_color_colorblind()+
+  my.theme.smaller.font+
+  xlab(NULL)+
+  ylab("NSP")+
+  theme(legend.position = "none")
+
+#Equid density plot
+Eq.density <- 
+zones.density %>% 
+  mutate(Taxon.mod=TAXON) %>% 
+  mutate(Taxon.mod = replace(Taxon.mod, which(Taxon.mod == "Equus_ferus"| Taxon.mod == "Equid_sp."),
+                             "Equid")) %>% 
+  filter(Taxon.mod == "Equid") %>% 
+  filter(lev.final %in% main.levels) %>% 
+  ggplot(aes(x=horse, y=n,  add = "reg.line", color = lev.final)) +
+  geom_point() +
+  geom_smooth(method="lm")+
+  stat_cor(label.x = 0.25, label.y = 3.5, size=3) +
+  ggrepel::geom_text_repel(aes(label = scan_site), color = "black", size= 2.5) +
+  scale_x_continuous(limits = c(0.2,1), breaks = seq(0.2,1,0.25))+
+  facet_grid(~lev.final)+
+  scale_color_manual(values = c("#000000","#56B4E9"))+
+  my.theme.smaller.font+
+  ylab("NSP")+
+  xlab("Bone density")+
+  theme(legend.position = "none")
+
+#patchwork figure combing Bos/Bison, Cervid and Equid
+(BB.density/Cerv.density)+Eq.density+ plot_annotation(tag_levels = 'a')
+
+```
+:::
+
+`r figures("bone-density", display="cite")` illustrates element NISP plotted against relative bone density for *Bos/Bison*, cervids and equids. In Layer I there is no significant relationship between relative bone density and preservation. In Layers J and K there are some positive associations with cervids and equids, respectively, suggesting selective preservation of denser skeletal portions, but smaller samples sizes warrant caution in this interpretation. Therefore, in Layer I it appears that there has been neither significant selective destruction of weaker skeletal portions nor an over representation of the densest elements. Taken together with skeletal profile and MAU data this suggests that there was a biased transport of skeletal elements from herbivore species into the cave during the accumulation of Layer I with this transport not including cranial, axial and, to a lesser extent, foot elements of those species.
+
+## Bone surface visibility and weathering
+
+Overall, bones from Layers K-I show low proportions of both sub-aerial weathering (stages 0-2; @Behrensmeyer1978-lw] and abrasion (0-50%), which translates into high bone surface visibility (\>90%; `r figures("taph-panel", display = "cite")` and SOM Tables S7-S9 for detailed data breakdown).
+
+::: {custom-style="Compact"}
+```{r taph-panel, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height= 8,fig.cap=figures('taph-panel')}
+#reads in weathering data fro BK Cave IJK
+weath <- read_csv("../data/weath.fig.csv")
+#cleans data and changes to heavy and light weathering
+weath <- weath %>% 
+  mutate(type = case_when(str_detect(type, "heavy")~ "heavy weathering",
+                          str_detect(type, "low")~ "low weathering"))
+#plots weathering data
+weath.fig <- 
+  ggplot(weath, mapping = aes(x=reorder(lev.final, desc(lev.final), y=weath.mod)))+
+    geom_bar(aes(y=weath.mod, fill = type), position = "fill",stat = "identity", alpha = 0.5)+
+  coord_flip()+
+  scale_y_continuous(labels = scales::percent_format())+
+  labs(x = "Layer", y="%weathered", fill="bone weathering")+
+  my.theme+
+  theme(legend.title = element_text(size = 10),
+        legend.text = element_text(size = 10))+
+  scale_fill_manual(values = c("#000000","#E69F00"))
+
+
+
+#bone readability
+read <- read_csv("../data/read.fig.csv")
+#modifies data into low and high readability
+read <- read %>% 
+  mutate(type = factor(type, levels = c("high readability","low readability")))
+#plots figure
+read.fig <- 
+   ggplot(read, mapping = aes(x=reorder(lev.final, desc(lev.final), y=read.mod)))+
+    geom_bar(aes(y=read.mod, fill = reorder(type, desc(type))), position = "fill",stat = "identity", alpha = 0.5)+
+  coord_flip()+
+  scale_y_continuous(labels = scales::percent_format())+
+  labs(x = "Layer", y="%readability", fill = "bone surface readability")+
+  my.theme+
+    theme(legend.title = element_text(size = 10),
+          legend.text = element_text(size = 10))+
+  scale_fill_manual(values = c("#000000","#E69F00"))
+  
+  
+#abrasion figure
+abrasion<- read_csv("../data/abrasion.fig.csv")
+#modifies data to low and high abrasion
+abrasion <- abrasion %>% 
+  mutate(type = case_when(str_detect(type, "high")~ "high abrasion",
+                          str_detect(type, "low")~ "low abrasion"))
+#plots figure
+abrasion.fig <- 
+  ggplot(abrasion, mapping = aes(x=reorder(lev.final, desc(lev.final), y=abras.mod)))+
+    geom_bar(aes(y=abras.mod, fill = type), position = "fill",stat = "identity", alpha = 0.5)+
+  coord_flip()+
+  scale_y_continuous(labels = scales::percent_format())+
+  labs(x = "Layer", y="%abraded", fill = "bone abrasion")+
+  my.theme+
+    theme(legend.title = element_text(size = 10),
+          legend.text = element_text(size = 10))+
+  scale_fill_manual(values = c("#000000","#E69F00"))
+
+
+#Taphonomy panel graph
+taph.panel <- weath.fig/abrasion.fig/read.fig+plot_annotation(tag_levels = 'a')
+taph.panel
+
+```
+:::
+
+The extraordinary bone preservation at Bacho Kiro Cave has been recognized in the high collagen yields extracted for radiocarbon dating and ZooMS.
+
+## Carnivore and human bone surface modifications
+
+The excellent preservation of the bone surfaces provides ample opportunity to identify and classify bone surface modifications from both carnivore and human action (see `r figures("BSM-gen", display = "cite")`; SOM Table S10).
+
+::: {custom-style="Compact"}
+```{r BSM-gen, echo=FALSE, message=FALSE, warning=FALSE, fig.cap=figures('BSM-gen'), fig.width = 10}
+#uses the total NSP analysed and incorporates general data on carnivore and
+#human modifications (i.e. present or absent)
+
+BSM <- read_csv(file = "../data/BSM.csv")
+#General BSM figure
+BSM.fig.2 <- 
+  BSM %>% 
+  mutate(Layer = factor(Layer, levels = c("K", "J/K", "J", "I/J", "I"))) %>% 
+  filter(Layer %in% main.levels) %>% 
+  select(Layer,`%carn`, `%hum`) %>% 
+  pivot_longer(-Layer, names_to = "modification_type", values_to = "percent") %>% 
+  ggplot(mapping = aes(x=Layer, percent, fill = modification_type)) + 
+  geom_col(position = position_dodge2(),alpha = 0.5) +
+  coord_flip()+
+  scale_fill_colorblind(labels = c("carnivore", "human"), guide = guide_legend(reverse=TRUE))+
+  ylim(0,15)+
+  labs(x="Layer", y="%", fill = "modification type")+
+  my.theme
+BSM.fig.2
+```
+:::
+
+Overall, `r figures("BSM-gen", display = "cite")` illustrates a change in the proportion of bone surface modifications between the MP Layer K (carnivore modification = `r filter(BSM, Layer == "K")$'%carn'`%; human modification = `r filter(BSM, Layer == "K")$'%hum'`%) and the IUP Layers (J carnivore modification = `r filter(BSM, Layer == "J")$'%carn'`%; J human modification = `r filter(BSM, Layer == "J")$'%hum'`%; I carnivore modification = `r filter(BSM, Layer == "I")$'%carn'`%; I human modification = `r filter(BSM, Layer == "I")$'%hum'`%), showing a clear temporal trend of a decrease in carnivore modification and an increase in human modification. We tested the change in this proportion between layers by calculating the composite chi-square values and adjusted residuals (see `r tables("BSM-chi-sq", display = "cite")`). The null hypothesis states that modification types are independent of layers.
+
+::: {custom-style="Compact"}
+```{r BSM-chi-sq, echo=FALSE, message=FALSE, warning=FALSE, fig.cap= figures('BSM-chi-sq')}
+#calculate chi-square for modification vs. Layer
+BSM.chi <- 
+  BSM %>% 
+  select(Layer,nCarnivore,nHuman) %>% 
+  rename(Carn = "nCarnivore", Hum = "nHuman" ) %>% 
+  #filter(Layer %in% main.levels) %>% 
+  pivot_longer(cols = Carn:Hum,
+               names_to = "type",
+               values_to ="n") %>% 
+  pivot_wider(names_from = Layer, values_from = n) 
+
+#prepare contingency table
+BSM.chi <- data.frame(BSM.chi, row.names = c(BSM.chi$type)) 
+#chi-square test for human vs. carnivore modification I and J
+BSM.chi.I.J <- 
+BSM.chi %>% select(I,J) %>% 
+  chisq_test() 
+#chi-square statistics including AR
+BSM.chi.I.J.stats <- 
+  BSM.chi.I.J %>% 
+  chisq_descriptives() %>% 
+  rename(Modification = Var1, Layer= Var2) %>% 
+  select(Modification, Layer, observed, std.resid) %>%  
+  pivot_wider(names_from = Layer, values_from = c(observed, std.resid)) %>% 
+  rename(NSP_I=observed_I, AR_I=std.resid_I,NSP_J=observed_J) %>% 
+  select(Modification, NSP_I, AR_I, NSP_J) %>% 
+  mutate(Modification = case_when(str_detect(Modification, "Carn")~ "carnivore",
+                                  str_detect(Modification, "Hum")~ "human"))
+
+#chi-square test for carnivore vs. human J and K
+BSM.chi.J.K<-
+BSM.chi %>% select(J,K) %>% 
+  chisq_test() 
+
+#chi-square statistics for carnivore vs. human including adjusted residuals
+BSM.chi.J.K.stats <- 
+BSM.chi.J.K %>% 
+  chisq_descriptives() %>% 
+  rename(Modification = Var1, Layer= Var2) %>% 
+  select(Modification, Layer, observed, std.resid) %>%  
+  pivot_wider(names_from = Layer, values_from = c(observed, std.resid)) %>% 
+  rename(NSP_J=observed_J, AR_J=std.resid_J,NSP_K=observed_K) %>% 
+  select(Modification, NSP_J, AR_J, NSP_K) %>% 
+  mutate(Modification = case_when(str_detect(Modification, "Carn")~ "carnivore",
+                                  str_detect(Modification, "Hum")~ "human"))
+
+#table combining both
+BSM.chi.combine <- 
+BSM.chi.I.J.stats %>% 
+  full_join(BSM.chi.J.K.stats) %>% 
+  add_row(AR_I=BSM.chi.I.J$statistic, 
+          AR_J= BSM.chi.J.K$statistic)
+
+#make a flextable
+BSM.chi.table.1 <- flextable(BSM.chi.combine)
+
+BSM.chi.table.1 <- 
+  set_header_labels(BSM.chi.table.1,
+                    values = list(NSP_I = "NSP I", AR_I = "AR I",NSP_J = "NSP J",
+                     AR_J = "AR J",NSP_K = "NSP K"))
+
+BSM.chi.table.1 <- compose(BSM.chi.table.1, i = 3, j = 1, as_paragraph(as_chunk("chi-square")))
+
+BSM.chi.table.1 <- bold(BSM.chi.table.1, j=3)
+
+BSM.chi.table.1 <- add_footer(BSM.chi.table.1, Modification = "Abbreviations: AR = adjusted residuals and composite chi-square values. Significant values in bold.")
+BSM.chi.table.1 <- merge_at(BSM.chi.table.1, j = 1:6, part = "footer")
+
+
+BSM.chi.table.1 <- font(BSM.chi.table.1, part = "all", fontname = "Open Sans")
+BSM.chi.table.1 <- fontsize(BSM.chi.table.1, part = "all", size = 9)
+
+BSM.chi.table.1 <- set_caption(BSM.chi.table.1, tables("BSM-chi-sq"), html_escape = FALSE, style = "Caption1")
+BSM.chi.table.1 <- autofit(BSM.chi.table.1)
+
+BSM.chi.table.1
+
+```
+:::
+
+There is no significant difference in %NSP of bones with carnivore and those with human modifications between Layers K and J ($\chi$^2^ = `r BSM.chi.J.K$statistic`, p = `r BSM.chi.J.K$p`) and thus the null hypothesis cannot be rejected (see `r tables("BSM-chi-sq", display = "cite")`). In contrast there is a strong relationship in the proportion of different modifications between Layers J and I ($\chi$^2^ = `r BSM.chi.I.J$statistic`, p = \<.001; see `r tables("BSM-chi-sq", display = "cite")`). The data for Layers I and J indicate that modification type is dependent upon layer. The main driving factor for this pattern appears to be the large increase in human modifications on bones of Layer I, which is consistent with geoarchaeological and micromorphological data that illustrates increased anthropogenic input in the formation of this deposit [@Hublin2020-ed] and also with the increase in density of lithic material (see `r tables("bone-remains", display = "cite")`). We also ran chi-square tests to assess whether different modification types (carnivore, human) illustrate significant differences between body size class and across the different layers. All test results were not significant (at 0.05 level). Overall, the large increase in human modifications within Layer I is statistically significant, but there is no relation to how these modifications are distributed across various species body size classes or between layers.
+
+### Carnivore bone surface modifications
+
+Carnivore modifications are recorded in very small quantities, compared to human modifications, and distributed across a variety of taxa including common species such as *Bos/Bison* and cave bear.
+
+::: {custom-style="Compact"}
+```{r carn-modifications,echo=FALSE, message=FALSE, warning=FALSE, tab.cap=tables('carn-modifications')}
+
+#carnivore modifications filtered for specific types
+carn.mod <- read_csv ("../data/carn.mod.csv")
+
+#flextable
+carn.mod.1 <- flextable(carn.mod) 
+
+carn.mod.1 <- theme_booktabs(carn.mod.1)
+carn.mod.1 <- align(carn.mod.1, part = "header", align = "center")
+carn.mod.1 <- align(carn.mod.1, part = "header", j=1, align = "left")
+
+carn.mod.1 <- add_footer(carn.mod.1, Layer = "Abbreviations: %gast = percentage of bones with gastric etching; %scratch = percentage of bones with tooth scratch; %scallop = percentage of bones with tooth scalloping; %tp = percentage of bones with tooth pit.")
+carn.mod.1 <- merge_at(carn.mod.1, j = 1:6, part = "footer")
+
+carn.mod.1 <- font(carn.mod.1, part = "all", fontname = "Open Sans")
+carn.mod.1 <- fontsize(carn.mod.1, part = "all", size = 9)
+carn.mod.1 <- set_caption(carn.mod.1, tables("carn-modifications"), html_escape = FALSE, style = "Caption1")
+
+carn.mod.1 <- autofit(carn.mod.1)
+carn.mod.1
+```
+:::
+
+`r tables("carn-modifications", display="cite")` illustrates that Layers J and K have the highest proportion of bones with recorded carnivore modifications, and the most common modification recorded is digested and acid etched bone (Layer K = `r filter(carn.mod, Layer == "K")$'%gast'`%; Layer J = `r filter(carn.mod, Layer == "J")$'%gast'`% ). The higher proportions of carnivore modifications in these layers combined with evidence for coprolites in the micromorphology thin sections [@Hublin2020-ed], and a lower incidence of human modifications, suggests a more substantial role for carnivores in bone accumulation and modification (`r figures("carn-mod-fig", display = "cite")` and SOM Tables S8-S9). The type and frequency of modifications, especially gastric etched bone, suggests activities of cave hyaena though other small carnivore taxa cannot be ruled out. However, the low incidence of carnivore modifications within Layer I, and especially the dramatic reduction in digested bone, suggests a more minimal role for carnivores in the formation of this faunal record. The predominance of human action in the formation of Layer I and upper Layer J is illustrated, further, by the low incidence of carnivore and human modifications on the same specimen (Layer I = 9; Layer J =3; Layer K = 3). Bacho Kiro Cave offered a safe location for carnivore species to transport and consume carcasses during periods when the site was unoccupied by humans. However, such opportunities appear to have been more infrequent during the IUP compared to the MP.
+
+```{r carn-mod-fig, echo=FALSE, message=FALSE, warning=FALSE, fig.cap=figures('carn-mod-fig')}
+#reads in image of carnivore modifications from BK Cave IJK
+image_read("../data/carn_mod.tif")
+
+```
+
+### Human bone surface modifications
+
+The change in proportions of human modifications within the MP-IUP layers at Bacho Kiro Cave is statistically significant. `r tables("human-mod", display="cite")` shows the numbers and proportions of different types of bone surface modifications by humans across the three layers. Layer I contains the highest quantity of modifications for each category and the highest proportion of total modifications (see SOM Table S12). Cut marks make up the largest quantity of modifications in most layers, comprising of between 2-8% of bone fragments with the highest proportion within Layer I. Within Layers J and K the frequency of bones with cut and scrape marks is lower compared to Layer I, while there is a higher proportion of bones that exhibit deliberate fractures related to marrow exploitation. Combined with higher levels of carnivore presence (`r figures("BSM-gen", display = "cite")`) it seems that human groups were using the cave more intermittently and over shorter periods of time.
+
+::: {custom-style="Compact"}
+```{r human-mod, echo=FALSE, message=FALSE, warning=FALSE, tab.caps=tables('human-mod')}
+#human modifications by different types recorded
+hum.mod <- read_csv("../data/hum.mod.csv")
+burn <- read_csv ("../data/burn.csv")
+
+hum.mod <- 
+  hum.mod %>% 
+  inner_join(burn)
+
+#flextable
+hum.mod.1 <- flextable(hum.mod) 
+hum.mod.1 <- theme_booktabs(hum.mod.1)
+hum.mod.1 <- align(hum.mod.1, part = "header",j=2:5, align = "center")
+
+hum.mod.1 <- add_footer(hum.mod.1, Layer = "Abbreviations: %cm = percentage of bones with cut marks; %scrape = percentage of bones with scraping marks; %marrow = percentage of bones showing marrow extraction (includes impact points and percussion notches); %burn = percentage of bones showing traces of burning. ")
+hum.mod.1 <- merge_at(hum.mod.1, j = 1:6, part = "footer")
+
+hum.mod.1 <- font(hum.mod.1, part = "all", fontname = "Open Sans")
+hum.mod.1 <- fontsize(hum.mod.1, part = "all", size = 9)
+hum.mod.1 <- set_caption(hum.mod.1, tables("human-mod"),html_escape = FALSE, style = "Caption1")
+
+hum.mod.1 <- autofit(hum.mod.1)
+hum.mod.1
+
+```
+:::
+
+Layer I is again distinct in terms of the quantity and variation of different modifications but also in the increase in proportion of modifications across both carnivore and herbivore taxa, across all body size classes, but especially an increased focus on smaller carnivores and herbivores (see `r figures("hum-mod-fig", display = "cite")` and `r figures("BSM-taxa", display="num")`; SOM Table S13). There also appears to be variation in the distribution of different modification types across body size classes for both herbivores and carnivores; for example, higher proportions of marrow fractured bones in large compared to small herbivore taxa with medium sized animals having a value between the two. Additionally, within Layer I the proportion of human bone surface modifications increases across all carnivore body size classes (including wolf, wolverine, cave hyaena, cave bear).
+
+```{r hum-mod-fig, echo=FALSE, message=FALSE, warning=FALSE, fig.cap=figures('hum-mod-fig')}
+#reads in image of human modifications from BK Cave IJK
+image_read("../data/hum_mod.tif")
+
+```
+
+When comparing the distribution of human modifications across the major species for Layer I the emphasis on the limb bone elements for *Bos/Bison* and cervids is evident with high proportions of all three types of modification (scrape, cut and marrow fractures; `r figures("BSM-taxa-portion", display="cite")`), supporting the selective transport of limb bone elements to the site and subsequent processing. *Ursidae* remains show a similar level of processing of limb bones but also increased modifications on cranium and foot portions, indicative of skinning and first stages of fur removal [@Munzel2004-ss; @Kindler2012-si;@Romandini2014-vx]. This could represent the direct procurement of such taxa as raw material for bone tools and personal ornaments (see @Hublin2020-ed, Fig. 3) but also potentially for fur (see `r figures("BSM-taxa", display="cite")`). Further modifications on small-medium sized carnivores (for example *Gulo gulo*, *Canis lupus*, *Crocuta spelaea*; modified from Morin (2012) are more limited but again distributed across cranium, limbs and foot elements, which suggests a more sporadic targeting of such species for fur.  Nevertheless, Layer I illustrates clearly an increased and more systematic focus on carnivore species, relative to herbivores, which is distinct from the underlying Layers.
+
+::: {custom-style="Compact"}
+```{r BSM-taxa, echo=FALSE, fig.cap=figures('BSM-taxa'), fig.width=10, message=FALSE, warning=FALSE}
+#read in data on Human BSM by Layer, grouped taxa, modification type
+BSC.hum.mod <- read_csv ("../data/BSC.hum.mod.csv")
+BSC.hum.mod <- BSC.hum.mod %>% 
+    mutate(type=factor(type, levels = c("scrape", "cut", "marrow")))
+#writes data file to SI
+write_csv(BSC.hum.mod, file = "../data/SI/BSC.hum.mod.SOM.csv")
+
+#Plot as a figure
+BSC.hum.mod.fig <- 
+  ggplot(BSC.hum.mod,aes(x=BSC, y= pc, fill = type)) +
+  geom_bar(stat = "identity", position = position_dodge2(), alpha = 0.5)+
+  facet_grid(taxa~lev.final) +
+  scale_fill_colorblind()+
+  my.theme+
+  labs(x="Body size class", y="%")+
+  theme(legend.title = element_blank(),
+        legend.position = "bottom")
+BSC.hum.mod.fig
+
+```
+:::
+
+An interesting feature of the faunal assemblage from Bacho Kiro Cave is the low proportion of bone remains exhibiting evidence for being burnt (total remains from all layers=`r sum(hum.mod$'%burn')`%; see Table 6; SOM Tables S14-S15). The majority of burnt remains were identified from Layer I (`r filter(burn, Layer == "I")$'%burn'`%) and this contrasts within comparatively high figures of burned lithics (Layer I= 13.3%; Layer J= 0%; Layer K= 2.6%). In particular, this low quantity of burnt faunal remains appears at odds with the micromorphological data, which suggests that the composition of Layer I, and especially the dark colour, is a direct result of burnt material, with common charcoal fragments [@Hublin2020-ed]. Further analyses of the smaller screened fraction is ongoing and will assess the destruction, fragmentation and overall intensity of burning within the MP-UP sequence, especially from the IUP layers.
+
+```{r BSM-taxa-portion, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=8,fig.cap=figures('BSM-taxa-portion')}
+#reads in data on taxa and major portion
+hmod.BSC.port <- read_csv("../data/hmod.BSC.csv")
+#plot as figure
+BSChmod.fig.1 <- 
+hmod.BSC.port %>% 
+  mutate(Element.mod = factor(Element.mod, levels = c("Cranium", "Axial","Forelimb","Hindlimb","Foot"))) %>% 
+  filter(lev.final == "I") %>% 
+  filter(str_detect(Taxon.mod, "Urs|Cerv|Bos") & lev.final %in% main.levels) %>%
+    mutate(Taxon.mod = replace(Taxon.mod, which(Taxon.mod == "Bos Bison sp."), "Bos/Bison"),
+         Taxon.mod = replace(Taxon.mod, which(Taxon.mod == "Ursid"), "Ursidae"),
+         Taxon.mod = replace(Taxon.mod, which(Taxon.mod == "Cervid"), "Cervidae")) %>% 
+  mutate(Taxon.mod = recode(Taxon.mod,"Bos/Bison" = "BB",
+                            "Cervidae" = "C", "Ursidae" = "Us")) %>%
+  group_by(lev.final, Taxon.mod) %>% 
+  filter(str_detect(Element.mod, "Cran|Ax|Fore|Hind|Foot")) %>% 
+  mutate(type=factor(type, levels = c("scrape", "cut", "marrow"))) %>% 
+  ggplot(aes(x=reorder(Element.mod, desc(Element.mod)), y= pc, 
+             fill = type)) +
+  geom_bar(stat = "identity", position = position_dodge2(reverse = TRUE), alpha = 0.5)+
+  scale_y_continuous(limits = c(0,10), breaks = seq(0,10,2))+
+  coord_flip()+
+  facet_grid(~Taxon.mod)+
+  scale_fill_colorblind(name ="Modification") +
+  my.theme +
+  labs(x="Portion", y="%")+
+  theme(legend.title = element_blank(),
+        panel.spacing = unit(5,"mm"),
+        legend.position = "bottom")
+
+BSChmod.fig.1
+
+```
+
+Alongside human butchery and processing modifications there is, potentially, direct evidence for hunting in the form of possible projectile impact marks (PIMs) from both Layers I and K (Fig. `r figures("PIMS", display = "cite")`). These two specimens, both large ungulates, exhibit damage consistent with projectile impact including notch formation with bevelling on the rib margin (BB8-1061) and a bending fracture on another rib (BB7-1870; @Smith2020-hx; @ODriscoll2014-ji; @Iovita2014-ud; @Rots2014-zm; @Smith2003-qd; @gaudzinski2018evidence]. Further study of these modifications is required, as well as correlation with ongoing lithic usewear studies, to be able to fully interpret these marks.
+
+```{r PIMS, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=8,fig.cap=figures('PIMS')}
+#read in image of potential PIMs
+image_read("../data/PIMS.tif")
+
+```
+
+Finally, the faunal assemblage from Layers I-K illustrates the use of a range of animal carcasses as raw material both for bone tools (*n* = 92; this includes bone retouchers) and personal ornaments (*n* = 29). These were recovered across the site from all the squares excavated in both the Niche 1 and Main Sector. Informal bone tool types, such as retouchers (*n* = 48), are found throughout Layers K-I. Contrary, formal objects (*n* = 19; `r 19/sum(filter(total.studied, str_detect(Layer, "K", negate =TRUE))$Analysed)*100`%) are only identified within the IUP occupations of Layers I and J and include awls and *lissoirs* (smoothers). Animal teeth pendants and pendant fragments (*n* = 27) were likewise identified only within the IUP Layers and are produced mainly on cave bear teeth, along with wolf and a few herbivore taxa [@Hublin2020-ed]. Ongoing work will characterize and contextualize the nature and manufacture of these objects against the broader background of the MP-UP transition in Europe (Martisius et al., *in preparation*; @newcomer1984bone; @newcomer1974study; @Bosch2015-xl; @Kuhn2009-rm; @soressi2013neandertals; @gaudzinski1999middle).
+
+## Mortality profiles, site use and seasonality
+
+### Bone fusion
+
+```{r bone-fusion-1, echo=FALSE, message=FALSE, warning=FALSE }
+#all elements with unfused or nearly fused elements
+bone.fusion <- read_csv("../data/bone.fusion.csv")
+
+#reads in pre-processed data for species
+bone.fusion.taxa <- read_csv("../data/bone.fusion.taxa.csv")
+
+bone.fusion.taxa <- 
+  bone.fusion.taxa %>% 
+  mutate(Species = str_replace_all(Species, "_", " "),
+         Element = str_replace_all(Element, "_", " ")) %>% 
+  mutate(Species =replace(Species, which(Species == "Cervid sp."), "Cervidae sp."))
+
+```
+
+Overall, the faunal assemblage from Layers K-I produced `r sum(bone.fusion$n)` unfused bone elements representing a small proportion of the total (`r sum(bone.fusion$n)/sum(total.studied$Analysed)*100`%) and a limited number of these were assigned securely to both taxa and element (*n* = `r sum(bone.fusion.taxa$n)`; `r tables("bone-fusion-2", display = "cite")`).
+
+::: {custom-style="Compact"}
+```{r bone-fusion-2, echo=FALSE, message=FALSE, warning=FALSE, tab.caps=tables('bone-fusion-2')}
+#creates flextable of bone fusion data
+bone.fusion.taxa.1 <-flextable(bone.fusion.taxa) 
+bone.fusion.taxa.1 <- theme_booktabs(bone.fusion.taxa.1)
+bone.fusion.taxa.1 <- italic(bone.fusion.taxa.1, i = c(1,2,3,4,8,9,10,12), j=2)
+bone.fusion.taxa.1 <- italic(bone.fusion.taxa.1, j=4, part = "header") 
+bone.fusion.taxa.1 <- align(bone.fusion.taxa.1, part = "header",j=1:4, align = "left")
+bone.fusion.taxa.1 <- align(bone.fusion.taxa.1, i=1:12, j=4:6, align = "right")
+
+bone.fusion.taxa.1 <- compose(bone.fusion.taxa.1, i = 4, j = 3, as_paragraph(as_chunk("Vertebra-Thoracic-Centrum")))
+
+
+bone.fusion.taxa.1 <- add_footer(bone.fusion.taxa.1, Layer = "Fusion data based on Reitz et al. (1999) and Weinstock (2009).")
+bone.fusion.taxa.1 <- merge_at(bone.fusion.taxa.1, j = 1:6, part = "footer")
+
+bone.fusion.taxa.1 <- font(bone.fusion.taxa.1, part = "all", fontname = "Open Sans")
+bone.fusion.taxa.1 <- fontsize(bone.fusion.taxa.1, part = "all", size = 9)
+bone.fusion.taxa.1 <- set_caption(bone.fusion.taxa.1, tables("bone-fusion-2"),html_escape = FALSE, style = "Caption1")
+
+bone.fusion.taxa.1 <- autofit(bone.fusion.taxa.1)
+bone.fusion.taxa.1
+
+```
+:::
+
+The unfused proximal metatarsal from a cervid, which is normally fully fused at birth, suggests that this was a foetal individual. At least four of the elements identified have a first fusion date (FFD) around 3 years (36 months) suggesting these individuals were, at least dentally, prime adult and suggesting this individual died during the spring season. Furthermore, additional elements (*n* = `r filter(bone.fusion.taxa, FFD != 0 & FFD <= 12 & LFD <24) %>% count`) of individuals less than 12 month old suggest a season of death during spring/summer and winter/autumn, assuming an early May birthing season. Overall, the available post-cranial fusion data suggests a focus on prime-aged animals, at least for herbivore species, and the use of the cave by IUP groups during all seasons.
+
+### Dental remains
+
+Dental remains have been identified for a variety of species though ursid remains are most common throughout all layers. Ursid teeth were grouped to combine teeth from cave bear, brown bear and Ursidae sp. providing a larger sample for analysis. Bears have an unusual dental development and eruption alongside a different season of birth (winter, January) compared to other carnivores (hyaena and canids) and ungulates (generally spring time late May; @Discamps2015-ew; @Stiner1990-hs]. Much of the information on ageing bear remains from teeth comes from modern brown bear [@Stiner1990-hs; @Stiner1994-mn; @Stiner1998-pq]. All bears are born during hibernation and are toothless, developing the full deciduous dentition by the third month with the M1 usually by the fifth month. Bears generally have all permanent dentition erupted by the end of the first year with the eruption of the permanent canines starting during the second year and completion by the end of the third year of life. Knowing the specific timing and eruption of deciduous and permanent dentition allows for the development of a tooth eruption wear scheme that includes nine stages, grouped into three age categories (Juvenile [I-III], Prime [IV-VII], Old [VIII-IX]; @Kindler2012-si; @Stiner1994-mn; @Stiner1998-pq]. While the scheme does not provide an estimate for the age at death it provides the ability for inter and intra-site comparisons at an ordinal scale (`r figures("bear-age", display = "cite")`; @Stiner1998-pq: p.311).
+
+```{r bear-age, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=8,fig.cap=figures('bear-age')}
+#read in bear teeth ageing data
+bear.ternary <- read_csv("../data/bear.wide.csv")
+#load ggtern as it conflicts with ggplot package
+library(ggtern)
+#plot ternary graph of bear age based on Stiner (1994)
+bear.ternary.fig <- 
+    ggtern(bear.ternary, aes(x=pcj,y=pcp,z=pco))+
+     geom_Lline(Lintercept=.66, linetype = "dashed")+
+     geom_Rline(Rintercept = .66, linetype = "dashed")+
+     geom_Tline(Tintercept = .33, linetype = "dashed")+
+     geom_Tisoprop(value = 0.5, linetype = "dashed")+
+     geom_point(aes(color=lev.final, shape = ELEMENT_MAMMAL), 
+               size =4) +
+    scale_color_colorblind()+
+    theme_bw()+
+    theme_nomask()+
+    theme_showarrows()+
+    labs(x="Juvenile", y="Old", z="Prime",shape = "Tooth", color="Layer")+ 
+  #This adds in the sub-divisions for different mortality profiles
+    annotate(geom = "label", x=80,y=20, z=50, label = "NNVA")+
+    annotate(geom = "label", x=100,y=20, z=10, label = "J") +
+    annotate(geom = "label", x=10,y=20, z=100, label = "P") +
+    annotate(geom = "label", x=50,y=20, z=80, label = "LS") +
+    annotate(geom = "label", x=25,y=65, z=25, label = "O") +
+    annotate(geom = "label", x=80,y=20, z=50, label = "NNVA")+
+    theme(legend.position = "right",
+          legend.title = element_text(size = 10),
+          legend.text = element_text(size = 10),
+          axis.text = element_text(size = 12),
+          tern.axis.title.L = element_text (face = "bold", size = 12),
+          tern.axis.title.R = element_text(face = "bold", size = 12),
+          tern.axis.title.T = element_text(face = "bold", size = 12))
+
+bear.ternary.fig
+
+
+```
+
+Ursid deciduous dentition recovered from Layers I and J are all unworn or in very early wear, suggesting these individuals died during winter or early spring time possibly towards the end of hibernation period (March/April). Further, the presence of at least two individuals with permanent M1 not yet erupted suggests individuals under five months of age that died, similarly, during late winter-early spring. In total `r sum(bear.ternary$total.scored)` teeth could be assigned to the wear stages developed by Stiner (1994). Despite low sample sizes for some teeth Ursid mortality profiles for Layers K-I contain a mix of all three age classes (juvenile, prime and old individuals) with perhaps slightly elevated proportions of juvenile and old animals (`r figures("bear-age", display ="cite")`). Overall, these patterns are close to the natural non-violent attrition (NNVA) profile, which Stiner [-@Stiner1998-pq] attributes to natural hibernation death, which also correlates well with the tooth eruption data and skeletal part representation patterns observed, especially within Layers I and J.
+
+The seasonal nature of bear occupation at caves, including at Bacho Kiro Cave, suggests that there were extended periods of time where both humans and bears could safely occupy the site. Indeed, Stiner [-@Stiner1998-pq] notes that any disturbance at a denning location can deter potential hibernating bears. While mortality data suggests bear remains at Bacho Kiro Cave accumulated largely as a result of natural attrition, active exploitation of hibernating bear individuals by humans cannot be completely excluded [@Kindler2012-si; @Romandini2018-oi]. The high proportion of skinning and butchery modifications on these remains suggests access to such remains soon after the individual died in order to exploit skins and other carcass resources, which has been documented at other sites in Europe [@Munzel2004-ss; @Kindler2012-si; @Romandini2018-oi; @Abrams2014-oz], and also to exploit abundant dental remains for pendants [@Hublin2020-ed].
+
+Further seasonality data was obtained from additional carnivore taxa including red fox (*Vulpes vulpes*) and cave hyaena (*Crocuta crocuta spelea*). As Layer I (and the contact I/J) is accumulated largely as a result of human activity these remains likely represent the deliberate accumulation by human groups. In Layer I, at least three adult cave hyaenas are represented alongside a single deciduous third premolar (Stage I of hyaena wear scheme; [@Stiner1994-mn]: p325). Previous work has documented that modern spotted hyaenas reproduce aseasonally, though in modern groups this tends to peak during the summer (June-August; @Stiner1994-mn; @Kruuk1972-dp]. Undoubtedly Pleistocene hyaena populations in more northern latitudes, compared to their modern day distribution, had a more restricted breeding season [@Stiner1994-mn]. Therefore, an approximate season of death is spring-summer time, based on modern data. Within Layer J there are no juvenile cave hyaena (all the teeth are permanent) though the crowns are unworn or in the early stages of wear perhaps suggesting the teeth have only just erupted (ca.9-12 months of age) again suggesting a spring-summer season of death. Red fox dentition from Layers I and J is limited (I = 3; J = 1) but contains erupted yet unworn premolars (P2) and molars (M1) in the early stages of wear [@Stiner1994-mn]. Red foxes normally breed between March-April with the permanent premolars and molars erupting around 4 months [@Stiner1994-mn]. The deciduous dentition is generally replaced by permanent teeth when the individual is ca. 6 months old, supporting a human occupation during the spring-summer at Bacho Kiro Cave.
+
+Herbivore age and seasonality data is more limited due to an overall lack of cranial and dental fragments, presumably resulting from differential transport decisions by human groups. For *Bos/Bison*, crown height could be measured on seven teeth from Layers K-I and ages range between 3-10 years indicating prime age animals (juvenile: 0-3 years; prime: 3-12 years; old: 12-20 years; based on @Discamps2015-ew). There were no cervid remains suitable to measure crown height so age and seasonality cannot be adequately assessed. Most of the teeth recorded in terms of wear and eruption indicate prime aged individuals though in Layer J there are at least three juvenile individuals as expressed by unworn or early wear dP2 and dP3. This indicate these individuals were potentially no older than 6 months old suggesting they died between spring and autumn.
+
+Finally, deciduous and permanent equid teeth were assessed in terms of eruption, tooth wear and crown heights were measured, where possible. Individuals assigned to age classes based on the revised schemes of Discamps and Costamagno [-@Discamps2015-ew; juvenile: 0-2 years; prime: 2-15 years; old: 15-25 years). Within Layer I three permanent teeth were measured (ages 14-21 years) and assigned to prime and old age classes with at least one juvenile deciduous premolar (dP4) in early wear suggesting a very young individual up to 1 month old [@Levine1982-mi] that died during spring. Layer J produced a similarly low number of specimens (*n* = 3) with preserved crown heights again producing prime-old age individuals (ages 7-25 years). A single deciduous incisor suggests at least one juvenile individual from Layer J and the heavy wear suggests the animal died between spring and autumn [@Levine1982-mi]. Finally, Layer K preserved seven specimens with enough tooth crown to measure and allowed all teeth to be assigned to prime-old age individuals (7-17 years) (see SOM).
+
+Overall ageing and seasonality data illustrates that the IUP record at Bacho Kiro Cave accumulated year round based on carnivore and herbivore bone fusion, dental eruption and wear and tooth crown height. Most information comes from the extensive bear remains that suggest a season of death during or soon after hibernation and most likely represent natural attrition. Data from herbivore taxa is more limited. Juvenile remains from cervids and equids, along with some *Capra sp.* remains, suggest death during the spring-autumn seasons and quite soon after birth. The herbivore taxa illustrate mainly prime-old age individuals with occasional juvenile specimens though the numbers are insufficient to investigate more thoroughly the mortality profiles and hunting practices.
+
+Overall ageing and seasonality data illustrates that there was no preferential season for accumulation during the IUP faunal record at Bacho Kiro Cave. Most information comes from the extensive bear remains that suggest a season of death during or soon after hibernation and most likely represent natural attrition. Data from herbivore taxa are more limited with mainly prime-old age individuals with occasional juvenile specimens though the numbers are insufficient to investigate more thoroughly the mortality profiles and hunting practices. Juvenile remains from cervids and equids, along with some Capra sp. remains, suggest death during the spring-autumn seasons and quite soon after birth. Seasonality data indicate that faunal material accumulated at Bacho Kiro Cave as a result of repeated use of the site by both human and carnivore groups throughout Layers K-I. The intensity of site use by humans within Layer I was substantially greater than earlier layers, either because more people were present, stayed longer, or both.
+
+# Discussion
+
+## Site use, diet and carnivore exploitation
+
+This study represents the first in depth taphonomic and zooarchaeological analysis of fauna from Bacho Kiro Cave, characterizing the subsistence behaviour of humans during the Initial Upper Palaeolithic. The faunal composition within Layers K-I illustrates climatic shifts at a local and regional scale to a greater extent than previously suggested [@Kozlowski1982-cp; @Spassov2007-ia] and a diversity of habitats surrounding the site. The identification of woolly mammoth (*Mammuthus primigenius*), reindeer (*Rangifer tarandus*) and wolverine (*Gulo gulo*) from Layers I and J indicate a substantially colder climate than in present day, which is also consistent with the, currently available, microfaunal data [@Hublin2020-ed]. Importantly, these species could have been more environmentally tolerant compared to modern day populations. Species representation correlates well with high resolution oxygen stable isotope data [@Pederzani2021-sw] suggesting mean annual air temperatures 10-15$^\circ$C below modern day (Layer J: mean annual temperature -1.1 ± 3.3$^\circ$C; Layer I: mean annual temperature -3.4 ± 2.5$^\circ$C). Hence, palaeoclimate reconstructions for Layer J suggest a continental climate similar to present day Russia or central Asia, while the later IUP occupation in Layer I occurred during a climatic phase with a smaller difference in summer-winter temperatures that is closer to modern-day northern Scandinavia. Despite the considerably colder climate and environment around Bacho Kiro Cave, seasonality indicators illustrate human occupation within Layer I throughout all seasons of the year. Therefore, early groups of IUP *Homo sapiens* appear to have occupied south-eastern Europe during colder climates than previously considered and were hunting a range of herbivore taxa from a variety of local environments (see supplementary information in Hublin et al., [-@Hublin2020-ed]). Overall, such data have broader implications for our understanding of the environmental and climatic conditions during the spread of Late Pleistocene *Homo sapiens* [@Muller2011-lu; @Hublin2013-vf; @Staubwasser2018-pj].
+
+Micromorphological and sedimentological analysis indicate increased anthropogenic input towards the top of Layer J with human activities intensified within Layer I. This resulted in the distinct dark colour of Layer I, coming from organic matter, including charcoal and, to a lesser extent, burnt bone but also knapped chert, bone splinters, plant remains and some coprolites [@Hublin2020-ed]. Results from this study characterise the faunal assemblage from Layer I as an accumulation primarily resulting from human action.
+
+The richness of Layer I is exemplified by the high volume of excavated bone material from Layer I (`r filter(bone.remains.1, Layer == "I" )$'bone/l'`/litre of sediment) compared to the underlying layers (Layer J = `r filter(bone.remains.1, Layer == "J" )$'bone/l'`/litre of sediment; Layer K = `r filter(bone.remains.1, Layer == "K" )$'bone/l'`/litre of sediment). This is further emphasised by the excellent identification rate (`r filter(ID.rate, Taxon.mod == "identifiable" & lev.final == "I")$ID.rate`%), which is high especially for Pleistocene localities [@Morin2017-hq; @Morin2017-ni; @Rendu2019-dt]. This is also the case for Layers J and K and the contact between these layers (I/J and J/K). Faunal data from Bacho Kiro Cave illustrates that the diet of the IUP groups within Layer I remained relatively consistent compared to the underlying Middle Palaeolithic of Layer K with a focus on large-medium sized herbivores (especially *Bos/Bison*, cervids and equids). However, within Layer I there appears to be a more deliberate focus on carnivore species, especially cave bear, representing a specific subsistence behaviour that is distinct from the underlying MP at Bacho Kiro Cave. Detailed analysis reveals an increase in carnivore species alongside a diversification in other herbivore species during the IUP occupation in Layer I and appearing to begin within Layer J. The variation in identification and body portion for major species in Layer I is related to differences in transport decisions (e.g., transport of herbivore limb elements), site formation histories (cave bear, natural accumulation), butchery and processing behaviour and the use and modification of bone for tools and personal ornaments by IUP groups at Bacho Kiro Cave.
+
+Bone surface modifications from Layers K-I shows an increase in the proportion of human modifications in Layer I and a corresponding decline in carnivore modifications compared with the underlying horizons. Throughout Layer K the intensity of anthropogenic input is significantly lower in terms of frequency and intensity. Indeed, various proxies (carnivore modified bones, digested elements) suggest that carnivore taxa had a more important role in bone accumulation within this layer. This should in no way be seen to diminish the capacity and hunting capabilities of Neanderthals [@Smith2015-tv; @Smith2010-lp; @Stiner1994-mn; @discamps2011human; @marin2020neanderthal; @starkovich2017paleolithic] but fits with other indications of the low intensity of Neanderthal occupation signatures at some cave sites and the frequency of large carnivore modifications within these assemblages [@Rendu2019-dt]. This could be related to more mobile lifeways resulting in shorter duration of site occupation compared to the IUP occupation in Layer I. The distribution of human modifications within Layer I illustrates a large increase across a range of herbivore and carnivore species and includes unusual species such as raptors (golden eagle [*Aquila chrysaetos*]) and Leporidae  [@peresani2011late; @morin2012presumed; @Romandini2014-vx]. Taken together, this suggests IUP subsistence at Bacho Kiro Cave focused on a range of large to medium-sized herbivores along with the more opportunistic, perhaps occasional hunting, of smaller and larger carnivores including cave bear. At Bacho Kiro Cave the exploitation of carnivore taxa, especially cave bears, appears to be related to the use of these species for fur as well as raw material for bone tools and personal ornaments. At a broader scale, whether this increased focus on carnivores, and small numbers of other lower ranked resources (leporids, birds and fish), represents the beginnings of dietary diversification related to population or dietary pressures requires additional analyses and comparisons to later Upper Palaeolithic sites and faunal assemblages [@Morin2012-bg; @Morin2008-es; @Morin2019-px; @starkovich2012intensification; @stiner2009prey]. However, this is beyond the scope of this paper which aims to characterise subsistence strategies across the IUP archaeological record.
+
+## IUP subsistence behaviour: A spatial and temporal review
+
+The spread, intensity and duration of IUP occupations remains a source of debate [@Kuhn2014-wt; @Kuhn2009-rm; @Hublin2020-ed; @Ruebens2015-dw; @Ginter2000-no; @Hublin2013-vf; @Hublin2015-nc; @Muller2011-lu] especially since genetic evidence suggests limited genetic transfer from these initial groups to later Upper Palaeolithic and even modern day populations [@Hublin2020-ed; @Hajdinjak2021-ah; @Lalueza-Fox2021-fb]. Further the scarcity of IUP sites with well-preserved faunal remains has limited our understanding of the environmental and climatic tolerances of these early *Homo sapiens* groups, their subsistence behaviour and how this compares to local Neanderthal populations. This is especially problematic for the European record (`r figures("IUP-map", display = "cite")`) and therefore Bacho Kiro Cave provides the first well-contextualized, comparative data point of IUP subsistence behaviour in Europe. Nevertheless, in the regions surrounding south-eastern Europe several extensive and well published sites offer the potential for comparison with new data from Bacho Kiro Cave to begin the process of categorizing and describing IUP subsistence behaviour.
+
+::: {custom-style="Compact"}
+```{r IUP-map, echo=FALSE, message=FALSE, warning=FALSE, fig.cap=figures('IUP-map')}
+#read in image of IUP sites with fauna, poor fauna, no fauna
+image_read("../data/IUP_map.tif")
+
+
+
+```
+:::
+
+`r figures("IUP-map", display = "cite")` illustrates some of the major IUP sites, highlighting the problem of poor bone preservation. In Bulgaria the cave sites of Temnata and Kozarnika, which are situated relatively close to Bacho Kiro Cave, have produced layers containing IUP technology and fauna [@Ginter2000-no; @guadelli2000grands; @guadelli2005sequence; @sirakov2010ancient; @tsanova2021upper]. At Temnata I Layers 4 and VI illustrate a similar range of species including carnivores (cave hyaena [*Crocuta crocuta spelaea*], bear [*Ursus spelaeus*], fox [*Vulpes vulpes*]) alongside a similar range of herbivore taxa, indicative of various environmental types including open (horse [*Equus caballus cf. germanicus*], bison [*Bison priscus*], rhino [*Coelodonta antiquitatis*]), more closed (aurochs [*Bos primigenius*], cervids [*Cervus elaphus*]) and mountainous (ibex [*Capra ibex*], chamois [*Rupicapra rupicapra*]) settings [@guadelli2000grands]. Faunal representation suggests a similar mix of environments, characteristic of MIS 3, though the presence of the cold-adapted moose (*Alces alces*) within Layer VI in Temnata suggests human occupation, initially, during colder phases as in Bacho Kiro Cave Layer I and J. Bone surface modification data illustrate the use of the cave by human and carnivore groups. The early IUP (Temnata-II Layer VI) is characterized by high carnivore, especially hyaena, (*n* = 84; 6.8%) input compared to human (*n* = 34; 3.1%) suggesting a less intensive use of the site and, potentially, repeated periods of human absence. In contrast the later IUP, exemplified by Layer 4 from Temnata-I, has a higher proportion of human (*n* = 184; 12%) compared to carnivore (*n* = 6; 0.4%) modifications suggesting a more frequent and perhaps intensive use of the site by human groups. At Kozarnika, similar species representation has been noted (Guadelli, *pers comm*; @guadelli2005sequence) though further publication of taphonomic and lithic data is necessary for a more detailed comparison. Overall, these Bulgarian cave sites containing IUP layers illustrate similar species representation and high proportion of human modifications across a range of herbivore and carnivore taxa.
+
+::: {custom-style="Compact"}
+```{r IUP-comp-table, echo=FALSE, message=FALSE, warning=FALSE, tab.cap=tables("IUP-comp-table")}
+#read in data on other IUP sites
+IUP.comp <- read_csv(file = "../data/IUP_site_comp.csv")
+IUP.comp <- IUP.comp %>% rename(burn = burnt, `bt` = `osseous tech`, `%h`=herb,`%c`=carn, `%sm`=small, `%cm`=cmod, `%hm`=hum, orn=ornaments)
+
+#flextable
+IUP.comp.1 <- flextable(IUP.comp)
+IUP.comp.1 <- valign(IUP.comp.1, part = "header", valign = "center")
+IUP.comp.1 <- align(IUP.comp.1, part = "header", align = "center")
+IUP.comp.1 <- align(IUP.comp.1, j=12, align = "center", part = "body")
+IUP.comp.1 <- align(IUP.comp.1, j=13, align = "center", part = "body")
+IUP.comp.1 <- font(IUP.comp.1, part = "all", fontname = "Open Sans")
+
+IUP.comp.1 <- merge_v(IUP.comp.1, j=1)
+IUP.comp.1 <- merge_v(IUP.comp.1, j=3)
+IUP.comp.1 <- merge_v(IUP.comp.1, j=14, part = "body")
+
+IUP.comp.1 <- width(IUP.comp.1, j=14, width = 1)
+IUP.comp.1 <- fit_to_width(IUP.comp.1, max_width = 8)
+IUP.comp.1 <- add_footer(IUP.comp.1, Site = "Abbreviations: NISP = number of identified specimens; %h = percentage of herbivore taxa; %c = percentage of carnivore taxa; %sm = percentage of small taxa; %burn = percentage of burnt faunal remains; %cm = percentage of carnivore modified remains; %hm = percentage of human modified remains; bt = presence of bone tools; orn = presence of ornaments. Kozarnika Layer VI not included as data are currently unpublished")
+IUP.comp.1 <- merge_at(IUP.comp.1, j = 1:14, part = "footer")
+
+IUP.comp.1 <- font(IUP.comp.1, part = "all", fontname = "Open Sans")
+IUP.comp.1 <- fontsize(IUP.comp.1, part = "all", size = 8)
+
+IUP.comp.1 <- set_caption(IUP.comp.1,tables("IUP-comp-table"),html_escape = FALSE, style = "Caption1")
+
+IUP.comp.1 <- theme_booktabs(IUP.comp.1)
+
+
+IUP.comp.1
+
+```
+:::
+
+Üçağızlı cave (Turkey) preserves a deep sequence spanning most of the Upper Palaeolithic and contains extensive IUP layers (F-I and including sub-layers; @Kuhn2009-rm; @Kuhn1999-pf] with recent redating suggesting the beginning of the IUP ca. 45,000-43,000 years ago [@douka2013exploring; @Kuhn2009-rm]. The IUP Layers Fa, Fb, Fc and H1-H3 have abundant ash and charcoal remains and a high anthropogenic input suggesting a more intense or continuous use of the site [@goldberg2003some]. Interestingly, the earliest IUP occupations at Üçağızlı (Layers H, H1-3 and upper I) are represented by thin, sharply defined lenses within these layers suggesting relatively brief events of accumulation [@goldberg2003some; @Kuhn2009-rm]. Overall, the pattern of occupation at Üçağızlı cave during the IUP with more sporadic site use at the beginning of the IUP occupation followed by a more intensive use is similar to that identified at Bacho Kiro Cave in terms of the transition from Layer J into Layer I. IUP subsistence at Üçağızlı is dominated by medium-large ungulates including fallow deer (*Dama mesopotamica*), bezoar goat (*Capra aegagrus*), and roe deer (*Capreolus capreolus*) with wild boar (*Sus scrofa)*, red deer (*Cervus elaphus*), and aurochs (*Bos primigenius*) present though less abundant. Small game forms a small proportion of the diet in the IUP layers, but is more diversified compared to the Middle Palaeolithic, though the importance of smaller taxa increases significantly in the later Upper Palaeolithic at the site [@Kuhn2009-rm]. Again carnivores form a small but consistent portion of the faunal assemblage with human modifications on numerous species including bear and other large carnivores (see `r tables("IUP-comp-table", display ="cite")`).
+
+The recent redating of Ksâr 'Akil (Lebanon) has produced an age of ca. 45,000 years ago and is associated with IUP lithics and human remains [@Bosch2015-xl; but also see @douka2015statistical]. Detailed zooarchaeological analysis of fauna from Layers XXII and XXV has provided detailed information on the site formation history and shifts in human subsistence behaviour at the site [@bosch2018molluscs]. The burnt bone recovered from the IUP layers illustrates a low proportion of burnt materials in the early IUP Layer XXV (*n* = 3; `r 3/236*100`%) with a substantial increase within Layer XXII (*n* = 1289; `r 1289/3449*100`%). This is a similar to both Bacho Kiro Cave and Üçağızlı, suggesting more intensive use of the cave during the formation of the later IUP in Layer XXII. Fallow deer (*Dama mesopotamica*) are the dominant species throughout the IUP layers, though there is a shift in species diversity. @bosch2018molluscs demonstrates a decrease in aurochs and wild boar (*Sus scrofa*), which is replaced by caprines (*Capra ibex*, *Capra aegagrus*) and roe deer (*Capreolus capreolus*). Evidence for marine mollusc consumption occurs initially in Layer XXII though is rarely recorded in the IUP layers with a similarly low exploitation of smaller game, though this again expands in the later Upper Palaeolithic. Further, these layers contain various carnivore taxa, though the absence of associated modifications from the IUP layers (\<1%) and the predominance of human butchery modifications (11.8%) suggests that Layers XXII and XXV accumulated as a result of human action.
+
+Overall, this comparative review has highlighted some interesting similarities in IUP subsistence strategies. Comparing new faunal data from Bacho Kiro Cave with other IUP sites suggests that early phases of occupation were characterized by, less intensive or shorter term occupations (for example Layer J at Bacho Kiro, Layers H-I at Üçağızlı, Layers XXV at Ksâr 'Akil). Once established, occupation and site use appears more intensive and perhaps more continuous as exemplified by the large charcoal and ash deposits at sites such as Bacho Kiro Cave and Üçağızlı and the extensive evidence for burnt material in Ksâr 'Akil Layer XXII. This is also illustrated by the increase in density of both lithic and faunal material within later IUP occupations. . Across all sites, IUP subsistence appears to be focused mainly on large-medium sized herbivores with a limited exploitation of small game. The presence of humanly modified carnivore remains appears to be a consistent feature of these faunal assemblages suggesting, perhaps, a more specific focus on these individuals for, presumably, skins and furs but at Bacho Kiro Cave possibly also for dietary resources and raw material/ornaments. Despite the environment and climatic differences observed between these various IUP sites, the observed similarities in terms of human occupation and subsistence behaviour are striking, though further work focused on refining the chronology of the emergence and spread of the IUP is required. Overall, this comparative analysis highlights the importance of faunal remains in understanding similarities in subsistence practice (including diet and carnivore exploitation) across the IUP.
+
+# Conclusion
+
+Bacho Kiro Cave represents a key locality for understanding the subsistence behaviour associated with the expansion of Late Pleistocene Homo sapiens into Europe. We identified a change in site use and occupation intensity across the Middle to Upper Palaeolithic transition. IUP Layer I is marked by a significant increase in find density and human modifications on the faunal remains. Together with seasonality data indicating a use of the cave in all seasons, this indicates more frequent and/or more long-term use of the site by these early groups of Homo sapiens. Whether this represents continuous occupation remains unclear, especially as micromorphological data (e.g., clay lenses) has identified potential short periods of site abandonment [@Hublin2020-ed]. Furthermore, the presence of wolverine and reindeer suggests, especially within Layer I, that conditions were considerably colder than had been previously considered [@Kozlowski1982-cp; @Spassov2007-ia] and that IUP groups inhabited Europe during varied climatic conditions [@Hublin2013-vf; @Hublin2015-nc; @Staubwasser2018-pj; @Zwyns2019-ed].
+
+Across the IUP and the MP layers at Bacho Kiro Cave the dietary focus is similar, centred on the exploitation of a range of large to medium herbivore taxa representing a diverse set of habitats around the cave site. The large faunal dataset from Layer I allowed for the identification of the selective transport of large herbivore body parts, especially limb bones, into the site. This contrasts with the abundant cave bear remains, including cranial portions, indicating the bears died in the cave itself. Furthermore, a distinct aspect of the IUP at Bacho Kiro Cave is an increase in humanly modified carnivore remains, including both small (wolf, fox) and larger taxa (cave hyaena, cave bear). This relates to procurement of such taxa as raw material for personal ornaments (e.g., cave bear teeth pendants) but also potentially for skins and fur. This pattern of exploitation is distinct from the Neanderthal archaeological record at Bacho Kiro Cave.
+
+At a broader scale, a distinct set of similarities was identified with other IUP sites with faunal preservation across Europe and western Asia. Interestingly, the earliest IUP occupations seem to have been shorter and less intense, as represented by lower proportions of ash and burnt bone, as well as lower proportions of human modifications. During subsequent IUP occupations site use was more intensive and, potentially, for a longer duration to the exclusion of other large carnivores. At all these sites small game exploitation by IUP *Homo sapiens* was limited. The consistent exploitation of carnivore taxa, of a variety of body size classes, for both skins and potentially other resources occurs at all these sites and could be viewed as something distinct for IUP *Homo sapiens*.
+
+Future work should focus on further contextualising the distinct pattern of intense IUP site use and carnivore exploitation identified here. Firstly, within the IUP itself, with additional data coming from sites for which data publication is forthcoming or excavation still ongoing. This would allow for the further assessment of the role of these subsistence strategies in the spread of *Homo sapiens* groups into Europe and further afield. Secondly, comparison with later Upper Palaeolithic (e.g., Proto-Aurignacian and Early Aurignacian) subsistence strategies would help to understand the specific nature of IUP subsistence and adaptation compared to later groups of incoming *Homo sapiens*. Thirdly, more in-depth comparisons with local MP sites are needed to fully understand the differences between Neanderthal and early *Homo sapiens* subsistence and their role, if any, in population replacements. Overall, with this paper we hope to have created a new data-driven characterisation of IUP subsistence which can now form the basis for a range of comparisons at various temporal and geographic scales.
+
+# Acknowledgements
+
+Research and excavations at Bacho Kiro Cave were funded by the Max Planck Society. The re-excavation of Bacho Kiro Cave was jointly conducted by the National Institute of Archaeology with Museum, Bulgarian Academy of Sciences, Sofia (NAIM-BAS) and the Department of Human Evolution at the Max-Planck-Institute for Evolutionary Anthropology, Leipzig (MPI-EVA). We would like to thank all the students that participated in the excavations. GMS and RS would like to especially thank the lab manager Elena Endarova for the excellent curation and storage of the fauna. We would like to thank the Archaeology Department at the New Bulgarian University (Sofia), the Regional Museum of History in Gabrovo and the History Museum in Dryanovo for their ongoing assistance on the project. GMS and RS would especially like to thank Prof. Nikolay Spasov of the National Museum of Natural History (Sofia) for providing working space and reference material and for his continued assistance and support with the study of the Bacho Kiro Cave fauna. We would also like to acknowledge and thank Jean-Luc Guadelli (PACEA/IPGQ-UMR5199 CNRS, Université Bordeaux I) whom was kind enough to share some of his unpublished faunal data from Kozarnika.NLM was funded through the Fulbright U.S. Scholar Grant (19-11-04) and the Bulgarian-American Commission for Educational Exchange. Karen Ruebens received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Sklodowska-Curie grant agreement No 745662. Finally, we would like to extend our thanks to the Editor of the Journal of Human Evolution, Clément Zanolli, along with the Associate Editor and three anonymous reviewers. Your detailed comments and suggestions have helped to strengthen and improve our manuscript.
+
+\newpage
+
+# References {.unnumbered}
+
+::: {#refs}
+:::
