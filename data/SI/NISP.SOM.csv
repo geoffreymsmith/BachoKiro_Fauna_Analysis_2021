@@ -1,0 +1,48 @@
+TAXON,I,I/J,J,J/K,K
+Aquila chrysaetos,1,,,,
+Aves unknown,5,,,,
+fish unknown,1,,,,
+Leporidae sp.,5,,1,,
+Panthera leo spelaea,5,,,,
+Panthera pardus,1,,1,1,5
+Canis lupus,12,2,4,4,4
+Canis sp.,5,1,,,
+Vulpes vulpes,4,,2,,1
+Cuon alpinus,,,1,,
+Gulo gulo,,1,1,,
+Crocuta spelaea,21,2,7,1,1
+Hyaena sp.,2,,4,2,
+Felidae sp.,,,1,,
+Ursus spelaeus,182,32,108,15,31
+Ursus arctos,4,,3,,
+Ursus sp.,81,7,42,5,8
+Mammuthus primigenius,,,,,1
+Stephanorhinus hemiotechus,,,2,,
+Rhinocerotidae sp.,2,,,,
+Equus ferus,17,,4,1,5
+Equus hydruntinus,6,1,1,,4
+Equidae sp.,52,1,3,1,3
+Megaloceros giganteus,23,1,,,3
+Cervus elaphus,131,7,4,2,5
+Dama dama,2,,,,
+Capreolus capreolus,3,1,1,,
+Rangifer tarandus,,,1,,
+Cervidae sp.,154,10,14,3,17
+Bos primigenius,57,3,4,,3
+Bison priscus,14,3,3,,7
+Bos Bison sp.,218,9,16,4,30
+Capra ibex,36,,5,4,14
+Capra caucasica,10,,,,
+Rupicapra rupicapra,1,2,1,,
+Capra sp.,45,2,5,,11
+Sus scrofa,2,,,,2
+carnivore large,53,4,29,7,30
+carnivore medium,60,3,4,1,12
+carnivore small,18,,,,
+carnivore unknown,1,,,,1
+ungulate large,361,32,35,10,52
+ungulate medium large,365,16,13,3,16
+ungulate small medium,56,4,2,,
+ungulate small,10,,,,
+mammal unknown,2711,137,396,46,261
+unidentified,1,,,,
