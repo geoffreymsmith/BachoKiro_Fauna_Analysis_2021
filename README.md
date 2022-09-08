@@ -6,7 +6,7 @@ This repository contains data and code used for analyses in:
 
 > Smith, G.M. et. al. (2021) Subsistence behavior during the Initial Upper Paleolithic in Europe: Site use, dietary practice and carnivore exploitation at Bacho Kiro Cave (Bulgaria). https://doi.org/10.1016/j.jhevol.2021.103074
 
-This readme file is based on the file and repository from [Sarah Pederzani's](https://www.eva.mpg.de/evolution/staff/sarah-pederzani?Fsize=-1%27A%3D0) work from [Bacho Kiro Cave](https://osf.io/tk9dc/) (Pederzani, 2021). I would like to thank her for continued assistance and advice with R, Rmarkdown and the construction of this repository. 
+This readme file is based on the file and repository from [Sarah Pederzani's](https://www.eva.mpg.de/evolution/staff/sarah-pederzani?Fsize=-1%27A%3D0) work from [Bacho Kiro Cave](https://osf.io/tk9dc/) (Pederzani, 2021). I would like to thank her for continued assistance and advice with R, Rmarkdown and the construction of this repository. There is another version of this repository at: https://osf.io/62pbr/
 
 ### Requirements
 To run the code, you will need to have an up-to-date version of [R](https://www.r-project.org/) and [RStudio](https://rstudio.com/) installed on your computer and a few CRAN packages (see below). 
