@@ -165,7 +165,7 @@ https://CRAN.R-project.org/package=magick
 
 Thomas Lin Pedersen (2020).patchwork: The Composer of Plots.R package version 1.1.1.  https://CRAN.R-project.org/package=patchwork
 
-Sarah Pederzani (2021). Data and Code for âSubarctic climate for the earliest Homo sapiens in Europe.â https://doi.org/10.17605/OSF.IO/TK9DC
+Sarah Pederzani (2021). Data and Code for Subarctic climate for the earliest Homo sapiens in Europe. https://doi.org/10.17605/OSF.IO/TK9DC
 
 R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna,Austria. URL
 https://www.R-project.org/.
